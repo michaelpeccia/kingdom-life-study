@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
+<meta name="theme-color" content="#1B1B2F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Kingdom Life Study</title>
+<meta name="description" content="A chapter-by-chapter Bible study library from Kingdom Life Ministry. Reads offline, with highlighting, bookmarks, downloadable books and a Hebrew and Greek concordance.">
+<meta name="apple-mobile-web-app-title" content="Kingdom Life">
+<link rel="apple-touch-icon" href="icons/icon-512.png">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kingdom Life Study">
+<meta property="og:description" content="A chapter-by-chapter Bible study library from Kingdom Life Ministry. Reads offline, with highlighting, bookmarks, downloadable books and a Hebrew and Greek concordance.">
+<meta property="og:url" content="https://app.kingdom-life-ministry.com/">
+<meta property="og:image" content="https://app.kingdom-life-ministry.com/icons/icon-1024.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css?v=3966ab5e882c">
+</head>
+<body>
+
+<div id="boot" class="boot"><div class="boot-inner">
+  <img class="boot-logo" src="icons/icon-512.png" alt="Kingdom Life" width="220" height="220">
+  <p id="boot-msg">Preparing your library…</p>
+  <div class="bar"><i id="boot-bar"></i></div>
+</div></div>
+
+<header id="topbar" class="topbar" hidden>
+  <button class="icon" id="btn-back" title="Back" aria-label="Back">‹</button>
+  <div class="titles">
+    <h1 id="top-title">Library</h1>
+    <p id="top-sub"></p>
+  </div>
+  <button class="icon" id="btn-chapters" title="Chapters" aria-label="Chapters" hidden>☰</button>
+  <button class="icon" id="btn-settings" title="Settings" aria-label="Settings">Aa</button>
+</header>
+
+<main id="main">
+
+  <!-- ───────────────────────────── Library ───────────────────────────── -->
+  <section class="view" id="view-library">
+    <div class="wrap">
+      <h2 class="display">Kingdom Life Study</h2>
+      <p class="lede">A chapter-by-chapter study library. Books install to your device and read
+        entirely offline.</p>
+
+      <div id="web-cards"></div>
+
+      <div id="app-update" class="update-card" hidden></div>
+
+      <h3 class="rule">On this device</h3>
+      <div id="installed-list" class="cards"></div>
+
+      <h3 class="rule">Available to install</h3>
+      <div id="available-list" class="cards"></div>
+      <p class="hint" id="store-hint"></p>
+      <button id="btn-refresh" class="wide-btn">Check for new books</button>
+      <p class="hint" id="catalog-hint"></p>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── Book contents ────────────────────────── -->
+  <section class="view" id="view-book">
+    <div class="wrap">
+      <h2 class="display" id="book-title"></h2>
+      <p class="lede" id="book-sub"></p>
+      <div class="stats" id="book-stats"></div>
+
+      <h3 class="rule">Front matter</h3>
+      <div id="front-list" class="chips"></div>
+
+      <h3 class="rule">Chapters</h3>
+      <div id="chapter-grid" class="grid"></div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────────── Front matter ──────────────────────── -->
+  <section class="view" id="view-front">
+    <div class="wrap reading" id="front-body"></div>
+  </section>
+
+  <!-- ───────────────────────────── Reader ────────────────────────────── -->
+  <section class="view" id="view-read">
+    <div class="wrap reading" id="read-body"></div>
+  </section>
+
+  <!-- ───────────────────────────── Search ────────────────────────────── -->
+  <section class="view" id="view-search">
+    <div class="wrap">
+      <div class="searchbar">
+        <input id="q" type="search" placeholder="Search scripture, notes and introductions"
+               autocomplete="off" enterkeyhint="search">
+        <button id="q-clear" class="icon" aria-label="Clear">×</button>
+      </div>
+      <div class="seg" id="search-scope">
+        <button data-scope="all" class="on">Everything</button>
+        <button data-scope="verses">Scripture</button>
+        <button data-scope="study">Study notes</button>
+      </div>
+      <p class="hint" id="search-count"></p>
+      <div id="search-results" class="results"></div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────── Highlights and bookmarks ─────────────────── -->
+  <section class="view" id="view-marks">
+    <div class="wrap">
+      <h2 class="display">Marks</h2>
+      <div class="seg" id="marks-tabs">
+        <button data-tab="bookmarks" class="on">Bookmarks</button>
+        <button data-tab="highlights">Highlights</button>
+      </div>
+      <div id="marks-body" class="results"></div>
+      <p class="hint">Marks are stored on this device and are keyed to book, chapter and verse,
+        so they survive book updates.</p>
+      <div class="row">
+        <button class="ghost" id="export-marks">Export marks</button>
+        <button class="ghost" id="import-marks">Import marks</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── Concordance ────────────────────────── -->
+  <section class="view" id="view-lex">
+    <div class="wrap">
+      <h2 class="display">Concordance</h2>
+      <p class="lede">Hebrew and Greek entries keyed to Strong's numbering.</p>
+      <div class="searchbar">
+        <input id="lex-q" type="search" placeholder="Word, meaning, or Strong's number (H7586, G26)"
+               autocomplete="off" enterkeyhint="search">
+        <button id="lex-clear" class="icon" aria-label="Clear">×</button>
+      </div>
+      <div class="seg" id="lex-scope">
+        <button data-lang="all" class="on">Both</button>
+        <button data-lang="H">Hebrew</button>
+        <button data-lang="G">Greek</button>
+      </div>
+      <p class="hint" id="lex-count"></p>
+      <div id="lex-results" class="results"></div>
+    </div>
+  </section>
+
+</main>
+
+<nav id="tabbar" class="tabbar" hidden>
+  <button data-go="library"><span>▤</span>Library</button>
+  <button data-go="read"><span>▦</span>Read</button>
+  <button data-go="search"><span>⌕</span>Search</button>
+  <button data-go="marks"><span>❏</span>Marks</button>
+  <button data-go="lex"><span>א</span>Lexicon</button>
+</nav>
+
+<!-- floating chapter navigation, pinned to the edges while reading -->
+<button class="chapnav prev" id="prev-ch" hidden aria-label="Previous chapter">
+  <span class="arrow">‹</span><span class="num" id="prev-num"></span>
+</button>
+<button class="chapnav next" id="next-ch" hidden aria-label="Next chapter">
+  <span class="arrow">›</span><span class="num" id="next-num"></span>
+</button>
+
+<!-- verse action bar -->
+<div id="verse-bar" class="verse-bar" hidden>
+  <div class="vb-head"><span id="vb-ref"></span><button class="icon" id="vb-close">×</button></div>
+  <div class="swatches" id="vb-colors"></div>
+  <div class="vb-actions">
+    <button data-act="bookmark">Bookmark</button>
+    <button data-act="note">Note</button>
+    <button data-act="copy">Copy</button>
+    <button data-act="words">Words</button>
+    <button data-act="clear">Clear</button>
+  </div>
+</div>
+
+<!-- bottom sheet -->
+<div id="sheet" class="sheet" hidden>
+  <div class="sheet-card" role="dialog" aria-modal="true">
+    <div class="sheet-grip"></div>
+    <div class="sheet-head"><h3 id="sheet-title"></h3><button class="icon" id="sheet-close">×</button></div>
+    <div class="sheet-body" id="sheet-body"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+
+<script src="app.js?v=3966ab5e882c"></script>
+<script src="web.js?v=3966ab5e882c"></script>
+<noscript>
+  <p style="padding:24px;font:16px/1.6 system-ui,sans-serif">
+    Kingdom Life Study needs JavaScript. Turn it on in your browser settings and
+    reload this page.
+  </p>
+</noscript>
+</body>
+</html>

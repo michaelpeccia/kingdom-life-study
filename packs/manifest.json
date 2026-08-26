@@ -1,0 +1,62 @@
+{
+ "packFormat": 1,
+ "packs": [
+  {
+   "id": "jeremiah",
+   "title": "Jeremiah",
+   "translation": "WEB",
+   "version": 7,
+   "chapters": 52,
+   "verses": 1364,
+   "footnotes": 587,
+   "bytes": 1258550,
+   "sha256": "bed9081f6d5a235e",
+   "file": "jeremiah.json",
+   "bundled": true,
+   "hasStrongs": true
+  },
+  {
+   "id": "malachi",
+   "title": "Malachi",
+   "translation": "WEB",
+   "version": 3,
+   "chapters": 4,
+   "verses": 55,
+   "footnotes": 51,
+   "bytes": 98266,
+   "sha256": "29d90dc4ed466f5d",
+   "file": "malachi.json",
+   "bundled": false,
+   "hasStrongs": true
+  },
+  {
+   "id": "mark",
+   "title": "Mark",
+   "translation": "WEB",
+   "version": 2,
+   "chapters": 16,
+   "verses": 678,
+   "footnotes": 204,
+   "bytes": 475998,
+   "sha256": "d8220daaf0e8cc0e",
+   "file": "mark.json",
+   "bundled": false,
+   "hasStrongs": true
+  },
+  {
+   "id": "matthew",
+   "title": "Matthew",
+   "translation": "WEB",
+   "version": 2,
+   "chapters": 28,
+   "verses": 1071,
+   "footnotes": 327,
+   "bytes": 733211,
+   "sha256": "3ea806bcd3e23b13",
+   "file": "matthew.json",
+   "bundled": false,
+   "hasStrongs": true
+  }
+ ],
+ "catalog": "https://raw.githubusercontent.com/michaelpeccia/kingdom-life-packs/main/catalog.json"
+}
