@@ -1,1 +1,21 @@
-
+{
+  "handoutFormat": 1,
+  "handouts": [
+    { "id": "yom-teruah", "title": "Yom Teruah", "file": "Yom-Teruah-Handout.pdf", "bytes": 165185,
+      "url": "https://app.kingdom-life-ministry.com/handouts/Yom-Teruah-Handout.pdf" },
+    { "id": "the-seventh-day", "title": "The Seventh Day", "file": "The-Seventh-Day-Handout.pdf", "bytes": 125767,
+      "url": "https://app.kingdom-life-ministry.com/handouts/The-Seventh-Day-Handout.pdf" },
+    { "id": "sabbath-fire-and-food", "title": "Sabbath: Fire and Food", "file": "Sabbath-Fire-and-Food-Handout.pdf", "bytes": 106156,
+      "url": "https://app.kingdom-life-ministry.com/handouts/Sabbath-Fire-and-Food-Handout.pdf" },
+    { "id": "the-marriage-covenant", "title": "The Marriage Covenant", "file": "The-Marriage-Covenant-Teaching-Handout.pdf", "bytes": 47873,
+      "url": "https://app.kingdom-life-ministry.com/handouts/The-Marriage-Covenant-Teaching-Handout.pdf" },
+    { "id": "husbands-love-your-wives", "title": "Husbands, Love Your Wives", "file": "Husbands-Love-Your-Wives-Handout.pdf", "bytes": 156515,
+      "url": "https://app.kingdom-life-ministry.com/handouts/Husbands-Love-Your-Wives-Handout.pdf" },
+    { "id": "yahshua-is-the-father", "title": "Yahshua Is The Father", "file": "Yahshua-Is-The-Father-Teaching-Handout.pdf", "bytes": 83456,
+      "url": "https://app.kingdom-life-ministry.com/handouts/Yahshua-Is-The-Father-Teaching-Handout.pdf" },
+    { "id": "aleph-and-tav", "title": "Aleph and Tav", "file": "Aleph-and-Tav-Teaching-Handout.pdf", "bytes": 81100,
+      "url": "https://app.kingdom-life-ministry.com/handouts/Aleph-and-Tav-Teaching-Handout.pdf" },
+    { "id": "who-you-are", "title": "Who You Are", "file": "Who-You-Are-Teaching-Handout.pdf", "bytes": 42221,
+      "url": "https://app.kingdom-life-ministry.com/handouts/Who-You-Are-Teaching-Handout.pdf" }
+  ]
+}
