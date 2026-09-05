@@ -414,3 +414,16 @@ body.scrolling .chapnav{opacity:.28}
   word-break:break-all;color:var(--muted)
 }
 .sheet-body > .ghost{width:100%;flex:none;margin-top:8px;text-align:center;color:var(--navy)}
+
+/* The PDF control is an anchor rather than a button, because an installed
+   home-screen app will not open a window for a script but will always follow a
+   link. It still has to look like the button beside it. */
+.topic-tools a.go{
+  display:inline-block;text-decoration:none;color:var(--gold);
+  line-height:1.15;text-align:center
+}
+.topic-tools a.go:active{background:var(--band)}
+.sheet-body > a.ghost{
+  display:block;text-decoration:none;color:var(--navy);
+  width:100%;margin-top:8px;text-align:center
+}

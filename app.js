@@ -34,14 +34,43 @@ async function openLink(url){
       return;
     } catch(e){ /* fall through to a normal tab */ }
   }
-  window.open(url, '_blank', 'noopener');
+  openOut(url);
 }
 
-/** An anchor that opens in the in-app browser rather than navigating away. */
+/* Open a URL from a browser, by clicking a real link.
+
+   window.open() is what this used to do, and on a phone it silently does
+   nothing. Once the app has been added to the home screen it runs standalone,
+   with no browser chrome and no tab to open into, and both iOS and Android
+   refuse the call outright — no error, no window, and a button that looks
+   broken. A genuine anchor is navigation rather than script, so the browser
+   handles it itself and it works in a tab, in the installed app, and inside a
+   WebView. */
+function openOut(url){
+  const a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.style.display = 'none';
+  document.body.append(a);
+  a.click();
+  setTimeout(() => a.remove(), 0);
+}
+
+/** An anchor that opens in the in-app browser rather than navigating away.
+
+   Only inside Capacitor is the click intercepted. In a browser the anchor is
+   left to be an anchor: taking the tap away from the browser and handing the
+   URL back to it through script is exactly what stops working once the app is
+   installed to a home screen. */
 function link(text, url, cls){
   const a = el('a', cls, text);
   a.href = url;
-  a.onclick = e => { e.preventDefault(); e.stopPropagation(); openLink(url); };
+  a.target = '_blank';
+  a.rel = 'noopener';
+  const P = window.Capacitor && window.Capacitor.Plugins;
+  if (P && P.Browser)
+    a.onclick = e => { e.preventDefault(); e.stopPropagation(); openLink(url); };
   return a;
 }
 
@@ -1397,6 +1426,20 @@ function topicRefIndex(t){
   return s;
 }
 
+/* The PDF button is an anchor wearing a button's clothes. It has to be: an
+   installed home-screen app will not open a window for a script, but it will
+   always follow a link. */
+function pdfLink(t, label){
+  const a = el('a','go', label);
+  a.href = t.pdfUrl;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  const P = window.Capacitor && window.Capacitor.Plugins;
+  if (P && P.Browser)
+    a.onclick = e => { e.preventDefault(); openLink(t.pdfUrl); };
+  return a;
+}
+
 function topicFooter(t){
   const f = el('div','topic-footer');
   f.append(el('p','hint',
@@ -1404,9 +1447,7 @@ function topicFooter(t){
   const row = el('div','topic-tools');
   const share = el('button','go solid','Share');
   share.onclick = () => shareSheet(t);
-  const pdf = el('button','go','Open the PDF');
-  pdf.onclick = () => openLink(t.pdfUrl);
-  row.append(share, pdf);
+  row.append(share, pdfLink(t, 'Open the PDF'));
   f.append(row);
   return f;
 }
@@ -1415,9 +1456,7 @@ function topicTools(t){
   const row = el('div','topic-tools');
   const share = el('button','go solid','Share');
   share.onclick = () => shareSheet(t);
-  const pdf = el('button','go','Handout PDF');
-  pdf.onclick = () => openLink(t.pdfUrl);
-  row.append(share, pdf);
+  row.append(share, pdfLink(t, 'Handout PDF'));
   return row;
 }
 
@@ -1441,7 +1480,10 @@ function shareSheet(t){
     }
     act('Copy the link', canShare() ? 'ghost' : 'primary',
        () => copyText(topicUrl(t), 'Link copied'));
-    act('Open the printable PDF', 'ghost', () => { closeSheet(); openLink(t.pdfUrl); });
+    const open = pdfLink(t, 'Open the printable PDF');
+    open.className = 'ghost';
+    open.addEventListener('click', () => closeSheet());
+    body.append(open);
     act('Copy the PDF link', 'ghost', () => copyText(t.pdfUrl, 'PDF link copied'));
 
     body.append(el('p','sharelink', topicUrl(t)));
