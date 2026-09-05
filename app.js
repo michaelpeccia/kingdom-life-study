@@ -74,6 +74,9 @@ const State = {
   prefs: LS.get('prefs', {theme:'light', size:19, lh:1.62, showFn:true, dropcap:true}),
   marks: LS.get('marks', {highlights:{}, bookmarks:[]}),
   lex: null,
+  topics: [],                      // the teaching handouts, bundled with the app
+  topic: null, tblocks: [],        // the study being read, flattened for selection
+  mode: 'book',                    // 'book' or 'topic' - which reader owns the verse bar
   book: null, chapter: null, view:'library', selected:[],
   history: [],
 };
@@ -293,6 +296,7 @@ async function boot(){
   State.appInfo = await readAppInfo();
 
   step('Opening…', 90);
+  await loadTopics();
   bindUI();
   renderLibrary();
 
@@ -301,8 +305,13 @@ async function boot(){
   // when it does.
   refreshCatalog({quiet:true});
 
+  // A shared link names the study it was shared for, and that wins over
+  // wherever this device happened to leave off.
+  const wanted = readHash();
   const last = LS.get('last', null);
-  if (last && State.installed.includes(last.book)){
+  if (wanted && State.topics.some(t => t.id === wanted)){
+    await openTopic(wanted);
+  } else if (last && State.installed.includes(last.book)){
     await openBook(last.book, true);
     if (last.chapter) await openChapter(last.chapter, last.verse);
   } else {
@@ -323,11 +332,13 @@ function applyPrefs(){
 }
 
 /* ── navigation ───────────────────────────────────────────────────────── */
-const VIEWS = ['library','book','front','read','search','marks','lex'];
+const VIEWS = ['library','book','front','read','search','marks','lex','topic'];
 function go(view, opts={}){
   if (State.view !== view && !opts.replace) State.history.push(State.view);
   State.view = view;
-  if (view !== 'read') hideVerseBar();      // the bar belongs to the reader only
+  // both readers own the bar; everywhere else it is dismissed
+  if (view !== 'read' && view !== 'topic') hideVerseBar();
+  if (view !== 'topic') clearHash();
   const reading = view === 'read';
   $('#prev-ch').hidden = !reading;
   $('#next-ch').hidden = !reading;
@@ -348,6 +359,9 @@ function setTitle(view){
   if (map[view]) { t.textContent = map[view]; s.textContent=''; return; }
   if (view==='book'){ t.textContent=b?b.title:''; s.textContent=b?`${b.chapterCount} chapters`:''; return; }
   if (view==='front'){ t.textContent=b?b.title:''; s.textContent='Front matter'; return; }
+  if (view==='topic'){ const s2 = State.topic;
+    t.textContent = s2 ? s2.title : 'Topic Study';
+    s.textContent = s2 ? (s2.subtitle || 'Topic study') : ''; return; }
   if (view==='read'){ t.textContent = b? `${b.title} ${State.chapter}` : '';
     const ch = currentChapter(); s.textContent = ch? ch.title : ''; }
 }
@@ -402,6 +416,7 @@ function renderLibrary(){
     ? 'Installed books are stored on this device and read offline.'
     : 'More books will appear here as they are published.';
 
+  renderTopics();
   renderAppUpdate();
 
   const when = State.catalog && State.catalog.fetchedAt;
@@ -547,7 +562,7 @@ const label2Note = () => (State.book && State.book.labels && State.book.labels.t
 async function openChapter(num, scrollToVerse){
   const pack = State.book; if(!pack) return;
   const ch = pack.chapters.find(c=>c.num===num); if(!ch) return;
-  State.chapter = num; hideVerseBar();
+  State.chapter = num; State.mode = 'book'; hideVerseBar();
   markSeen(pack.id, num);
   LS.set('last', {book:pack.id, chapter:num, verse:scrollToVerse||null});
 
@@ -673,7 +688,7 @@ function selectVerse(v, node){
 function hideVerseBar(){
   State.selected = [];
   $('#verse-bar').hidden = true;
-  $$('.verse.sel').forEach(n=>n.classList.remove('sel'));
+  $$('.verse.sel, .unit.sel').forEach(n=>n.classList.remove('sel'));
 }
 
 /** "3:1", "3:1-4", "3:1-3,7" - runs collapsed, gaps kept. */
@@ -693,11 +708,15 @@ function selectionRef(){
 function showVerseBar(){
   const bar = $('#verse-bar');
   const vs = State.selected;
-  $('#vb-ref').textContent = selectionRef() + (vs.length > 1 ? `  (${vs.length} verses)` : '');
+  const topic = State.mode === 'topic';
+  const keyOf = i => topic ? topicKey(i) : vkey(State.book.id, State.chapter, i);
+
+  $('#vb-ref').textContent = (topic ? topicSelectionLabel() : selectionRef())
+    + (vs.length > 1 ? `  (${vs.length} ${topic ? 'paragraphs' : 'verses'})` : '');
 
   // A swatch reads as "on" only when every selected verse already carries it,
   // so a mixed selection shows none lit and the next tap sets them all alike.
-  const ids = vs.map(v => State.marks.highlights[vkey(State.book.id, State.chapter, v)]);
+  const ids = vs.map(keyOf).map(k => State.marks.highlights[k]);
   const shared = ids.every(x => x === ids[0]) ? ids[0] : null;
 
   const sw = $('#vb-colors'); sw.innerHTML='';
@@ -711,16 +730,17 @@ function showVerseBar(){
   // The concordance works on one verse at a time; say so by disabling it rather
   // than quietly acting on whichever verse happens to be first.
   const words = $('#vb-actions button[data-act="words"], .vb-actions button[data-act="words"]');
-  if (words) words.disabled = vs.length !== 1;
+  if (words) words.disabled = topic || vs.length !== 1;
 
   bar.hidden = false;
 }
 
 function setHighlight(id){
+  const topic = State.mode === 'topic';
   State.selected.forEach(v => {
-    const k = vkey(State.book.id, State.chapter, v);
+    const k = topic ? topicKey(v) : vkey(State.book.id, State.chapter, v);
     if (id) State.marks.highlights[k]=id; else delete State.marks.highlights[k];
-    const node = $(`.verse[data-v="${v}"]`);
+    const node = topic ? $(`.unit[data-i="${v}"]`) : $(`.verse[data-v="${v}"]`);
     if (node){ if(id) node.dataset.hl=id; else delete node.dataset.hl; }
   });
   saveMarks();
@@ -742,6 +762,7 @@ function selectionText(){
 }
 
 function verseAction(act){
+  if (State.mode === 'topic'){ topicAction(act); return; }
   const vs = State.selected;
   if (!vs.length) return;
   const first = vs[0];
@@ -980,75 +1001,125 @@ async function runLexSearch(){
   if (!hits.length && lex.note) box.append(el('p','empty', lex.note));
 }
 
-/* ── search ───────────────────────────────────────────────────────────── */
+/* ── search ───────────────────────────────────────────────────────────────
+   The open book is searched as it always was. The handouts are searched too,
+   always: they are inside the app, they never have to be installed, and
+   somebody typing "Yom Teruah" should find it whether or not a book happens to
+   be open. */
 function runSearch(){
   const q = $('#q').value.trim();
   const scope = ($('#search-scope button.on')||{}).dataset?.scope || 'all';
   const box = $('#search-results'); box.innerHTML='';
   if (q.length < 2){ $('#search-count').textContent=''; return; }
-  if (!State.book){ box.append(el('p','empty','Open a book first.')); return; }
 
   const rx = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'ig');
   const hits=[];
-  for (const ch of State.book.chapters){
-    if (scope!=='study'){
-      for (const v in ch.verses){
-        const t = ch.verses[v];
-        if (t.match(rx)) hits.push({kind:'verse', ch:ch.num, v:+v, text:t});
+
+  if (State.book){
+    for (const ch of State.book.chapters){
+      if (scope!=='study'){
+        for (const v in ch.verses){
+          const t = ch.verses[v];
+          if (t.match(rx)) hits.push({kind:'verse', ch:ch.num, v:+v, text:t});
+          rx.lastIndex=0;
+        }
+      }
+      if (scope!=='verses'){
+        ch.intro.forEach(p => { if (p.match(rx)) hits.push({kind:'Introduction', ch:ch.num, text:p}); rx.lastIndex=0; });
+        ch.keyNotes.forEach(n => { if (n.match(rx)) hits.push({kind:'Key note', ch:ch.num, text:n}); rx.lastIndex=0; });
+      }
+      if (hits.length>400) break;
+    }
+  }
+
+  if (scope!=='verses'){
+    outer:
+    for (const t of State.topics){
+      for (const sec of t.sections) for (const b of sec.blocks){
+        const text = blockText(b);
+        if (text.match(rx)) hits.push({kind:'topic', topic:t, k:b.k, text,
+          label:`${t.title} · ${sec.heading || sec.kicker || 'Topic study'}`});
         rx.lastIndex=0;
+        if (hits.length>500) break outer;
       }
     }
-    if (scope!=='verses'){
-      ch.intro.forEach((p,i) => { if (p.match(rx)) hits.push({kind:'Introduction', ch:ch.num, text:p}); rx.lastIndex=0; });
-      ch.keyNotes.forEach(n => { if (n.match(rx)) hits.push({kind:'Key note', ch:ch.num, text:n}); rx.lastIndex=0; });
-    }
-    if (hits.length>400) break;
+  }
+
+  if (!hits.length && !State.book && !State.topics.length){
+    box.append(el('p','empty','Open a book first.')); return;
   }
   $('#search-count').textContent = hits.length ? `${hits.length} result${hits.length>1?'s':''}` : 'Nothing found.';
   hits.slice(0,200).forEach(h => {
     const r = el('div','res');
-    r.append(el('p','ref', h.kind==='verse'
-      ? `${State.book.title} ${h.ch}:${h.v}` : `${State.book.title} ${h.ch} · ${h.kind}`));
+    r.append(el('p','ref',
+      h.kind==='topic' ? h.label
+      : h.kind==='verse' ? `${State.book.title} ${h.ch}:${h.v}`
+      : `${State.book.title} ${h.ch} · ${h.kind}`));
     const p = el('p');
     p.innerHTML = esc(h.text).replace(new RegExp(rx.source,'ig'), m=>`<mark>${m}</mark>`);
     r.append(p);
-    r.onclick = () => openChapter(h.ch, h.v||null);
+    r.onclick = h.kind==='topic'
+      ? () => openTopicAt(topicBookId(h.topic.id), h.k)
+      : () => openChapter(h.ch, h.v||null);
     box.append(r);
   });
 }
 
-/* ── marks view ───────────────────────────────────────────────────────── */
+/* ── marks view ───────────────────────────────────────────────────────────
+   A mark belongs either to a book, keyed by chapter and verse, or to a topic
+   study, keyed by the paragraph's own key. The id says which, and everything
+   else here is the same list it always was. */
+function markTitle(id){
+  const t = topicOf(id);
+  if (t) return t.title;
+  const p = State.packs[id];
+  return p ? p.title : id;
+}
+function markText(id, c, v){
+  const t = topicOf(id);
+  if (t){
+    for (const s of t.sections) for (const b of s.blocks)
+      if (b.k === v) return blockText(b);
+    return 'This study has been revised since the mark was made.';
+  }
+  return (State.packs[id]?.chapters.find(ch => ch.num === +c)?.verses[String(v)]) || '';
+}
+async function openMark(id, c, v){
+  if (isTopicId(id)) return openTopicAt(id, v);
+  if (State.book?.id !== id) await openBook(id, true);
+  openChapter(+c, +v);
+}
+
 function renderMarks(){
   const tab = ($('#marks-tabs button.on')||{}).dataset?.tab || 'bookmarks';
   const box = $('#marks-body'); box.innerHTML='';
   if (tab==='bookmarks'){
     const list = State.marks.bookmarks;
-    if (!list.length){ box.append(el('p','empty','No bookmarks yet. Tap a verse, then Bookmark.')); return; }
+    if (!list.length){ box.append(el('p','empty','No bookmarks yet. Tap a verse or a paragraph, then Bookmark.')); return; }
     list.forEach((b,i) => {
       const r = el('div','res');
       r.append(el('p','ref', b.ref));
-      const t = (State.packs[b.book]?.chapters.find(c=>c.num===b.chapter)?.verses[String(b.verse)]) || '';
+      const t = markText(b.book, b.chapter, b.verse);
       r.append(el('p',null, t.slice(0,180) + (t.length>180?'…':'')));
       if (b.note) r.append(el('p','sub','Note: '+b.note));
-      r.onclick = async () => { if (State.book?.id!==b.book) await openBook(b.book, true); openChapter(b.chapter, b.verse); };
+      r.onclick = () => openMark(b.book, b.chapter, b.verse);
       r.oncontextmenu = e => { e.preventDefault(); State.marks.bookmarks.splice(i,1); saveMarks(); renderMarks(); toast('Removed'); };
       box.append(r);
     });
   } else {
     const keys = Object.keys(State.marks.highlights);
-    if (!keys.length){ box.append(el('p','empty','No highlights yet. Tap a verse, then choose a colour.')); return; }
+    if (!keys.length){ box.append(el('p','empty','No highlights yet. Tap a verse or a paragraph, then choose a colour.')); return; }
     keys.sort((a,b)=>{ const [ab,ac,av]=a.split(':'), [bb,bc,bv]=b.split(':');
-      return ab.localeCompare(bb) || ac-bc || av-bv; });
+      return ab.localeCompare(bb) || (ac-bc) || String(av).localeCompare(String(bv)); });
     keys.forEach(k => {
       const [book, c, v] = k.split(':');
-      const pack = State.packs[book];
       const r = el('div','res');
       const swatch = HL.find(h=>h.id===State.marks.highlights[k]);
       r.style.borderLeft = '5px solid ' + (swatch ? swatch.css : 'var(--rule)');
-      r.append(el('p','ref', `${pack?pack.title:book} ${c}:${v}`));
-      const t = pack?.chapters.find(ch=>ch.num===+c)?.verses[v] || '(book not installed)';
+      r.append(el('p','ref', isTopicId(book) ? markTitle(book) : `${markTitle(book)} ${c}:${v}`));
+      const t = markText(book, c, v) || '(book not installed)';
       r.append(el('p',null, t.slice(0,200) + (t.length>200?'…':'')));
-      r.onclick = async () => { if (State.book?.id!==book) await openBook(book, true); openChapter(+c, +v); };
+      r.onclick = () => openMark(book, c, v);
       r.oncontextmenu = e => { e.preventDefault(); delete State.marks.highlights[k]; saveMarks(); renderMarks(); };
       box.append(r);
     });
@@ -1141,6 +1212,489 @@ function chapterSheet(){
   });
 }
 
+
+/* ── Topic Studies ────────────────────────────────────────────────────────
+   The teaching handouts, read here rather than printed.
+
+   They are not books, so they are not packs: there are no chapters, no verse
+   numbers, and nothing to install. What they do share with the books is the
+   part that matters - a reference you can tap, a paragraph you can colour, and
+   a note of your own on any of it - so all of that is reused rather than
+   rebuilt, and a handout's marks sit alongside a book's in Marks.
+
+   A mark on a handout hangs on a key made from the paragraph's own words
+   rather than its position, which is why correcting a typo in section two does
+   not move somebody's highlight in section nine. */
+
+const TOPIC_PREFIX = 't-';
+const topicBookId  = id => TOPIC_PREFIX + id;
+const isTopicId    = id => String(id).startsWith(TOPIC_PREFIX);
+const topicOf      = id => State.topics.find(t => topicBookId(t.id) === id);
+
+/* The handouts ship inside the app, so this is a local read and the Library
+   has them before the first paint. A failure here costs the section and
+   nothing else. */
+async function loadTopics(){
+  try {
+    const d = await (await fetch('topics.json', {cache:'no-store'})).json();
+    State.topics = Array.isArray(d && d.topics) ? d.topics : [];
+  } catch(e){
+    State.topics = [];
+    console.warn('topic studies unavailable', e);
+  }
+}
+
+/* Where this handout lives on the web, taken from the PDF's own address rather
+   than hard-coded, so the domain is set in one place - the build - and the
+   Android app shares the same links as the website. */
+const topicSite = t => String(t.pdfUrl || '').replace(/handouts\/.*$/, '');
+const topicUrl  = t => topicSite(t) + '#topic/' + t.id;
+
+function blockText(b){
+  if (b.t === 'l')   return (b.items || []).join('  ');
+  if (b.t === 'tbl') return (b.rows || []).map(r => `${r.topic}: ${r.v}`).join('  ');
+  return [b.title, b.v].filter(Boolean).join(' — ');
+}
+
+/* ── the Library section ──────────────────────────────────────────────── */
+function renderTopics(){
+  const box = $('#topic-list');
+  if (!box) return;
+  box.innerHTML = '';
+  if (!State.topics.length){
+    box.append(el('p','empty','No topic studies in this build.'));
+    return;
+  }
+  State.topics.forEach(t => {
+    const c = el('div','card');
+    c.append(el('i','spine'));
+    const m = el('div','meta');
+    m.append(el('h4', null, t.title));
+    if (t.subtitle) m.append(el('p','topic-sub-line', t.subtitle));
+    m.append(el('p', null,
+      `${t.sections.length} parts · about ${t.minutes} min · PDF ${Math.round(t.pdfBytes/1024)} KB`));
+    c.append(m);
+    const b = el('button','go solid','Read');
+    b.onclick = () => openTopic(t.id);
+    c.append(b);
+    box.append(c);
+  });
+}
+
+/* ── the reader ───────────────────────────────────────────────────────── */
+async function openTopic(id, opts={}){
+  const t = State.topics.find(x => x.id === id);
+  if (!t){ toast('That study is not in this build'); return; }
+
+  State.topic = t; State.mode = 'topic'; State.tblocks = [];
+  hideVerseBar();
+
+  const box = $('#topic-body');
+  box.innerHTML = '';
+  box.append(el('p','kicker','Topic Study'));
+  box.append(el('h2','chapter', t.title));
+  if (t.subtitle) box.append(el('p','topic-standfirst', t.subtitle));
+  box.append(topicTools(t));
+  if (t.lede){
+    const p = el('p','topic-lede');
+    p.innerHTML = refHTML(t.lede);
+    box.append(p);
+  }
+
+  t.sections.forEach((sec, si) => {
+    const s = el('section','topic-part');
+    if (sec.kicker)  s.append(el('p','part-kicker', sec.kicker));
+    if (sec.heading) s.append(el('h3','part-head', sec.heading));
+    sec.blocks.forEach(b => s.append(topicBlock(t, si, b)));
+    box.append(s);
+  });
+
+  if (t.refIndex && t.refIndex.length) box.append(topicRefIndex(t));
+  if (t.note) box.append(el('p','hint', t.note));
+  box.append(topicFooter(t));
+
+  LS.set('lastTopic', t.id);
+  setHash('topic/' + t.id);
+  if (!opts.quiet) go('topic');
+}
+
+function topicBlock(t, si, b){
+  const i = State.tblocks.length;
+  State.tblocks.push({k: b.k, si, block: b});
+
+  let n;
+  if (b.t === 'h'){
+    n = el('h4','topic-head'); n.innerHTML = refHTML(b.v);
+  } else if (b.t === 'q'){
+    n = el('div','scripture');
+    if (b.ref) n.append(refLine(b.ref));
+    const p = el('p'); p.innerHTML = refHTML(b.v); n.append(p);
+  } else if (b.t === 'c'){
+    n = el('div','callout');
+    if (b.title) n.append(el('p','callout-head', b.title));
+    const p = el('p'); p.innerHTML = refHTML(b.v); n.append(p);
+    if (b.ref) n.append(refLine(b.ref));
+  } else if (b.t === 'l'){
+    n = el('div','topic-points');
+    const ul = el('ul');
+    (b.items || []).forEach(x => { const li = el('li'); li.innerHTML = refHTML(x); ul.append(li); });
+    n.append(ul);
+    if (b.ref) n.append(refLine(b.ref));
+  } else if (b.t === 'tbl'){
+    n = el('div','tblwrap');
+    const tb = el('table','tbl');
+    (b.rows || []).forEach(r => {
+      const tr = el('tr');
+      const a = el('td'); a.innerHTML = refHTML(r.topic);
+      const c = el('td'); c.innerHTML = refHTML(r.v);
+      tr.append(a, c); tb.append(tr);
+    });
+    n.append(tb);
+  } else {
+    n = el('p', b.strong ? 'topic-lead' : null);
+    n.innerHTML = refHTML(b.v);
+  }
+
+  n.classList.add('unit');
+  n.dataset.i = i;
+  const hl = State.marks.highlights[vkey(topicBookId(t.id), 0, b.k)];
+  if (hl) n.dataset.hl = hl;
+  if (State.marks.bookmarks.some(x => x.book === topicBookId(t.id) && x.verse === b.k))
+    n.append(el('span','bm','❏'));
+
+  // A reference inside a paragraph opens the passage; the paragraph around it
+  // is still selectable, so the tap has to be told apart from the tap.
+  n.onclick = e => { if (e.target.closest('a')) return; selectUnit(i, n); };
+  return n;
+}
+
+function refLine(ref){
+  const p = el('p','sref');
+  p.append(refAnchor(ref));
+  return p;
+}
+
+function topicRefIndex(t){
+  const s = el('section','topic-part');
+  s.append(el('p','part-kicker','Appendix'));
+  s.append(el('h3','part-head','Every passage in this study'));
+  const tb = el('table','tbl');
+  t.refIndex.forEach(row => {
+    const tr = el('tr');
+    tr.append(el('td', null, row.topic));
+    const td = el('td');
+    let book = '';
+    row.refs.forEach(ref => {
+      // "Acts 13:14; 16:13" - the second one is still Acts, and a reader
+      // tapping it should not be sent somewhere else.
+      const m = ref.match(/^(.+?)\s+\d/);
+      if (m) book = m[1];
+      td.append(refAnchor(/^\d/.test(ref) && book ? `${book} ${ref}` : ref, ref));
+    });
+    tr.append(td); tb.append(tr);
+  });
+  const wrap = el('div','tblwrap'); wrap.append(tb); s.append(wrap);
+  return s;
+}
+
+function topicFooter(t){
+  const f = el('div','topic-footer');
+  f.append(el('p','hint',
+    'This study is also a printable handout. Share it, or open the PDF to print it.'));
+  const row = el('div','topic-tools');
+  const share = el('button','go solid','Share');
+  share.onclick = () => shareSheet(t);
+  const pdf = el('button','go','Open the PDF');
+  pdf.onclick = () => openLink(t.pdfUrl);
+  row.append(share, pdf);
+  f.append(row);
+  return f;
+}
+
+function topicTools(t){
+  const row = el('div','topic-tools');
+  const share = el('button','go solid','Share');
+  share.onclick = () => shareSheet(t);
+  const pdf = el('button','go','Handout PDF');
+  pdf.onclick = () => openLink(t.pdfUrl);
+  row.append(share, pdf);
+  return row;
+}
+
+/* ── sharing ──────────────────────────────────────────────────────────────
+   Two different things are worth sending: the study itself, which opens in the
+   app or in any browser, and the handout, which is the thing you print and put
+   in somebody's hand. The sheet offers both rather than guessing. */
+function shareSheet(t){
+  sheet(t.title, body => {
+    body.append(el('p','hint',
+      'The link opens this study in the app, or in a browser for anyone who has not installed it.'));
+
+    const act = (label, cls, fn) => { const b = el('button', cls, label); b.onclick = fn; body.append(b); };
+
+    if (canShare()){
+      act('Share this study', 'primary', () => nativeShare({
+        title: t.title,
+        text: [t.title, t.subtitle].filter(Boolean).join(' — '),
+        url: topicUrl(t),
+      }));
+    }
+    act('Copy the link', canShare() ? 'ghost' : 'primary',
+       () => copyText(topicUrl(t), 'Link copied'));
+    act('Open the printable PDF', 'ghost', () => { closeSheet(); openLink(t.pdfUrl); });
+    act('Copy the PDF link', 'ghost', () => copyText(t.pdfUrl, 'PDF link copied'));
+
+    body.append(el('p','sharelink', topicUrl(t)));
+  });
+}
+
+function canShare(){
+  const P = window.Capacitor && window.Capacitor.Plugins;
+  return !!((P && P.Share) || navigator.share);
+}
+
+async function nativeShare(data){
+  const P = window.Capacitor && window.Capacitor.Plugins;
+  if (P && P.Share){
+    try { await P.Share.share({title:data.title, text:data.text, url:data.url,
+                               dialogTitle:'Share this study'}); closeSheet(); return; }
+    catch(e){ /* the sheet was dismissed, or the plugin is not there */ }
+  }
+  if (navigator.share){
+    try { await navigator.share(data); closeSheet(); return; }
+    catch(e){ if (e && e.name === 'AbortError') return; }
+  }
+  copyText(data.url, 'Link copied');
+}
+
+function copyText(text, ok){
+  if (!navigator.clipboard){ toast('Copy the link shown below'); return; }
+  navigator.clipboard.writeText(text).then(() => { closeSheet(); toast(ok); },
+                                           () => toast('Could not copy'));
+}
+
+/* ── scripture references inside the prose ────────────────────────────────
+   The handouts cite in full - "Genesis 2:1-3", "1 Corinthians 15:20" - so the
+   citations can be found in the text itself rather than tagged at build time.
+   That means a reference is live wherever it appears: in a quotation's
+   heading, in the middle of a sentence, and in the appendix. */
+const BOOK_NAMES = [
+  'Genesis','Exodus','Leviticus','Numbers','Deuteronomy','Joshua','Judges','Ruth',
+  '1 Samuel','2 Samuel','1 Kings','2 Kings','1 Chronicles','2 Chronicles','Ezra',
+  'Nehemiah','Esther','Job','Psalms','Psalm','Proverbs','Ecclesiastes',
+  'Song of Solomon','Song of Songs','Isaiah','Jeremiah','Lamentations','Ezekiel',
+  'Daniel','Hosea','Joel','Amos','Obadiah','Jonah','Micah','Nahum','Habakkuk',
+  'Zephaniah','Haggai','Zechariah','Malachi',
+  'Matthew','Mark','Luke','John','Acts','Romans','1 Corinthians','2 Corinthians',
+  'Galatians','Ephesians','Philippians','Colossians','1 Thessalonians',
+  '2 Thessalonians','1 Timothy','2 Timothy','Titus','Philemon','Hebrews','James',
+  '1 Peter','2 Peter','1 John','2 John','3 John','Jude','Revelation',
+];
+const REF_RX = new RegExp(
+  '\\b(' + BOOK_NAMES.slice().sort((a,b)=>b.length-a.length)
+                     .map(n => n.replace(/ /g,'\\s+')).join('|') + ')' +
+  '\\s+(\\d{1,3})(?::(\\d{1,3}(?:\\s*[-–]\\s*\\d{1,3})?' +
+  '(?:\\s*,\\s*\\d{1,3}(?:\\s*[-–]\\s*\\d{1,3})?)*))?', 'g');
+
+/** Escaped HTML with every scripture citation turned into a tappable link. */
+function refHTML(s){
+  return esc(s).replace(REF_RX, m => `<a href="#" class="reflink inline" data-ref="${m}">${m}</a>`);
+}
+
+/** A standalone reference, shown as `label` and opening `ref`. */
+function refAnchor(ref, label){
+  const a = el('a','reflink', label || ref);
+  a.href = '#';
+  a.dataset.ref = ref;
+  return a;
+}
+
+/** Which installed book, if any, holds this passage. */
+async function packForBook(name){
+  const want = String(name || '').trim().toLowerCase();
+  const entry = libraryEntries().find(p => String(p.title||'').toLowerCase() === want);
+  if (!entry || !State.installed.includes(entry.id)) return null;
+  return await loadPack(entry.id);
+}
+
+function verseNums(spec){
+  const out = [];
+  String(spec || '').split(',').forEach(part => {
+    const m = part.trim().match(/^(\d+)\s*[-–]\s*(\d+)$/);
+    if (m){ for (let v = +m[1]; v <= +m[2] && out.length < 40; v++) out.push(v); }
+    else if (/^\d+$/.test(part.trim())) out.push(+part.trim());
+  });
+  return out;
+}
+
+/* A reference opens here whether or not the book behind it is installed. If it
+   is, the passage is read out of the reader's own copy and they can jump
+   straight to it; if it is not, they are told so plainly and handed the
+   passage on the web instead. */
+async function showPassage(ref){
+  const m = String(ref).match(/^(.+?)\s+(\d{1,3})(?::(.+))?$/);
+  const pack = m ? await packForBook(m[1]) : null;
+  const chNum = m ? +m[2] : 0;
+  const nums = m ? verseNums(m[3]) : [];
+  const ch = pack ? pack.chapters.find(c => c.num === chNum) : null;
+
+  let text = '';
+  if (ch){
+    const want = nums.length ? nums : [];
+    if (want.length){
+      text = want.map(v => ch.verses[String(v)] ? `${sup(v)} ${ch.verses[String(v)]}` : '')
+                 .filter(Boolean).join(' ');
+    }
+  }
+
+  sheet(ref, body => {
+    if (text) body.append(el('p','vtext', text));
+    else if (ch) body.append(el('p','vtext', `${pack.title} ${chNum} is installed on this device.`));
+    else body.append(el('p','hint', m
+      ? `${m[1]} is not one of the books installed on this device, so the passage opens on the web.`
+      : 'That reference could not be read.'));
+
+    const row = el('div','row');
+    if (ch){
+      const b = el('button','ghost','Go to the passage');
+      b.onclick = () => {
+        closeSheet();
+        State.mode = 'book';
+        openBook(pack.id, true).then(() => openChapter(chNum, nums[0] || null));
+      };
+      row.append(b);
+    }
+    const a = link('Open in BibleGateway',
+      'https://www.biblegateway.com/passage/?search=' + encodeURIComponent(ref) + '&version=WEB',
+      'ghost');
+    a.style.textAlign = 'center'; a.style.textDecoration = 'none';
+    row.append(a);
+    body.append(row);
+  });
+}
+
+/* ── selecting a paragraph ────────────────────────────────────────────────
+   The same bar the reader already knows from the books, doing the same five
+   things, on a paragraph instead of a verse. */
+function selectUnit(i, node){
+  const at = State.selected.indexOf(i);
+  if (at >= 0){ State.selected.splice(at, 1); node.classList.remove('sel'); }
+  else { State.selected.push(i); State.selected.sort((a,b)=>a-b); node.classList.add('sel'); }
+  if (!State.selected.length){ hideVerseBar(); return; }
+  showVerseBar();
+}
+
+const topicUnit = i => State.tblocks[i];
+const topicKey  = i => vkey(topicBookId(State.topic.id), 0, topicUnit(i).k);
+
+function topicSelectionLabel(){
+  const t = State.topic, vs = State.selected;
+  if (!vs.length) return t.title;
+  const sec = t.sections[topicUnit(vs[0]).si] || {};
+  const part = sec.heading || sec.kicker || '';
+  return part ? `${t.title} · ${part}` : t.title;
+}
+
+const topicSelectionText = () =>
+  State.selected.map(i => blockText(topicUnit(i).block)).join('\n\n');
+
+function topicAction(act){
+  const t = State.topic, vs = State.selected;
+  if (!vs.length) return;
+  const first = vs[0];
+  const ref = topicSelectionLabel();
+
+  if (act === 'bookmark'){
+    const key = topicUnit(first).k;
+    const at = State.marks.bookmarks.findIndex(
+      b => b.book === topicBookId(t.id) && b.verse === key);
+    if (at >= 0){ State.marks.bookmarks.splice(at, 1); toast('Bookmark removed'); }
+    else {
+      State.marks.bookmarks.unshift({book: topicBookId(t.id), bookTitle: t.title,
+        chapter: 0, verse: key, ref, note: '', at: Date.now()});
+      toast('Bookmarked');
+    }
+    saveMarks(); reopenTopic(key);
+  }
+  else if (act === 'note') topicNoteSheet(first, ref);
+  else if (act === 'copy'){
+    copyText(`${topicSelectionText()}\n\n${t.title} — ${topicUrl(t)}`,
+             vs.length > 1 ? `Copied ${vs.length} paragraphs` : 'Copied');
+  }
+  else if (act === 'words') toast('The concordance works on the scripture in a book');
+  else if (act === 'clear'){ setHighlight(null); hideVerseBar(); toast('Cleared'); }
+}
+
+function topicNoteSheet(i, ref){
+  const t = State.topic, key = topicUnit(i).k;
+  const existing = State.marks.bookmarks.find(
+    b => b.book === topicBookId(t.id) && b.verse === key);
+  sheet(ref, body => {
+    const f = el('div','field');
+    f.append(el('label', null, 'Your note'));
+    const ta = el('textarea');
+    ta.value = existing ? existing.note : '';
+    ta.placeholder = 'What did you see here?';
+    f.append(ta); body.append(f);
+    const b = el('button','primary','Save note');
+    b.onclick = () => {
+      let bm = existing;
+      if (!bm){
+        bm = {book: topicBookId(t.id), bookTitle: t.title, chapter: 0, verse: key,
+              ref, note: '', at: Date.now()};
+        State.marks.bookmarks.unshift(bm);
+      }
+      bm.note = ta.value.trim(); bm.at = Date.now(); bm.ref = ref;
+      saveMarks(); closeSheet(); reopenTopic(key); toast('Saved');
+    };
+    body.append(b);
+  });
+}
+
+/** Redraw the open study and come back to the paragraph that was being worked
+    on, so a bookmark's mark appears without losing the reader's place. */
+async function reopenTopic(key){
+  const y = window.scrollY;
+  await openTopic(State.topic.id, {quiet:true});
+  window.scrollTo(0, y);
+  if (key) flashBlock(key);
+}
+
+function flashBlock(key){
+  const i = State.tblocks.findIndex(x => x.k === key);
+  if (i < 0) return;
+  const n = $(`.unit[data-i="${i}"]`);
+  if (!n) return;
+  n.classList.add('found');
+  setTimeout(() => n.classList.remove('found'), 1400);
+}
+
+async function openTopicAt(bookId, key){
+  const t = topicOf(bookId);
+  if (!t) { toast('That study is not in this build'); return; }
+  await openTopic(t.id);
+  const i = State.tblocks.findIndex(x => x.k === key);
+  if (i >= 0) setTimeout(() => {
+    const n = $(`.unit[data-i="${i}"]`);
+    if (n) n.scrollIntoView({block:'center'});
+    flashBlock(key);
+  }, 60);
+}
+
+/* ── deep links ───────────────────────────────────────────────────────────
+   A shared link is #topic/<id>, which GitHub Pages, the installed web app and
+   the APK all hand straight to the page rather than to a server. */
+function readHash(){
+  const m = String(location.hash || '').match(/^#topic\/([a-z0-9-]+)/i);
+  return m ? m[1] : null;
+}
+function setHash(h){
+  try { history.replaceState(null, '', '#' + h); } catch(e){ /* file:// and the APK */ }
+}
+function clearHash(){
+  if (location.hash) { try { history.replaceState(null, '', location.pathname + location.search); } catch(e){} }
+}
+
 /* ── wiring ───────────────────────────────────────────────────────────── */
 function bindUI(){
   $('#btn-back').onclick = back;
@@ -1199,6 +1753,21 @@ function bindUI(){
   $('#lex-clear').onclick = () => { $('#lex-q').value=''; runLexSearch(); };
   $$('#lex-scope button').forEach(b => b.onclick = () => {
     $$('#lex-scope button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); runLexSearch(); });
+
+  // Every scripture citation anywhere in a topic study, in one listener, so a
+  // handout with four hundred of them does not carry four hundred handlers.
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a.reflink[data-ref]');
+    if (!a) return;
+    e.preventDefault(); e.stopPropagation();
+    showPassage(a.dataset.ref);
+  });
+
+  // Someone pasting a shared link into an app that is already open
+  window.addEventListener('hashchange', () => {
+    const id = readHash();
+    if (id && State.topics.some(t => t.id === id)) openTopic(id);
+  });
 
   $$('#marks-tabs button').forEach(b => b.onclick = () => {
     $$('#marks-tabs button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); renderMarks(); });

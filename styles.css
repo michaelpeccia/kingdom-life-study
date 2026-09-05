@@ -317,3 +317,100 @@ body.scrolling .chapnav{opacity:.28}
   z-index:60;background:var(--navy);color:#F3EFE6;padding:11px 18px;border-radius:999px;font-size:14px;
   font-family:system-ui,sans-serif;box-shadow:0 6px 22px rgba(0,0,0,.28);animation:rise .18s ease
 }
+
+/* ── Topic Studies ─────────────────────────────────────────────────────────
+   The handouts were laid out for paper, and the paper has a voice: a small
+   label over a heading, scripture set in from the margin, and the occasional
+   boxed sentence that the teaching turns on. That voice is kept here rather
+   than flattened into a wall of paragraphs, because it is how the handout
+   argues. What changes is that every paragraph is now a thing you can hold:
+   tap it and the same bar the books use comes up. */
+
+.card .topic-sub-line{
+  font-family:inherit;font-size:14px;color:var(--ink);opacity:.85;margin:0 0 4px;line-height:1.35
+}
+
+.topic-standfirst{
+  margin:0 0 12px;color:var(--muted);font-size:16px;line-height:1.4;font-style:italic
+}
+.topic-lede{
+  margin:14px 0 4px;padding:12px 14px;background:var(--band);border-radius:12px;
+  font-size:calc(var(--reading) * .97);line-height:1.5
+}
+
+.topic-tools{display:flex;gap:9px;margin:12px 0 4px;flex-wrap:wrap}
+.topic-tools .go{
+  font-family:system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--gold);
+  border:1px solid var(--gold);border-radius:999px;padding:8px 16px;white-space:nowrap
+}
+.topic-tools .go.solid{background:var(--gold);color:#1B1B2F;border-color:var(--gold)}
+
+.topic-part{border-top:1px solid var(--rule);margin-top:22px;padding-top:16px}
+.topic-part:first-of-type{border-top:0}
+.part-kicker{
+  font-family:system-ui,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 4px
+}
+/* the collapsing section head in the book reader is not what this is */
+.reading h3.part-head{
+  font-family:inherit;font-size:21px;line-height:1.25;letter-spacing:-.01em;text-transform:none;
+  color:var(--navy);margin:0 0 10px;padding:0;border-top:0;display:block;cursor:default
+}
+.reading h4.topic-head{
+  font-size:calc(var(--reading) * 1.02);line-height:1.3;color:var(--navy);
+  margin:18px 0 8px;font-weight:700
+}
+
+/* every selectable paragraph, of whatever kind */
+.unit{padding:4px 7px;margin:0 -7px .55em;border-radius:8px;transition:background .15s}
+.unit.sel{box-shadow:inset 0 0 0 2px var(--gold)}
+.unit[data-hl="1"]{background:var(--h1)} .unit[data-hl="2"]{background:var(--h2)}
+.unit[data-hl="3"]{background:var(--h3)} .unit[data-hl="4"]{background:var(--h4)}
+.unit[data-hl="5"]{background:var(--h5)}
+.unit .bm{color:var(--gold);font-size:12px;margin-left:5px}
+.unit.found{animation:foundflash 1.4s ease}
+@keyframes foundflash{0%,60%{background:var(--h1)}100%{background:transparent}}
+.unit p:last-child{margin-bottom:0}
+
+.scripture{
+  border-left:3px solid var(--gold);padding-left:13px;
+  font-size:calc(var(--reading) * .97);line-height:1.5
+}
+.scripture p{margin:0}
+.topic-lead{font-weight:700;color:var(--navy)}
+
+.callout{background:var(--band);border-radius:12px;padding:12px 14px;font-size:calc(var(--reading) * .97)}
+.callout-head{
+  font-family:system-ui,sans-serif;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--gold);margin:0 0 5px !important;font-weight:700
+}
+.callout p:last-child{margin-bottom:0}
+
+.sref{
+  margin:6px 0 0 !important;font-family:system-ui,sans-serif;font-size:12px;
+  letter-spacing:.04em;text-transform:uppercase
+}
+.sref .reflink{margin:0;border-bottom:0;color:var(--gold);font-weight:700}
+
+.topic-points ul{margin:0;padding-left:20px}
+.topic-points li{margin:0 0 .45em}
+.topic-points li:last-child{margin-bottom:0}
+
+/* a wide reference table on a narrow phone scrolls on its own rather than
+   pushing the whole page sideways */
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 4px}
+.tblwrap .tbl{margin:0;min-width:min(100%,420px)}
+
+.reflink.inline{
+  display:inline;margin:0;border-bottom:1px solid var(--rule);
+  text-decoration:none;color:var(--link)
+}
+.reflink.inline:active{background:var(--band)}
+
+.topic-footer{border-top:1px solid var(--rule);margin-top:26px;padding-top:14px}
+.sharelink{
+  margin:14px 0 0;padding:10px 12px;background:var(--band);border-radius:10px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
+  word-break:break-all;color:var(--muted)
+}
+.sheet-body > .ghost{width:100%;flex:none;margin-top:8px;text-align:center;color:var(--navy)}
