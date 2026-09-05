@@ -1,0 +1,6 @@
+# Written by pipeline/build_web.py. This folder is generated on Windows
+# and served from Linux; normalise so a rebuild shows what actually changed.
+* text=auto eol=lf
+*.pdf binary
+*.png binary
+*.json text eol=lf
