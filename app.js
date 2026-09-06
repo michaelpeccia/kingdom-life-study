@@ -419,6 +419,29 @@ const MINISTRY = {
   ],
 };
 
+/* ── the scripture text ───────────────────────────────────────────────────
+   The handouts cite about fifty different books, so a passage popup inside a
+   handout almost never had a book pack to read from and fell through to the
+   web. This is the whole World English Bible, public domain, stored beside the
+   book packs and read by the popup when no installed book covers the passage.
+   It is optional: nothing here changes until the reader installs it. */
+const SCRIPTURE = {
+  id:      'scripture-web',
+  title:   'World English Bible',
+  version: 1,
+  bytes:   4230133,
+  url:     'https://raw.githubusercontent.com/michaelpeccia/kingdom-life-packs/main/scripture-web.json',
+};
+
+/* Names the handouts use that differ from the book names in the text. */
+const BOOK_ALIASES = {
+  'psalm': 'Psalms',
+  'song of songs': 'Song of Solomon',
+  'canticles': 'Song of Solomon',
+  'revelations': 'Revelation',
+  'ecclesiasties': 'Ecclesiastes',
+};
+
 const TOPIC_SECTIONS = [
   ['Who Yahshua Is',               ['aleph-and-tav', 'yahshua-is-the-father']],
   ['The Covenant and Who You Are', ['the-marriage-covenant', 'who-you-are']],
@@ -486,6 +509,7 @@ function renderLibrary(){
 
   renderTopics();
   renderAppUpdate();
+  renderScriptureCard();
   renderHubCounts();
 
   const when = State.catalog && State.catalog.fetchedAt;
@@ -1338,6 +1362,111 @@ function blockText(b){
   return [b.title, b.v].filter(Boolean).join(' — ');
 }
 
+/* ── the scripture store ──────────────────────────────────────────────── */
+let scriptureCache = null;
+
+async function loadScripture(){
+  if (scriptureCache) return scriptureCache;
+  const v = await DB.get(SCRIPTURE.id);
+  if (v && v.books) scriptureCache = v;
+  return scriptureCache;
+}
+
+function scriptureInstalled(){
+  return State.installed.includes(SCRIPTURE.id);
+}
+
+/** The book name as the text spells it, or null if there is no such book. */
+function canonBook(name, books){
+  const want = String(name || '').trim().replace(/\s+/g, ' ');
+  if (books[want]) return want;
+  const alias = BOOK_ALIASES[want.toLowerCase()];
+  if (alias && books[alias]) return alias;
+  const hit = Object.keys(books).find(b => b.toLowerCase() === want.toLowerCase());
+  return hit || null;
+}
+
+/** Verse text for a reference, or '' if the scripture text cannot supply it. */
+async function scriptureText(book, chNum, nums){
+  const s = await loadScripture();
+  if (!s) return '';
+  const name = canonBook(book, s.books);
+  if (!name) return '';
+  const ch = s.books[name][String(chNum)];
+  if (!ch) return '';
+  const want = nums.length ? nums : Object.keys(ch).map(Number).sort((a,b)=>a-b);
+  return want.map(v => ch[String(v)] ? `${sup(v)} ${ch[String(v)]}` : '')
+             .filter(Boolean).join(' ');
+}
+
+async function installScripture(btn){
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Downloading…';
+  try {
+    const r = await fetch(SCRIPTURE.url, {cache:'no-store'});
+    if (!r.ok) throw new Error('the download failed (HTTP ' + r.status + ')');
+    const data = await r.json();
+    if (!data || !data.books || !data.books.Genesis)
+      throw new Error('that file is not the scripture text');
+
+    await DB.put(SCRIPTURE.id, data);
+    scriptureCache = data;
+    if (!State.installed.includes(SCRIPTURE.id)) State.installed.push(SCRIPTURE.id);
+    LS.set('installed', State.installed);
+    State.versions[SCRIPTURE.id] = data.version || 1;
+    toast('Scripture text installed');
+    renderLibrary();
+  } catch(e){
+    btn.disabled = false; btn.textContent = label;
+    toast('Install failed — ' + e.message);
+  }
+}
+
+function confirmRemoveScripture(){
+  sheet(SCRIPTURE.title, body => {
+    body.append(el('p',null,
+      'Remove the scripture text? Passage popups inside the handouts go back to ' +
+      'opening on the web. Your highlights and bookmarks are not touched.'));
+    const b = el('button','primary','Remove scripture text');
+    b.onclick = async () => {
+      await DB.del(SCRIPTURE.id);
+      State.installed = State.installed.filter(i => i !== SCRIPTURE.id);
+      LS.set('installed', State.installed);
+      scriptureCache = null;
+      closeSheet(); renderLibrary(); toast('Removed');
+    };
+    body.append(b);
+  });
+}
+
+/* Its own card above the books, because it is not a study and should not be
+   read like one. */
+function renderScriptureCard(){
+  const box = $('#scripture-card');
+  if (!box) return;
+  box.innerHTML = '';
+  const c = el('div','card');
+  c.append(el('i','spine'));
+  const m = el('div','meta');
+  m.append(el('h4', null, SCRIPTURE.title));
+  if (scriptureInstalled()){
+    m.append(el('p', null, '66 books · 31,098 verses · read offline'));
+    m.append(el('p','badge','Passage popups are reading from this'));
+    c.append(m);
+    const b = el('button','go','Remove');
+    b.onclick = confirmRemoveScripture;
+    c.append(b);
+  } else {
+    m.append(el('p', null,
+      `Every passage the handouts cite, offline · ${(SCRIPTURE.bytes/1048576).toFixed(1)} MB download`));
+    c.append(m);
+    const b = el('button','go solid','Install');
+    b.onclick = () => installScripture(b);
+    c.append(b);
+  }
+  box.append(c);
+}
+
 /* ── the Further Study screen ─────────────────────────────────────────── */
 function renderTopics(){
   const box = $('#topic-sections');
@@ -1810,12 +1939,24 @@ async function showPassage(ref){
                  .filter(Boolean).join(' ');
     }
   }
+  // No installed book covers it, so try the scripture text.
+  let fromScripture = false;
+  if (!text && m){
+    text = await scriptureText(m[1], +m[2], nums);
+    fromScripture = !!text;
+  }
 
   sheet(ref, body => {
-    if (text) body.append(el('p','vtext', text));
+    if (text){
+      body.append(el('p','vtext', text));
+      if (fromScripture) body.append(el('p','hint','World English Bible'));
+    }
     else if (ch) body.append(el('p','vtext', `${pack.title} ${chNum} is installed on this device.`));
+    else if (!scriptureInstalled()) body.append(el('p','hint',
+      'Install the World English Bible from Bible Study and passages like this one ' +
+      'open right here instead of on the web.'));
     else body.append(el('p','hint', m
-      ? `${m[1]} is not one of the books installed on this device, so the passage opens on the web.`
+      ? `${m[1]} could not be found in the scripture text, so the passage opens on the web.`
       : 'That reference could not be read.'));
 
     const row = el('div','row');

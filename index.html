@@ -17,8 +17,18 @@
 <meta property="og:url" content="https://app.kingdom-life-ministry.com/">
 <meta property="og:image" content="https://app.kingdom-life-ministry.com/icons/icon-1024.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="A chapter-by-chapter Bible study library from Kingdom Life Ministry. Reads offline, with highlighting, bookmarks, downloadable books and a Hebrew and Greek concordance.">
+<meta name="apple-mobile-web-app-title" content="Kingdom Life">
+<link rel="apple-touch-icon" href="icons/icon-512.png">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kingdom Life Study">
+<meta property="og:description" content="A chapter-by-chapter Bible study library from Kingdom Life Ministry. Reads offline, with highlighting, bookmarks, downloadable books and a Hebrew and Greek concordance.">
+<meta property="og:url" content="https://app.kingdom-life-ministry.com/">
+<meta property="og:image" content="https://app.kingdom-life-ministry.com/icons/icon-1024.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="styles.css?v=9f2c41d07a10">
+<link rel="stylesheet" href="styles.css?v=a68c15170859">
 </head>
 <body>
 
@@ -55,6 +65,8 @@
       </div>
 
       <div id="web-cards"></div>
+      <div id="web-cards"></div>
+
       <div id="app-update" class="update-card" hidden></div>
 
       <div class="hub-nav">
@@ -83,6 +95,11 @@
       <h2 class="display">Bible Study</h2>
       <p class="lede">A chapter-by-chapter study library. Books install to your device and read
         entirely offline.</p>
+
+      <h3 class="rule">Scripture text</h3>
+      <p class="hint">Optional. Install it once and every passage the handouts cite
+        opens inside the app instead of on the web, with no signal needed.</p>
+      <div id="scripture-card" class="cards"></div>
 
       <h3 class="rule">On this device</h3>
       <div id="installed-list" class="cards"></div>
@@ -249,8 +266,15 @@
 
 <div id="toast" class="toast" hidden></div>
 
-<script src="app.js?v=9f2c41d07a10"></script>
-<script src="web.js?v=9f2c41d07a10"></script>
+<script src="app.js?v=a68c15170859"></script>
+<script src="web.js?v=a68c15170859"></script>
+<script src="web.js?v=a68c15170859"></script>
+<noscript>
+  <p style="padding:24px;font:16px/1.6 system-ui,sans-serif">
+    Kingdom Life Study needs JavaScript. Turn it on in your browser settings and
+    reload this page.
+  </p>
+</noscript>
 <noscript>
   <p style="padding:24px;font:16px/1.6 system-ui,sans-serif">
     Kingdom Life Study needs JavaScript. Turn it on in your browser settings and

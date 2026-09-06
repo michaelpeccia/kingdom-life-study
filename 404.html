@@ -17,8 +17,18 @@
 <meta property="og:url" content="https://app.kingdom-life-ministry.com/">
 <meta property="og:image" content="https://app.kingdom-life-ministry.com/icons/icon-1024.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="A chapter-by-chapter Bible study library from Kingdom Life Ministry. Reads offline, with highlighting, bookmarks, downloadable books and a Hebrew and Greek concordance.">
+<meta name="apple-mobile-web-app-title" content="Kingdom Life">
+<link rel="apple-touch-icon" href="icons/icon-512.png">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kingdom Life Study">
+<meta property="og:description" content="A chapter-by-chapter Bible study library from Kingdom Life Ministry. Reads offline, with highlighting, bookmarks, downloadable books and a Hebrew and Greek concordance.">
+<meta property="og:url" content="https://app.kingdom-life-ministry.com/">
+<meta property="og:image" content="https://app.kingdom-life-ministry.com/icons/icon-1024.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="styles.css?v=85c5bb73900b">
+<link rel="stylesheet" href="styles.css?v=a68c15170859">
 </head>
 <body>
 
@@ -40,16 +50,56 @@
 
 <main id="main">
 
-  <!-- ───────────────────────────── Library ───────────────────────────── -->
+  <!-- ───────────────────────── Library (hub) ─────────────────────────── -->
   <section class="view" id="view-library">
     <div class="wrap">
-      <h2 class="display">Kingdom Life Study</h2>
-      <p class="lede">A chapter-by-chapter study library. Books install to your device and read
-        entirely offline.</p>
+      <div class="hub-head">
+        <div class="hub-title">
+          <h2 class="display">Kingdom Life Study</h2>
+          <p class="lede">Chapter by chapter through the Scriptures, and the teaching handouts
+            alongside them. Everything reads offline once it is on your device.</p>
+        </div>
+        <button id="btn-connect" class="connect-chip" aria-label="Connect with us">
+          <span aria-hidden="true">✉</span>Connect
+        </button>
+      </div>
 
+      <div id="web-cards"></div>
       <div id="web-cards"></div>
 
       <div id="app-update" class="update-card" hidden></div>
+
+      <div class="hub-nav">
+        <button class="hub-btn" data-hub="books">
+          <span class="hub-icon" aria-hidden="true">▤</span>
+          <span class="hub-text"><b>Bible Study</b><i id="hub-books-sub">The book studies</i></span>
+          <span class="hub-go" aria-hidden="true">›</span>
+        </button>
+        <button class="hub-btn" data-hub="topics">
+          <span class="hub-icon" aria-hidden="true">✦</span>
+          <span class="hub-text"><b>Further Study</b><i id="hub-topics-sub">The teaching handouts</i></span>
+          <span class="hub-go" aria-hidden="true">›</span>
+        </button>
+      </div>
+
+      <div class="hub-support">
+        <button id="btn-support" class="wide-btn">Support our ministry</button>
+        <p class="hint">Outreach, the homeless care bags, and missions. Prayer means just as much.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────── Bible Study (the books) ──────────────────── -->
+  <section class="view" id="view-books">
+    <div class="wrap">
+      <h2 class="display">Bible Study</h2>
+      <p class="lede">A chapter-by-chapter study library. Books install to your device and read
+        entirely offline.</p>
+
+      <h3 class="rule">Scripture text</h3>
+      <p class="hint">Optional. Install it once and every passage the handouts cite
+        opens inside the app instead of on the web, with no signal needed.</p>
+      <div id="scripture-card" class="cards"></div>
 
       <h3 class="rule">On this device</h3>
       <div id="installed-list" class="cards"></div>
@@ -59,12 +109,32 @@
       <p class="hint" id="store-hint"></p>
       <button id="btn-refresh" class="wide-btn">Check for new books</button>
       <p class="hint" id="catalog-hint"></p>
+    </div>
+  </section>
 
-      <h3 class="rule">Topic Studies</h3>
-      <p class="hint">The printable teaching handouts, read here with the same passage
+  <!-- ───────────────────── Further Study (the handouts) ───────────────── -->
+  <section class="view" id="view-topics">
+    <div class="wrap">
+      <h2 class="display">Further Study</h2>
+      <p class="lede">The printable teaching handouts, read here with the same passage
         links, highlighting and notes as the books. Every one can be shared or
         downloaded as the PDF it was laid out as.</p>
-      <div id="topic-list" class="cards"></div>
+      <div id="topic-sections"></div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── Connect with us ──────────────────────── -->
+  <section class="view" id="view-connect">
+    <div class="wrap">
+      <h2 class="display">Connect with us</h2>
+      <div class="seg" id="connect-scope">
+        <button data-panel="youtube" class="on">YouTube</button>
+        <button data-panel="facebook">Facebook</button>
+        <button data-panel="email">Email</button>
+      </div>
+      <div id="connect-youtube" class="connect-panel"></div>
+      <div id="connect-facebook" class="connect-panel" hidden></div>
+      <div id="connect-email" class="connect-panel" hidden></div>
     </div>
   </section>
 
@@ -196,8 +266,15 @@
 
 <div id="toast" class="toast" hidden></div>
 
-<script src="app.js?v=85c5bb73900b"></script>
-<script src="web.js?v=85c5bb73900b"></script>
+<script src="app.js?v=a68c15170859"></script>
+<script src="web.js?v=a68c15170859"></script>
+<script src="web.js?v=a68c15170859"></script>
+<noscript>
+  <p style="padding:24px;font:16px/1.6 system-ui,sans-serif">
+    Kingdom Life Study needs JavaScript. Turn it on in your browser settings and
+    reload this page.
+  </p>
+</noscript>
 <noscript>
   <p style="padding:24px;font:16px/1.6 system-ui,sans-serif">
     Kingdom Life Study needs JavaScript. Turn it on in your browser settings and
