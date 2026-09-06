@@ -427,3 +427,67 @@ body.scrolling .chapnav{opacity:.28}
   display:block;text-decoration:none;color:var(--navy);
   width:100%;margin-top:8px;text-align:center
 }
+
+/* ── the Library hub ──────────────────────────────────────────────────────
+   The front page is now two doors and a giving ask rather than one long
+   scroll, so the books and the handouts each get room to breathe. */
+.hub-head{display:flex;align-items:flex-start;gap:12px}
+.hub-title{flex:1;min-width:0}
+.connect-chip{
+  flex:none;margin-top:6px;display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--gold);color:var(--gold);background:transparent;
+  border-radius:999px;padding:7px 13px;font-family:system-ui,sans-serif;
+  font-size:12.5px;font-weight:600;letter-spacing:.02em
+}
+.connect-chip:active{background:var(--band)}
+
+.hub-nav{display:grid;gap:10px;margin:18px 0 4px}
+.hub-btn{
+  display:flex;align-items:center;gap:13px;width:100%;text-align:left;
+  background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:16px 15px
+}
+.hub-btn:active{background:var(--band)}
+.hub-btn .hub-icon{
+  flex:none;width:38px;height:38px;border-radius:9px;background:var(--band);
+  color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:19px
+}
+.hub-btn .hub-text{flex:1;min-width:0;display:block}
+.hub-btn .hub-text b{display:block;font-size:18px;color:var(--navy);font-weight:600}
+.hub-btn .hub-text i{
+  display:block;margin-top:2px;font-style:normal;font-size:12.5px;
+  color:var(--muted);font-family:system-ui,sans-serif
+}
+.hub-btn .hub-go{flex:none;color:var(--muted);font-size:22px;line-height:1}
+
+.hub-support{margin-top:26px;padding-top:18px;border-top:1px solid var(--rule)}
+.hub-support .hint{text-align:center;margin-top:8px}
+
+/* companion line on a Further Study card */
+.card .companion{margin-top:4px;color:var(--gold);font-size:12px;
+  font-family:system-ui,sans-serif}
+
+/* ── connect panels ───────────────────────────────────────────────────── */
+.connect-panel{margin-top:14px}
+.connect-panel .embed{
+  display:block;width:100%;aspect-ratio:9/13;max-height:72vh;border:1px solid var(--rule);
+  border-radius:12px;background:var(--band)
+}
+#connect-youtube .embed{aspect-ratio:16/9;max-height:none}
+.connect-tools{display:flex;gap:10px;margin-top:12px}
+.connect-tools .go{
+  flex:1;border:1px solid var(--gold);color:var(--gold);background:transparent;
+  border-radius:10px;padding:12px;font-family:system-ui,sans-serif;font-size:14px;
+  font-weight:600;text-align:center;text-decoration:none;display:inline-block
+}
+.connect-tools .go.solid{background:var(--gold);color:#1B1B2F;border-color:var(--gold)}
+.connect-tools .go:active{opacity:.85}
+.connect-addr{
+  margin:12px 0 0;padding:13px;border:1px dashed var(--rule);border-radius:10px;
+  background:var(--band);text-align:center;font-size:15px;color:var(--navy);
+  font-family:system-ui,sans-serif;word-break:break-all;user-select:all
+}
+
+/* two Facebook pages inside the one panel */
+.fb-seg{margin-bottom:12px}
+.fb-stage{display:block}
+.fb-feed[hidden]{display:none}

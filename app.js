@@ -361,7 +361,7 @@ function applyPrefs(){
 }
 
 /* ── navigation ───────────────────────────────────────────────────────── */
-const VIEWS = ['library','book','front','read','search','marks','lex','topic'];
+const VIEWS = ['library','books','topics','connect','book','front','read','search','marks','lex','topic'];
 function go(view, opts={}){
   if (State.view !== view && !opts.replace) State.history.push(State.view);
   State.view = view;
@@ -384,7 +384,8 @@ function back(){
 }
 function setTitle(view){
   const b = State.book, t=$('#top-title'), s=$('#top-sub');
-  const map = {library:'Library', search:'Search', marks:'Marks', lex:'Concordance'};
+  const map = {library:'Library', books:'Bible Study', topics:'Further Study',
+               connect:'Connect with us', search:'Search', marks:'Marks', lex:'Concordance'};
   if (map[view]) { t.textContent = map[view]; s.textContent=''; return; }
   if (view==='book'){ t.textContent=b?b.title:''; s.textContent=b?`${b.chapterCount} chapters`:''; return; }
   if (view==='front'){ t.textContent=b?b.title:''; s.textContent='Front matter'; return; }
@@ -394,6 +395,44 @@ function setTitle(view){
   if (view==='read'){ t.textContent = b? `${b.title} ${State.chapter}` : '';
     const ch = currentChapter(); s.textContent = ch? ch.title : ''; }
 }
+
+/* ── ministry links, and how Further Study is grouped ─────────────────────
+   These live here rather than in topics.json because that file is generated:
+   a rebuild replaces it, and anything hand-added to it is lost. A study whose
+   id is not listed below still shows up, under "More studies" at the end. */
+const MINISTRY = {
+  youtube:   'https://www.youtube.com/@MichaelBenYahKingdomLife777',
+  // The uploads player needs the channel ID, not the handle. Fill this in with
+  // the UC… id and the YouTube panel switches from a link card to a real
+  // in-app player. Leave it empty and the card is shown instead.
+  channelId: 'UCgDBnLbtkIr_LAyEarUZYXA',
+  facebookPages: [
+    ['Michael', 'https://www.facebook.com/MichaelBenYah777'],
+    ['Rebekah', 'https://www.facebook.com/77rainbows'],
+  ],
+  email:     'michaelpeccia@kingdomlifeministy.com',
+  support: [
+    ['GoFundMe',          'https://gofund.me/bb1986c2f'],
+    ['Kingdom Life Gear', 'https://kingdomlifegear.etsy.com'],
+    ['Venmo',             'https://venmo.com/u/Michael-Peccia'],
+    ['Cash App',          'https://cash.app/$mikepeccia'],
+  ],
+};
+
+const TOPIC_SECTIONS = [
+  ['Who Yahshua Is',               ['aleph-and-tav', 'yahshua-is-the-father']],
+  ['The Covenant and Who You Are', ['the-marriage-covenant', 'who-you-are']],
+  ['Marriage and Family',          ['husbands-love-your-wives']],
+  ['The Sabbath',                  ['the-seventh-day', 'sabbath-fire-and-food']],
+  ['Appointed Times',              ['yom-teruah']],
+  ['Set Apart Living',             ['why-we-dont-eat-pig']],
+];
+
+/* Two studies that name each other as companions on their own title pages. */
+const TOPIC_COMPANION = {
+  'the-marriage-covenant': 'who-you-are',
+  'who-you-are':           'the-marriage-covenant',
+};
 
 /* ── library ──────────────────────────────────────────────────────────── */
 function renderLibrary(){
@@ -447,11 +486,25 @@ function renderLibrary(){
 
   renderTopics();
   renderAppUpdate();
+  renderHubCounts();
 
   const when = State.catalog && State.catalog.fetchedAt;
   $('#catalog-hint').textContent = when
     ? 'Library list last checked ' + relativeTime(when) + '.'
     : 'The list of available books is fetched when you are online.';
+}
+
+/* The two hub buttons say what is actually behind them, so the front page is
+   not two unlabelled doors. */
+function renderHubCounts(){
+  const nb = State.installed.length, nt = State.topics.length;
+  const b = $('#hub-books-sub'), t = $('#hub-topics-sub');
+  if (b) b.textContent = nb
+    ? `${nb} book${nb===1?'':'s'} on this device`
+    : 'The book studies, none installed yet';
+  if (t) t.textContent = nt
+    ? `${nt} teaching handout${nt===1?'':'s'}`
+    : 'The teaching handouts';
 }
 
 function relativeTime(ts){
@@ -1285,28 +1338,197 @@ function blockText(b){
   return [b.title, b.v].filter(Boolean).join(' — ');
 }
 
-/* ── the Library section ──────────────────────────────────────────────── */
+/* ── the Further Study screen ─────────────────────────────────────────── */
 function renderTopics(){
-  const box = $('#topic-list');
+  const box = $('#topic-sections');
   if (!box) return;
   box.innerHTML = '';
   if (!State.topics.length){
     box.append(el('p','empty','No topic studies in this build.'));
     return;
   }
-  State.topics.forEach(t => {
-    const c = el('div','card');
-    c.append(el('i','spine'));
-    const m = el('div','meta');
-    m.append(el('h4', null, t.title));
-    if (t.subtitle) m.append(el('p','topic-sub-line', t.subtitle));
-    m.append(el('p', null,
-      `${t.sections.length} parts · about ${t.minutes} min · PDF ${Math.round(t.pdfBytes/1024)} KB`));
-    c.append(m);
-    const b = el('button','go solid','Read');
-    b.onclick = () => openTopic(t.id);
-    c.append(b);
-    box.append(c);
+
+  const byId   = Object.fromEntries(State.topics.map(t => [t.id, t]));
+  const placed = new Set();
+  const groups = TOPIC_SECTIONS.map(([name, ids]) => {
+    const list = ids.map(id => byId[id]).filter(Boolean);
+    list.forEach(t => placed.add(t.id));
+    return [name, list];
+  });
+
+  // anything the grouping does not know about is still reachable
+  const rest = State.topics.filter(t => !placed.has(t.id));
+  if (rest.length) groups.push(['More studies', rest]);
+
+  groups.forEach(([name, list]) => {
+    if (!list.length) return;
+    box.append(el('h3','rule', name));
+    const cards = el('div','cards');
+    list.forEach(t => cards.append(topicCard(t)));
+    box.append(cards);
+  });
+}
+
+function topicCard(t){
+  const c = el('div','card');
+  c.append(el('i','spine'));
+  const m = el('div','meta');
+  m.append(el('h4', null, t.title));
+  if (t.subtitle) m.append(el('p','topic-sub-line', t.subtitle));
+  m.append(el('p', null,
+    `${t.sections.length} parts \u00b7 about ${t.minutes} min \u00b7 PDF ${Math.round(t.pdfBytes/1024)} KB`));
+  const mateId = TOPIC_COMPANION[t.id];
+  const mate   = mateId && State.topics.find(x => x.id === mateId);
+  if (mate) m.append(el('p','companion', 'Companion study: ' + mate.title));
+  c.append(m);
+  const b = el('button','go solid','Read');
+  b.onclick = () => openTopic(t.id);
+  c.append(b);
+  return c;
+}
+
+/* ── connect with us ──────────────────────────────────────────────────────
+   Facebook and YouTube both refuse to be framed by their normal page URLs, so
+   the only way to keep somebody inside the app is each platform's own embed:
+   the uploads player and the Page Plugin. Mail has no embed at all, so that
+   panel copies the address and hands off to whatever mail app is installed.
+   Nothing here loads until the panel is opened, so the front page makes no
+   third-party requests. */
+function connectSheet(){
+  sheet('Connect with us', body => {
+    body.append(el('p','hint',
+      'YouTube and Facebook open inside the app. Email hands off to your mail app.'));
+    const act = (label, cls, panel) => {
+      const b = el('button', cls, label);
+      b.onclick = () => { closeSheet(); openConnect(panel); };
+      body.append(b);
+    };
+    act('Watch on YouTube',    'primary', 'youtube');
+    act('Our Facebook pages',  'ghost',   'facebook');
+    act('Email the ministry',  'ghost',   'email');
+  });
+}
+
+function openConnect(panel){
+  go('connect');
+  showConnectPanel(panel || 'youtube');
+}
+
+const connectLoaded = {};
+function showConnectPanel(which){
+  $$('#connect-scope button').forEach(b =>
+    b.classList.toggle('on', b.dataset.panel === which));
+  ['youtube','facebook','email'].forEach(p => {
+    const n = $('#connect-' + p);
+    if (n) n.hidden = p !== which;
+  });
+  if (connectLoaded[which]) return;
+  connectLoaded[which] = true;
+  const box = $('#connect-' + which);
+  if (!box) return;
+  if (which === 'youtube')  fillYouTube(box);
+  if (which === 'facebook') fillFacebook(box);
+  if (which === 'email')    fillEmail(box);
+}
+
+function embedFrame(src, title){
+  const f = el('iframe','embed');
+  f.src = src;
+  f.title = title;
+  f.loading = 'lazy';
+  f.referrerPolicy = 'strict-origin-when-cross-origin';
+  f.setAttribute('allowfullscreen','');
+  f.setAttribute('allow','encrypted-media; picture-in-picture; web-share');
+  return f;
+}
+
+/* An anchor rather than a button: an installed home-screen app will not open a
+   window for a script, but it will always follow a link. */
+function outLink(url, label, cls){
+  const a = el('a', cls || 'go', label);
+  a.href = url; a.target = '_blank'; a.rel = 'noopener';
+  const P = window.Capacitor && window.Capacitor.Plugins;
+  if (P && P.Browser) a.onclick = e => { e.preventDefault(); openLink(url); };
+  return a;
+}
+
+function fillYouTube(box){
+  if (MINISTRY.channelId){
+    // the uploads playlist of a channel is its id with UC swapped for UU
+    const list = 'UU' + MINISTRY.channelId.slice(2);
+    box.append(embedFrame(
+      'https://www.youtube-nocookie.com/embed/videoseries?list=' + encodeURIComponent(list),
+      'Kingdom Life Ministry on YouTube'));
+  } else {
+    box.append(el('p','hint',
+      'Every Midrash, and the teaching videos, live on the channel.'));
+  }
+  const row = el('div','connect-tools');
+  row.append(outLink(MINISTRY.youtube, 'Open the channel', 'go solid'));
+  box.append(row);
+  box.append(el('p','hint','Live every Saturday, 6:30 PM CT.'));
+}
+
+function fillFacebook(box){
+  // Two pages, one panel. Each feed is built the first time it is asked for,
+  // so opening Facebook does not pull down both of them.
+  const seg   = el('div','seg fb-seg');
+  const stage = el('div','fb-stage');
+  const built = {};
+
+  const show = name => {
+    $$('.fb-seg button', seg).forEach(b => b.classList.toggle('on', b.dataset.page === name));
+    $$('.fb-feed', stage).forEach(n => { n.hidden = n.dataset.page !== name; });
+    if (built[name]) return;
+    built[name] = true;
+    const url  = MINISTRY.facebookPages.find(([label]) => label === name)[1];
+    const feed = el('div','fb-feed');
+    feed.dataset.page = name;
+    feed.append(embedFrame(
+      'https://www.facebook.com/plugins/page.php?href=' + encodeURIComponent(url) +
+      '&tabs=timeline&small_header=false&adapt_container_width=true' +
+      '&hide_cover=false&show_facepile=true',
+      name + ' on Facebook'));
+    const row = el('div','connect-tools');
+    row.append(outLink(url, 'Open ' + name + '\u2019s page', 'go solid'));
+    feed.append(row);
+    stage.append(feed);
+  };
+
+  MINISTRY.facebookPages.forEach(([label], i) => {
+    const b = el('button', i === 0 ? 'on' : null, label);
+    b.dataset.page = label;
+    b.onclick = () => show(label);
+    seg.append(b);
+  });
+
+  box.append(seg, stage);
+  show(MINISTRY.facebookPages[0][0]);
+  box.append(el('p','hint',
+    'The feeds above are Facebook\u2019s own panel, so they keep their styling.'));
+}
+
+function fillEmail(box){
+  box.append(el('p','hint','Write to us any time. We read everything that comes in.'));
+  const addr = el('p','connect-addr', MINISTRY.email);
+  box.append(addr);
+  const row = el('div','connect-tools');
+  const copy = el('button','go solid','Copy address');
+  copy.onclick = async () => {
+    try { await navigator.clipboard.writeText(MINISTRY.email); toast('Address copied'); }
+    catch(e){ toast('Could not copy \u2014 long press the address instead'); }
+  };
+  row.append(copy, outLink('mailto:' + MINISTRY.email, 'Open mail app'));
+  box.append(row);
+}
+
+/* ── support ──────────────────────────────────────────────────────────── */
+function supportSheet(){
+  sheet('Support our ministry', body => {
+    body.append(el('p','hint',
+      'Everything given goes to outreach, the homeless care bags, and missions. ' +
+      'No pressure at all. Prayer means just as much, and costs nothing.'));
+    MINISTRY.support.forEach(([label, url]) => body.append(outLink(url, label, 'ghost')));
   });
 }
 
@@ -1741,6 +1963,11 @@ function clearHash(){
 function bindUI(){
   $('#btn-back').onclick = back;
   $('#btn-refresh').onclick = () => refreshCatalog();
+  $('#btn-connect').onclick = connectSheet;
+  $('#btn-support').onclick = supportSheet;
+  $$('.hub-btn').forEach(b => b.onclick = () => go(b.dataset.hub));
+  $$('#connect-scope button').forEach(b =>
+    b.onclick = () => showConnectPanel(b.dataset.panel));
   $('#btn-settings').onclick = settingsSheet;
   $('#btn-chapters').onclick = chapterSheet;
   $('#sheet-close').onclick = closeSheet;
