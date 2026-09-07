@@ -449,6 +449,7 @@ const TOPIC_SECTIONS = [
   ['The Sabbath',                  ['the-seventh-day', 'sabbath-fire-and-food']],
   ['Appointed Times',              ['yom-teruah']],
   ['Set Apart Living',             ['why-we-dont-eat-pig']],
+  ['Prayers & Deliverance',        ['prayer-for-the-bloodline']],
 ];
 
 /* Two studies that name each other as companions on their own title pages. */

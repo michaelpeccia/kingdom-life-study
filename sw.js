@@ -19,7 +19,7 @@
    The build id below is stamped in by build_web.py from a hash of the files
    themselves, so a deploy that changes nothing does not evict anybody's cache. */
 
-const BUILD = "964443b4db21";
+const BUILD = "193446d76201";
 const SHELL = 'kls-shell-' + BUILD;
 const LEX   = 'kls-lex-'   + BUILD;
 const BOOKS = 'kls-books';
@@ -27,9 +27,9 @@ const BOOKS = 'kls-books';
 const PRECACHE = [
   "./",
   "index.html",
-  "styles.css?v=964443b4db21",
-  "app.js?v=964443b4db21",
-  "web.js?v=964443b4db21",
+  "styles.css?v=193446d76201",
+  "app.js?v=193446d76201",
+  "web.js?v=193446d76201",
   "manifest.webmanifest",
   "packs/manifest.json",
   "topics.json",
