@@ -361,7 +361,7 @@ function applyPrefs(){
 }
 
 /* ── navigation ───────────────────────────────────────────────────────── */
-const VIEWS = ['library','books','topics','connect','book','front','read','search','marks','lex','topic'];
+const VIEWS = ['library','books','topics','prayers','connect','book','front','read','search','marks','lex','topic'];
 function go(view, opts={}){
   if (State.view !== view && !opts.replace) State.history.push(State.view);
   State.view = view;
@@ -385,6 +385,7 @@ function back(){
 function setTitle(view){
   const b = State.book, t=$('#top-title'), s=$('#top-sub');
   const map = {library:'Library', books:'Bible Study', topics:'Further Study',
+               prayers:'Prayers & Deliverance',
                connect:'Connect with us', search:'Search', marks:'Marks', lex:'Concordance'};
   if (map[view]) { t.textContent = map[view]; s.textContent=''; return; }
   if (view==='book'){ t.textContent=b?b.title:''; s.textContent=b?`${b.chapterCount} chapters`:''; return; }
@@ -449,8 +450,12 @@ const TOPIC_SECTIONS = [
   ['The Sabbath',                  ['the-seventh-day', 'sabbath-fire-and-food']],
   ['Appointed Times',              ['yom-teruah']],
   ['Set Apart Living',             ['why-we-dont-eat-pig']],
-  ['Prayers & Deliverance',        ['prayer-for-the-bloodline']],
 ];
+
+/* Prayers live on their own screen off the Library, not inside Further
+   Study. Listed here so renderTopics can leave them out and renderPrayers
+   can pick them up. Order here is the order they appear. */
+const PRAYER_TOPICS = ['prayer-for-the-bloodline'];
 
 /* Two studies that name each other as companions on their own title pages. */
 const TOPIC_COMPANION = {
@@ -509,6 +514,7 @@ function renderLibrary(){
     : 'More books will appear here as they are published.';
 
   renderTopics();
+  renderPrayers();
   renderAppUpdate();
   renderScriptureCard();
   renderHubCounts();
@@ -1479,7 +1485,8 @@ function renderTopics(){
   }
 
   const byId   = Object.fromEntries(State.topics.map(t => [t.id, t]));
-  const placed = new Set();
+  // the prayers have their own screen; keep them off this one
+  const placed = new Set(PRAYER_TOPICS);
   const groups = TOPIC_SECTIONS.map(([name, ids]) => {
     const list = ids.map(id => byId[id]).filter(Boolean);
     list.forEach(t => placed.add(t.id));
@@ -1497,6 +1504,24 @@ function renderTopics(){
     list.forEach(t => cards.append(topicCard(t)));
     box.append(cards);
   });
+}
+
+/* ── the Prayers & Deliverance screen ─────────────────────────────────
+   Same cards as Further Study, on their own screen. A prayer someone
+   prays out loud is a different thing from a teaching handout. */
+function renderPrayers(){
+  const box = $('#prayer-sections');
+  if (!box) return;
+  box.innerHTML = '';
+  const byId = Object.fromEntries(State.topics.map(t => [t.id, t]));
+  const list = PRAYER_TOPICS.map(id => byId[id]).filter(Boolean);
+  if (!list.length){
+    box.append(el('p','empty','No prayers in this build.'));
+    return;
+  }
+  const cards = el('div','cards');
+  list.forEach(t => cards.append(topicCard(t)));
+  box.append(cards);
 }
 
 function topicCard(t){
