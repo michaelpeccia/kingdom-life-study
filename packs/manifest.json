@@ -16,6 +16,20 @@
    "hasStrongs": true
   },
   {
+   "id": "luke",
+   "title": "Luke",
+   "translation": "WEB",
+   "version": 2,
+   "chapters": 24,
+   "verses": 1151,
+   "footnotes": 299,
+   "bytes": 777306,
+   "sha256": "c8c202cf9912df6a",
+   "file": "luke.json",
+   "bundled": false,
+   "hasStrongs": true
+  },
+  {
    "id": "malachi",
    "title": "Malachi",
    "translation": "WEB",
