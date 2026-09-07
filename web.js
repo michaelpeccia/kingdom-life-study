@@ -86,6 +86,13 @@ function registerSW(){
 
     // Check once an hour in a session left open for a long time
     setInterval(() => reg.update().catch(()=>{}), 3600000);
+
+    // A backgrounded tab has its timers throttled or stopped outright, so the
+    // hourly check above cannot be relied on in an app left open for days.
+    // Ask again the moment the reader comes back to it.
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') reg.update().catch(()=>{});
+    });
   }).catch(e => console.warn('offline support unavailable', e));
 
   let reloading = false;
