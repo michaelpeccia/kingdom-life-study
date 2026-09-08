@@ -494,7 +494,7 @@ body.scrolling .chapnav{opacity:.28}
 
 /* Study guides. The tools stack so Read and PDF both fit beside a card on a
    narrow phone, and the reader fills the gap between the two fixed bars. */
-.guide-tools{display:flex;flex-direction:column;gap:7px;flex:none}
+.guide-tools{display:flex;flex-direction:column;gap:6px;flex:none}
 .guide-tools .go{
   font-family:system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--gold);
   border:1px solid var(--gold);border-radius:999px;padding:7px 14px;

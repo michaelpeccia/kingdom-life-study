@@ -1637,12 +1637,53 @@ function guideCard(slug, g){
     b.onclick = () => openGuide(slug, g);
     tools.append(b);
   }
-  if (g.pdf){
-    const url = new URL(`handouts/${slug}/${g.pdf}`, location.href).href;
-    tools.append(outLink(url, 'PDF', 'go'));
-  }
+  if (g.pdf) tools.append(outLink(guideUrl(slug, g.pdf), 'PDF', 'go'));
+  const sh = el('button','go','Share');
+  sh.onclick = () => guideShareSheet(slug, g);
+  tools.append(sh);
   c.append(tools);
   return c;
+}
+
+const guideUrl = (slug, file) =>
+  new URL(`handouts/${slug}/${file}`, location.href).href;
+
+/* Same two things are worth sending as a topic study: the guide itself, which
+   opens in any browser, and the handout PDF, which is the thing you print and
+   put in somebody's hand. The sheet offers both rather than guessing. */
+function guideShareSheet(slug, g){
+  const readUrl = g.html ? guideUrl(slug, g.html) : null;
+  const pdfUrl  = g.pdf  ? guideUrl(slug, g.pdf)  : null;
+  const title   = g.title || g.chapters || 'Study guide';
+  sheet(title, body => {
+    body.append(el('p','hint',
+      'The link opens this study guide in any browser. The PDF is the one to print.'));
+
+    const act = (label, cls, fn) => {
+      const b = el('button', cls, label); b.onclick = fn; body.append(b);
+    };
+
+    const primary = readUrl || pdfUrl;
+    if (canShare() && primary){
+      act('Share this guide', 'primary', () => nativeShare({
+        title,
+        text: [title, g.chapters].filter(Boolean).join(' \u2014 '),
+        url: primary,
+      }));
+    }
+    if (readUrl){
+      act('Copy the link', canShare() ? 'ghost' : 'primary',
+          () => copyText(readUrl, 'Link copied'));
+    }
+    if (pdfUrl){
+      const open = outLink(pdfUrl, 'Open the printable PDF', 'ghost');
+      open.addEventListener('click', () => closeSheet());
+      body.append(open);
+      act('Copy the PDF link', 'ghost',
+          () => copyText(pdfUrl, 'PDF link copied'));
+    }
+    if (primary) body.append(el('p','sharelink', primary));
+  });
 }
 
 /* The guide keeps its own stylesheet inside a frame. Injecting it into the
