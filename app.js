@@ -361,7 +361,7 @@ function applyPrefs(){
 }
 
 /* ── navigation ───────────────────────────────────────────────────────── */
-const VIEWS = ['library','books','topics','prayers','connect','book','front','read','search','marks','lex','topic'];
+const VIEWS = ['library','books','topics','prayers','connect','book','front','read','search','marks','lex','topic','guides','guide'];
 function go(view, opts={}){
   if (State.view !== view && !opts.replace) State.history.push(State.view);
   State.view = view;
@@ -390,6 +390,10 @@ function setTitle(view){
   if (map[view]) { t.textContent = map[view]; s.textContent=''; return; }
   if (view==='book'){ t.textContent=b?b.title:''; s.textContent=b?`${b.chapterCount} chapters`:''; return; }
   if (view==='front'){ t.textContent=b?b.title:''; s.textContent='Front matter'; return; }
+  if (view==='guides'){ t.textContent=(State.guideBook&&State.guideBook.title)||'Study guides'; s.textContent='Study guides'; return; }
+  if (view==='guide'){ const g=State.guide;
+    t.textContent = g ? (g.title||'Study guide') : 'Study guide';
+    s.textContent = g ? (g.chapters||'') : ''; return; }
   if (view==='topic'){ const s2 = State.topic;
     t.textContent = s2 ? s2.title : 'Topic Study';
     s.textContent = s2 ? (s2.subtitle || 'Topic study') : ''; return; }
@@ -625,6 +629,8 @@ async function openBook(id, quiet){
     b.onclick = () => openChapter(ch.num);
     grid.append(b);
   });
+
+  fillGuideEntry(pack);
 
   if (!quiet) go('book');
 }
@@ -1540,6 +1546,119 @@ function topicCard(t){
   b.onclick = () => openTopic(t.id);
   c.append(b);
   return c;
+}
+
+/* ── Midrash study guides ─────────────────────────────────────────────────
+   Published per book at handouts/<slug>/index.json, beside the interactive
+   HTML and the PDF the handout was laid out as. Fetched rather than bundled:
+   unlike a book pack these are not installed to the device, so the first
+   visit needs a connection. The service worker keeps them once seen.
+
+   The PDF is an anchor built through outLink, not a button - an installed
+   home-screen app will not open a window for a script, but it will always
+   follow a link. */
+const GuideCache = {};
+const guideSlug = pack => String(pack.id).toLowerCase();
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun',
+                'Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function guideDate(iso){
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+  if (!m) return '';
+  return `${MONTHS[+m[2]-1]} ${+m[3]}, ${m[1]}`;
+}
+
+async function loadGuides(slug){
+  if (slug in GuideCache) return GuideCache[slug];
+  let data = null;
+  try {
+    const r = await fetch(`handouts/${slug}/index.json`, {cache:'no-store'});
+    if (r.ok) data = await r.json();
+  } catch (e) { data = null; }
+  GuideCache[slug] = data;
+  return data;
+}
+
+/* The book page shows one chip, and only once we know there are guides to
+   open. A book with none looks exactly as it did before. */
+async function fillGuideEntry(pack){
+  const head = $('#guide-head'), box = $('#guide-chips');
+  if (!head || !box) return;
+  head.hidden = true; box.hidden = true; box.innerHTML = '';
+  const slug = guideSlug(pack);
+  const data = await loadGuides(slug);
+  const list = (data && data.guides) || [];
+  if (!list.length) return;
+  if (!State.book || guideSlug(State.book) !== slug) return;
+  const b = el('button', null,
+    `${list.length} Midrash study ${list.length===1?'guide':'guides'}`);
+  b.onclick = () => openGuides(slug, pack.title);
+  box.append(b);
+  head.hidden = false; box.hidden = false;
+}
+
+async function openGuides(slug, title){
+  State.guideBook = {slug, title};
+  go('guides');
+  renderGuides(slug);
+}
+
+async function renderGuides(slug){
+  const box = $('#guide-sections');
+  if (!box) return;
+  box.innerHTML = '';
+  box.append(el('p','empty','Loading study guides...'));
+  const data = await loadGuides(slug);
+  const list = (data && data.guides) || [];
+  box.innerHTML = '';
+  if (!list.length){
+    box.append(el('p','empty',
+      'No study guides yet, or no connection to load the list.'));
+    return;
+  }
+  const cards = el('div','cards');
+  list.forEach(g => cards.append(guideCard(slug, g)));
+  box.append(cards);
+}
+
+function guideCard(slug, g){
+  const c = el('div','card');
+  c.append(el('i','spine'));
+  const m = el('div','meta');
+  m.append(el('h4', null, g.title || g.chapters || 'Study guide'));
+  if (g.chapters) m.append(el('p','topic-sub-line', g.chapters));
+  const when = guideDate(g.date);
+  if (when) m.append(el('p', null, when));
+  c.append(m);
+
+  const tools = el('div','guide-tools');
+  if (g.html){
+    const b = el('button','go solid','Read');
+    b.onclick = () => openGuide(slug, g);
+    tools.append(b);
+  }
+  if (g.pdf){
+    const url = new URL(`handouts/${slug}/${g.pdf}`, location.href).href;
+    tools.append(outLink(url, 'PDF', 'go'));
+  }
+  c.append(tools);
+  return c;
+}
+
+/* The guide keeps its own stylesheet inside a frame. Injecting it into the
+   app would restyle the app: the export sets body, p, a, table and the root
+   colour variables. */
+function openGuide(slug, g){
+  State.guide = g;
+  const box = $('#guide-body');
+  if (!box) return;
+  box.innerHTML = '';
+  const fr = document.createElement('iframe');
+  fr.className = 'guide-frame';
+  fr.title = g.title || 'Study guide';
+  fr.src = `handouts/${slug}/${g.html}`;
+  box.append(fr);
+  go('guide');
 }
 
 /* ── connect with us ──────────────────────────────────────────────────────

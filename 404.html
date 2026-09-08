@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://app.kingdom-life-ministry.com/icons/icon-1024.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="styles.css?v=3ff4d6acc5bf">
+<link rel="stylesheet" href="styles.css?v=50ec378a0d0a">
 </head>
 <body>
 
@@ -163,12 +163,28 @@
       <h3 class="rule">Front matter</h3>
       <div id="front-list" class="chips"></div>
 
+      <h3 class="rule" id="guide-head" hidden>Study guides</h3>
+      <div id="guide-chips" class="chips" hidden></div>
+
       <h3 class="rule">Chapters</h3>
       <div id="chapter-grid" class="grid"></div>
     </div>
   </section>
 
   <!-- ───────────────────────────── Front matter ──────────────────────── -->
+  <section class="view" id="view-guides">
+    <div class="wrap">
+      <h2 class="display">Study guides</h2>
+      <p class="lede">The Midrash notes, week by week. Read one here, or open
+        the PDF to print it or share it.</p>
+      <div id="guide-sections"></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-guide">
+    <div id="guide-body" class="guide-wrap"></div>
+  </section>
+
   <section class="view" id="view-front">
     <div class="wrap reading" id="front-body"></div>
   </section>
@@ -281,9 +297,9 @@
 
 <div id="toast" class="toast" hidden></div>
 
-<script src="app.js?v=3ff4d6acc5bf"></script>
-<script src="web.js?v=3ff4d6acc5bf"></script>
-<script src="web.js?v=3ff4d6acc5bf"></script>
+<script src="app.js?v=50ec378a0d0a"></script>
+<script src="web.js?v=50ec378a0d0a"></script>
+<script src="web.js?v=50ec378a0d0a"></script>
 <noscript>
   <p style="padding:24px;font:16px/1.6 system-ui,sans-serif">
     Kingdom Life Study needs JavaScript. Turn it on in your browser settings and

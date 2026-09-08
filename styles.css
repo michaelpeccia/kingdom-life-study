@@ -491,3 +491,19 @@ body.scrolling .chapnav{opacity:.28}
 .fb-seg{margin-bottom:12px}
 .fb-stage{display:block}
 .fb-feed[hidden]{display:none}
+
+/* Study guides. The tools stack so Read and PDF both fit beside a card on a
+   narrow phone, and the reader fills the gap between the two fixed bars. */
+.guide-tools{display:flex;flex-direction:column;gap:7px;flex:none}
+.guide-tools .go{
+  font-family:system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--gold);
+  border:1px solid var(--gold);border-radius:999px;padding:7px 14px;
+  white-space:nowrap;text-align:center;text-decoration:none;
+}
+.guide-tools .go.solid{background:var(--gold);color:#1B1B2F;border-color:var(--gold)}
+.guide-wrap{
+  position:fixed;left:0;right:0;
+  top:calc(var(--toph) + var(--safe-t));
+  bottom:calc(var(--tabh) + var(--safe-b));
+}
+.guide-frame{display:block;width:100%;height:100%;border:0;background:#fff}
