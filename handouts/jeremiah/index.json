@@ -1,0 +1,20 @@
+{
+  "schema": 2,
+  "book": "Jeremiah",
+  "slug": "jeremiah",
+  "updated": "2026-09-08",
+  "guides": [
+    { "id": "jer-01-03", "title": "Broken Cisterns and the Call of YHWH", "chapters": "Jeremiah 1 to 3", "date": "2026-06-27", "html": "jer-01-03.html", "pdf": "jer-01-03.pdf" },
+    { "id": "jer-04-06", "title": "The Mountains Tremble", "chapters": "Jeremiah 4 to 6", "date": "2026-07-04", "html": "jer-04-06.html", "pdf": "jer-04-06.pdf" },
+    { "id": "jer-07-09", "title": "The Temple Warning", "chapters": "Jeremiah 7 to 9", "date": "2026-07-11", "html": "jer-07-09.html", "pdf": "jer-07-09.pdf" },
+    { "id": "jer-10-12", "title": "True God vs False Idols", "chapters": "Jeremiah 10 to 12", "date": "2026-07-18", "html": "jer-10-12.html", "pdf": "jer-10-12.pdf" },
+    { "id": "jer-13-15", "title": "When Even Moses Couldn't Pray You Out of It", "chapters": "Jeremiah 13 to 15", "date": "2026-07-25", "html": "jer-13-15.html", "pdf": "jer-13-15.pdf" },
+    { "id": "jer-16-18", "title": "The Potter's Hand", "chapters": "Jeremiah 16 to 18", "date": "2026-08-01", "html": "jer-16-18.html", "pdf": "jer-16-18.pdf" },
+    { "id": "jer-19-21", "title": "The Way of Life or the Way of Death", "chapters": "Jeremiah 19 to 21", "date": "2026-08-08", "html": "jer-19-21.html", "pdf": "jer-19-21.pdf" },
+    { "id": "jer-22-24", "title": "False Shepherds, the Righteous Branch, and Good vs Bad Figs", "chapters": "Jeremiah 22 to 24", "date": "2026-08-15", "html": "jer-22-24.html", "pdf": "jer-22-24.pdf" },
+    { "id": "jer-25-27", "title": "Judgment Begins at the House of YHWH", "chapters": "Jeremiah 25 to 27", "date": "2026-08-22", "html": "jer-25-27.html", "pdf": "jer-25-27.pdf" },
+    { "id": "jer-28-30", "title": "Seventy Years, a Future and a Hope", "chapters": "Jeremiah 28 to 30", "date": "2026-08-29", "html": "jer-28-30.html", "pdf": "jer-28-30.pdf" },
+    { "id": "jer-31-33", "title": "The New Covenant, a Field Bought in a Siege", "chapters": "Jeremiah 31 to 33", "date": "2026-09-05", "html": "jer-31-33.html", "pdf": "jer-31-33.pdf" },
+    { "id": "jer-34-36", "title": "They Burned the Scroll", "chapters": "Jeremiah 34 to 36", "date": "2026-09-12", "html": "jer-34-36.html", "pdf": "jer-34-36.pdf" }
+  ]
+}
