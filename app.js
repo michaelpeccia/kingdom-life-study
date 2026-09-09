@@ -2442,7 +2442,7 @@ function devReturnLine(){
 }
 
 function renderDevotional(){
-  const board = $('#dev-board'), count = $('#dev-count'), ret = $('#dev-return');
+  const board = document.getElementById('dev-board'), count = document.getElementById('dev-count'), ret = document.getElementById('dev-return');
   if (!board) return;
   board.innerHTML = '';
 
