@@ -2465,7 +2465,18 @@ async function loadDevotional(){
   } catch(e){ alert('DEV LOAD: ' + (e && e.message)); }
 }
 
-async function renderDevotional(){
+async function openDevotionalDay(id){
+  const d = DEVOTIONAL.days.find(x => x.id === id);
+  if (!d) return;
+  try {
+    if (window.State && Array.isArray(window.State.topics) &&
+        !window.State.topics.some(t => t.id === id)) window.State.topics.push(d);
+  } catch(e){}
+  try { openTopic(id); }
+  catch(e){ alert('DEV OPEN: ' + (e && e.message)); }
+}
+
+function renderDevotional(){
   await loadDevotional();
   const board = document.getElementById('dev-board'), count = document.getElementById('dev-count'), ret = document.getElementById('dev-return');
   if (!board) return;
@@ -2498,7 +2509,7 @@ async function renderDevotional(){
     const b = devEl('button', 'dev-sq' + (rec.done ? ' done' : ''), String(d.day));
     b.setAttribute('aria-label',
       'Day ' + d.day + ', ' + d.subtitle + (rec.done ? ', completed' : ''));
-    b.onclick = () => openTopic(d.id);
+    b.onclick = () => openDevotionalDay(d.id);
     grid.append(b);
   });
   board.append(grid);
