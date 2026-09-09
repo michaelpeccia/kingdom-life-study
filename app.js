@@ -2559,7 +2559,7 @@ function devotionalFooter(t){
   ta.value = rec.note || '';
   wrap.append(ta);
 
-  const row = devEl('div','dev-actions');
+  const row = devEl('div','topic-tools');
   const save = devEl('button','go solid', rec.done ? 'Save note' : 'I did this');
   save.onclick = () => {
     devSave(t.day, {done:true, note:ta.value, at:Date.now()});
@@ -2578,9 +2578,11 @@ function devotionalFooter(t){
   if (rec.done) row.append(clear);
   wrap.append(row);
 
+  const backRow = devEl('div','topic-tools');
   const back = devEl('button','go','Back to the 31 days');
   back.onclick = () => { renderDevotional(); go('devotional'); };
-  wrap.append(back);
+  backRow.append(back);
+  wrap.append(backRow);
 
   if (t.note) wrap.append(devEl('p','hint', t.note));
   return wrap;
