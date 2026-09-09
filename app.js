@@ -2523,7 +2523,7 @@ async function renderDevotional(){
    the text because a PNG cannot carry a link, and it stays printed on the card
    as well for the platforms that drop the text. */
 function devotionalTools(t){
-  const bar = devEl('div','dev-actions');
+  const bar = devEl('div','topic-tools');
   const share = devEl('button','go solid', 'Share this day');
   share.onclick = async () => {
     const data = {title: 'Kingdom Life Daily Devotional, ' + t.title,
