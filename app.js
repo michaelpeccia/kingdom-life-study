@@ -2309,7 +2309,14 @@ function bindUI(){
   $('#btn-refresh').onclick = () => refreshCatalog();
   $('#btn-connect').onclick = connectSheet;
   $('#btn-support').onclick = supportSheet;
-  $$('.hub-btn').forEach(b => b.onclick = () => { if (b.dataset.hub === 'devotional') renderDevotional(); go(b.dataset.hub); });
+  $$('.hub-btn').forEach(b => b.onclick = () => {
+    try {
+      if (b.dataset.hub === 'devotional') renderDevotional();
+      go(b.dataset.hub);
+    } catch (err) {
+      alert('DEV ERROR: ' + (err && err.message) + '\n\n' + (err && err.stack || '').slice(0,400));
+    }
+  });
   $$('#connect-scope button').forEach(b =>
     b.onclick = () => showConnectPanel(b.dataset.panel));
   $('#btn-settings').onclick = settingsSheet;
