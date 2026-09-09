@@ -2457,7 +2457,7 @@ function devReturnLine(){
 async function loadDevotional(){
   if (DEVOTIONAL.days.length) return;
   try {
-    const r = await fetch('devotional.json', {cache:'no-store'});
+    const r = await fetch('devotional.json?v=' + (window.BUILD || Date.now()), {cache:'no-store'});
     const v = await r.json();
     DEVOTIONAL.days = Array.isArray(v && v.days) ? v.days : [];
     if (window.State && Array.isArray(window.State.topics))
