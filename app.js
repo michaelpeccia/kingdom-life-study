@@ -2462,7 +2462,7 @@ async function loadDevotional(){
     DEVOTIONAL.days = Array.isArray(v && v.days) ? v.days : [];
     if (window.State && Array.isArray(window.State.topics))
       window.State.topics = window.State.topics.concat(DEVOTIONAL.days);
-  } catch(e){ console.warn('devotional unavailable', e); }
+  } catch(e){ alert('DEV LOAD: ' + (e && e.message)); }
 }
 
 async function renderDevotional(){
