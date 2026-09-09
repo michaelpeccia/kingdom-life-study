@@ -2402,8 +2402,6 @@ function bindUI(){
 }
 
 document.addEventListener('DOMContentLoaded', boot);
-})();
-
 
 /* ── Daily Devotional ──────────────────────────────────────────────────
    Thirty one days, one Proverbs chapter each, so the month carries it and
@@ -2591,3 +2589,4 @@ function devotionalFooter(t){
 /* Its own handler rather than data-hub, so this does not depend on however
    the other hub buttons happen to be bound. */
 
+})();
