@@ -2454,7 +2454,19 @@ function devReturnLine(){
   return days >= 7 ? 'Welcome back. Pick up anywhere you like.' : null;
 }
 
-function renderDevotional(){
+async function loadDevotional(){
+  if (DEVOTIONAL.days.length) return;
+  try {
+    const r = await fetch('devotional.json', {cache:'no-store'});
+    const v = await r.json();
+    DEVOTIONAL.days = Array.isArray(v && v.days) ? v.days : [];
+    if (window.State && Array.isArray(window.State.topics))
+      window.State.topics = window.State.topics.concat(DEVOTIONAL.days);
+  } catch(e){ console.warn('devotional unavailable', e); }
+}
+
+async function renderDevotional(){
+  await loadDevotional();
   const board = document.getElementById('dev-board'), count = document.getElementById('dev-count'), ret = document.getElementById('dev-return');
   if (!board) return;
   board.innerHTML = '';
