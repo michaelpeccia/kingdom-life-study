@@ -2416,6 +2416,19 @@ document.addEventListener('DOMContentLoaded', boot);
    somebody they failed. That is deliberate. */
 const DEVOTIONAL = { days: [] };
 
+/* Local copies: this module is appended outside the scope where the app's own
+   el() and toast() live, so it cannot borrow them. */
+function devEl(tag, cls, txt){
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (txt != null) n.textContent = txt;
+  return n;
+}
+function devToast(msg){
+  try { window.toast ? window.toast(msg) : console.log(msg); }
+  catch(e){ console.log(msg); }
+}
+
 const DevStore = {
   get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
   set(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
@@ -2447,7 +2460,7 @@ function renderDevotional(){
   board.innerHTML = '';
 
   if (!DEVOTIONAL.days.length){
-    board.append(el('p','empty','The devotional is not in this build.'));
+    board.append(devEl('p','empty','The devotional is not in this build.'));
     if (count) count.textContent = '';
     return;
   }
@@ -2462,15 +2475,15 @@ function renderDevotional(){
     ret.innerHTML = '';
     if (!ret.hidden){
       ret.className = 'dev-return';
-      ret.append(el('p', null, msg));
-      ret.append(el('p','hint','The days fill in any order. Nothing resets.'));
+      ret.append(devEl('p', null, msg));
+      ret.append(devEl('p','hint','The days fill in any order. Nothing resets.'));
     }
   }
 
-  const grid = el('div','dev-grid');
+  const grid = devEl('div','dev-grid');
   DEVOTIONAL.days.forEach(d => {
     const rec = devRec(d.day);
-    const b = el('button', 'dev-sq' + (rec.done ? ' done' : ''), String(d.day));
+    const b = devEl('button', 'dev-sq' + (rec.done ? ' done' : ''), String(d.day));
     b.setAttribute('aria-label',
       'Day ' + d.day + ', ' + d.subtitle + (rec.done ? ', completed' : ''));
     b.onclick = () => openTopic(d.id);
@@ -2479,8 +2492,8 @@ function renderDevotional(){
   board.append(grid);
 
   if (done === DEVOTIONAL.days.length){
-    const f = el('div','dev-finish');
-    f.append(el('p', null, 'All 31 days are filled. Start again at day one, or go back to any day and add to what you wrote.'));
+    const f = devEl('div','dev-finish');
+    f.append(devEl('p', null, 'All 31 days are filled. Start again at day one, or go back to any day and add to what you wrote.'));
     board.append(f);
   }
 }
@@ -2489,8 +2502,8 @@ function renderDevotional(){
    the text because a PNG cannot carry a link, and it stays printed on the card
    as well for the platforms that drop the text. */
 function devotionalTools(t){
-  const bar = el('div','topic-tools');
-  const share = el('button', null, 'Share this day');
+  const bar = devEl('div','topic-tools');
+  const share = devEl('button', null, 'Share this day');
   share.onclick = async () => {
     const data = {title: 'Kingdom Life Daily Devotional, ' + t.title,
                   text: t.shareText};
@@ -2505,8 +2518,8 @@ function devotionalTools(t){
     } catch(e){}
     try { await navigator.share(data); }
     catch(e){
-      try { await navigator.clipboard.writeText(t.shareText); toast('Copied'); }
-      catch(e2){ toast('Sharing is not available here'); }
+      try { await navigator.clipboard.writeText(t.shareText); devToast('Copied'); }
+      catch(e2){ devToast('Sharing is not available here'); }
     }
   };
   bar.append(share);
@@ -2516,7 +2529,7 @@ function devotionalTools(t){
 /* Today's Step, with the answer kept. Saving is also what fills the square,
    so there is one action rather than a save and a separate tick. */
 function devotionalFooter(t){
-  const wrap = el('div','dev-step');
+  const wrap = devEl('div','dev-step');
   const rec = devRec(t.day);
 
   const ta = document.createElement('textarea');
@@ -2525,18 +2538,18 @@ function devotionalFooter(t){
   ta.value = rec.note || '';
   wrap.append(ta);
 
-  const row = el('div','dev-actions');
-  const save = el('button','go solid', rec.done ? 'Save note' : 'I did this');
+  const row = devEl('div','dev-actions');
+  const save = devEl('button','go solid', rec.done ? 'Save note' : 'I did this');
   save.onclick = () => {
     devSave(t.day, {done:true, note:ta.value, at:Date.now()});
-    toast('Saved');
+    devToast('Saved');
     save.textContent = 'Save note';
     if (!clear.parentNode) row.append(clear);
   };
-  const clear = el('button','go','Clear this day');
+  const clear = devEl('button','go','Clear this day');
   clear.onclick = () => {
     devSave(t.day, {done:false, note:ta.value});
-    toast('Cleared');
+    devToast('Cleared');
     save.textContent = 'I did this';
     clear.remove();
   };
@@ -2544,11 +2557,11 @@ function devotionalFooter(t){
   if (rec.done) row.append(clear);
   wrap.append(row);
 
-  const back = el('button','go','Back to the 31 days');
+  const back = devEl('button','go','Back to the 31 days');
   back.onclick = () => { renderDevotional(); go('devotional'); };
   wrap.append(back);
 
-  if (t.note) wrap.append(el('p','hint', t.note));
+  if (t.note) wrap.append(devEl('p','hint', t.note));
   return wrap;
 }
 
