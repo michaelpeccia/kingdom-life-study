@@ -2309,7 +2309,7 @@ function bindUI(){
   $('#btn-refresh').onclick = () => refreshCatalog();
   $('#btn-connect').onclick = connectSheet;
   $('#btn-support').onclick = supportSheet;
-  $$('.hub-btn').forEach(b => b.onclick = () => go(b.dataset.hub));
+  $$('.hub-btn').forEach(b => b.onclick = () => { if (b.dataset.hub === 'devotional') renderDevotional(); go(b.dataset.hub); });
   $$('#connect-scope button').forEach(b =>
     b.onclick = () => showConnectPanel(b.dataset.panel));
   $('#btn-settings').onclick = settingsSheet;
@@ -2547,7 +2547,4 @@ function devotionalFooter(t){
 
 /* Its own handler rather than data-hub, so this does not depend on however
    the other hub buttons happen to be bound. */
-document.addEventListener('DOMContentLoaded', () => {
-  const b = document.getElementById('hub-devotional');
-  if (b) b.onclick = () => { renderDevotional(); go('devotional'); };
-});
+
