@@ -2309,14 +2309,7 @@ function bindUI(){
   $('#btn-refresh').onclick = () => refreshCatalog();
   $('#btn-connect').onclick = connectSheet;
   $('#btn-support').onclick = supportSheet;
-  $$('.hub-btn').forEach(b => b.onclick = () => {
-    try {
-      if (b.dataset.hub === 'devotional') renderDevotional();
-      go(b.dataset.hub);
-    } catch (err) {
-      alert('DEV ERROR: ' + (err && err.message) + '\n\n' + (err && err.stack || '').slice(0,400));
-    }
-  });
+  $$('.hub-btn').forEach(b => b.onclick = () => { if (b.dataset.hub === 'devotional') renderDevotional(); go(b.dataset.hub); });
   $$('#connect-scope button').forEach(b =>
     b.onclick = () => showConnectPanel(b.dataset.panel));
   $('#btn-settings').onclick = settingsSheet;
@@ -2460,7 +2453,7 @@ async function loadDevotional(){
     DEVOTIONAL.days = Array.isArray(v && v.days) ? v.days : [];
     if (window.State && Array.isArray(window.State.topics))
       window.State.topics = window.State.topics.concat(DEVOTIONAL.days);
-  } catch(e){ alert('DEV LOAD: ' + (e && e.message)); }
+  } catch(e){ console.warn('devotional unavailable', e); }
 }
 
 function openDevotionalDay(id){
@@ -2470,8 +2463,7 @@ function openDevotionalDay(id){
     if (window.State && Array.isArray(window.State.topics) &&
         !window.State.topics.some(t => t.id === id)) window.State.topics.push(d);
   } catch(e){}
-  try { openTopic(id); }
-  catch(e){ alert('DEV OPEN: ' + (e && e.message)); }
+  openTopic(id);
 }
 
 async function renderDevotional(){
@@ -2584,7 +2576,6 @@ function devotionalFooter(t){
   backRow.append(back);
   wrap.append(backRow);
 
-  if (t.note) wrap.append(devEl('p','hint', t.note));
   return wrap;
 }
 
