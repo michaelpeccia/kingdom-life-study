@@ -28,7 +28,36 @@
 <meta property="og:image" content="https://app.kingdom-life-ministry.com/icons/icon-1024.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="styles.css?v=e20f129c2fd0">
+<link rel="stylesheet" href="styles.css?v=a6179d47800f">
+
+<style id="dev-css">
+#view-devotional .dev-grid{
+  display:grid; grid-template-columns:repeat(7,1fr); gap:7px; margin-top:14px;
+}
+#view-devotional .dev-sq{
+  aspect-ratio:1; border:1px solid currentColor; background:transparent;
+  opacity:.55; font-size:.8rem; cursor:pointer; padding:0;
+  display:flex; align-items:center; justify-content:center;
+}
+#view-devotional .dev-sq:hover{ opacity:1; }
+#view-devotional .dev-sq.done{
+  opacity:1; font-weight:700; color:#1a1408; border-color:#E2BF6C;
+  background:radial-gradient(circle at 50% 42%,
+    rgba(255,246,220,.96), rgba(226,191,108,.92) 55%, rgba(190,152,70,.88) 100%);
+}
+#view-devotional .dev-return{
+  border-left:2px solid #E2BF6C; padding:8px 0 8px 12px; margin:12px 0;
+}
+#view-devotional .dev-finish{
+  margin-top:20px; padding:16px; border:1px solid #E2BF6C; text-align:center;
+}
+.dev-step{ margin-top:22px; }
+.dev-note{
+  width:100%; min-height:120px; padding:12px; font:inherit; resize:vertical;
+}
+.dev-actions{ display:flex; gap:10px; flex-wrap:wrap; margin:12px 0; }
+.topic-more > summary{ cursor:pointer; padding:8px 0; font-weight:600; }
+</style>
 </head>
 <body>
 
@@ -85,6 +114,11 @@
           <span class="hub-text"><b>Prayers &amp; Deliverance</b><i id="hub-prayers-sub">Prayers to pray out loud</i></span>
           <span class="hub-go" aria-hidden="true">›</span>
         </button>
+        <button class="hub-btn" id="hub-devotional">
+          <span class="hub-icon" aria-hidden="true">🌅</span>
+          <span class="hub-text"><b>Daily Devotional</b><i id="hub-devotional-sub">31 days through Proverbs</i></span>
+          <span class="hub-go" aria-hidden="true">›</span>
+        </button>
       </div>
 
       <div class="hub-support">
@@ -135,6 +169,19 @@
       <p class="lede">Prayers meant to be prayed out loud, with the passages behind them
         one tap away. Every one can be shared or downloaded as a printable PDF.</p>
       <div id="prayer-sections"></div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── Daily Devotional ────────────────────────── -->
+  <section class="view" id="view-devotional">
+    <div class="wrap">
+      <h2 class="display">Daily Devotional</h2>
+      <p class="lede">Thirty one days through Proverbs, a chapter a day, with the Psalm that
+        meets it. The days fill in any order and nothing resets, so you can start
+        on any date and pick up wherever you left off.</p>
+      <p class="hint" id="dev-count"></p>
+      <div id="dev-return" hidden></div>
+      <div id="dev-board"></div>
     </div>
   </section>
 
@@ -297,9 +344,9 @@
 
 <div id="toast" class="toast" hidden></div>
 
-<script src="app.js?v=e20f129c2fd0"></script>
-<script src="web.js?v=e20f129c2fd0"></script>
-<script src="web.js?v=e20f129c2fd0"></script>
+<script src="app.js?v=a6179d47800f"></script>
+<script src="web.js?v=a6179d47800f"></script>
+<script src="web.js?v=a6179d47800f"></script>
 <noscript>
   <p style="padding:24px;font:16px/1.6 system-ui,sans-serif">
     Kingdom Life Study needs JavaScript. Turn it on in your browser settings and

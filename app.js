@@ -361,7 +361,7 @@ function applyPrefs(){
 }
 
 /* ── navigation ───────────────────────────────────────────────────────── */
-const VIEWS = ['library','books','topics','prayers','connect','book','front','read','search','marks','lex','topic','guides','guide'];
+const VIEWS = ['library','books','topics','prayers','devotional','connect','book','front','read','search','marks','lex','topic','guides','guide'];
 function go(view, opts={}){
   if (State.view !== view && !opts.replace) State.history.push(State.view);
   State.view = view;
@@ -386,6 +386,7 @@ function setTitle(view){
   const b = State.book, t=$('#top-title'), s=$('#top-sub');
   const map = {library:'Library', books:'Bible Study', topics:'Further Study',
                prayers:'Prayers & Deliverance',
+               devotional:'Daily Devotional',
                connect:'Connect with us', search:'Search', marks:'Marks', lex:'Concordance'};
   if (map[view]) { t.textContent = map[view]; s.textContent=''; return; }
   if (view==='book'){ t.textContent=b?b.title:''; s.textContent=b?`${b.chapterCount} chapters`:''; return; }
@@ -1357,6 +1358,11 @@ async function loadTopics(){
   try {
     const d = await (await fetch('topics.json', {cache:'no-store'})).json();
     State.topics = Array.isArray(d && d.topics) ? d.topics : [];
+    try {
+      const v = await (await fetch('devotional.json', {cache:'no-store'})).json();
+      DEVOTIONAL.days = Array.isArray(v && v.days) ? v.days : [];
+      State.topics = State.topics.concat(DEVOTIONAL.days);
+    } catch(e){ DEVOTIONAL.days = []; console.warn('devotional unavailable', e); }
   } catch(e){
     State.topics = [];
     console.warn('topic studies unavailable', e);
@@ -1493,6 +1499,7 @@ function renderTopics(){
   const byId   = Object.fromEntries(State.topics.map(t => [t.id, t]));
   // the prayers have their own screen; keep them off this one
   const placed = new Set(PRAYER_TOPICS);
+  DEVOTIONAL.days.forEach(d => placed.add(d.id));
   const groups = TOPIC_SECTIONS.map(([name, ids]) => {
     const list = ids.map(id => byId[id]).filter(Boolean);
     list.forEach(t => placed.add(t.id));
@@ -1857,10 +1864,10 @@ async function openTopic(id, opts={}){
 
   const box = $('#topic-body');
   box.innerHTML = '';
-  box.append(el('p','kicker','Topic Study'));
+  box.append(el('p','kicker', t.day ? 'Daily Devotional' : 'Topic Study'));
   box.append(el('h2','chapter', t.title));
   if (t.subtitle) box.append(el('p','topic-standfirst', t.subtitle));
-  box.append(topicTools(t));
+  box.append(t.day ? devotionalTools(t) : topicTools(t));
   if (t.lede){
     const p = el('p','topic-lede');
     p.innerHTML = refHTML(t.lede);
@@ -1870,14 +1877,24 @@ async function openTopic(id, opts={}){
   t.sections.forEach((sec, si) => {
     const s = el('section','topic-part');
     if (sec.kicker)  s.append(el('p','part-kicker', sec.kicker));
-    if (sec.heading) s.append(el('h3','part-head', sec.heading));
-    sec.blocks.forEach(b => s.append(topicBlock(t, si, b)));
+    if (sec.collapsed){
+      const d = document.createElement('details');
+      d.className = 'topic-more';
+      const sm = document.createElement('summary');
+      sm.textContent = sec.heading || 'Read it all';
+      d.append(sm);
+      sec.blocks.forEach(b => d.append(topicBlock(t, si, b)));
+      s.append(d);
+    } else {
+      if (sec.heading) s.append(el('h3','part-head', sec.heading));
+      sec.blocks.forEach(b => s.append(topicBlock(t, si, b)));
+    }
     box.append(s);
   });
 
   if (t.refIndex && t.refIndex.length) box.append(topicRefIndex(t));
   if (t.note) box.append(el('p','hint', t.note));
-  box.append(topicFooter(t));
+  box.append(t.day ? devotionalFooter(t) : topicFooter(t));
 
   LS.set('lastTopic', t.id);
   setHash('topic/' + t.id);
@@ -2379,3 +2396,158 @@ function bindUI(){
 
 document.addEventListener('DOMContentLoaded', boot);
 })();
+
+
+/* ── Daily Devotional ──────────────────────────────────────────────────
+   Thirty one days, one Proverbs chapter each, so the month carries it and
+   a reader can start on any date. The days live in State.topics with the
+   handouts, which is what gives them passage links, highlighting and notes
+   without a second renderer.
+
+   Progress is a board, not a streak. Squares fill in any order and nothing
+   ever empties on its own, so there is no state in here that can tell
+   somebody they failed. That is deliberate. */
+const DEVOTIONAL = { days: [] };
+
+const DevStore = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+};
+
+function devRec(day){
+  const raw = DevStore.get('devotional:day:' + String(day).padStart(2,'0'));
+  if (!raw) return {done:false, note:''};
+  try { return JSON.parse(raw); } catch(e){ return {done:false, note:raw}; }
+}
+function devSave(day, rec){
+  DevStore.set('devotional:day:' + String(day).padStart(2,'0'), JSON.stringify(rec));
+}
+const devDone = () => DEVOTIONAL.days.filter(d => devRec(d.day).done).length;
+
+/* Shown only to someone who has been away and has already started. It never
+   names what was missed, because nothing was. */
+function devReturnLine(){
+  const last = DevStore.get('devotional:lastOpen');
+  DevStore.set('devotional:lastOpen', String(Date.now()));
+  if (!last || !devDone()) return null;
+  const days = Math.floor((Date.now() - Number(last)) / 86400000);
+  return days >= 7 ? 'Welcome back. Pick up anywhere you like.' : null;
+}
+
+function renderDevotional(){
+  const board = $('#dev-board'), count = $('#dev-count'), ret = $('#dev-return');
+  if (!board) return;
+  board.innerHTML = '';
+
+  if (!DEVOTIONAL.days.length){
+    board.append(el('p','empty','The devotional is not in this build.'));
+    if (count) count.textContent = '';
+    return;
+  }
+
+  const done = devDone();
+  if (count) count.textContent = done + ' of ' + DEVOTIONAL.days.length + ' days';
+
+  if (ret){
+    const msg = renderDevotional._msg !== undefined
+      ? renderDevotional._msg : (renderDevotional._msg = devReturnLine());
+    ret.hidden = !(msg && done < DEVOTIONAL.days.length);
+    ret.innerHTML = '';
+    if (!ret.hidden){
+      ret.className = 'dev-return';
+      ret.append(el('p', null, msg));
+      ret.append(el('p','hint','The days fill in any order. Nothing resets.'));
+    }
+  }
+
+  const grid = el('div','dev-grid');
+  DEVOTIONAL.days.forEach(d => {
+    const rec = devRec(d.day);
+    const b = el('button', 'dev-sq' + (rec.done ? ' done' : ''), String(d.day));
+    b.setAttribute('aria-label',
+      'Day ' + d.day + ', ' + d.subtitle + (rec.done ? ', completed' : ''));
+    b.onclick = () => openTopic(d.id);
+    grid.append(b);
+  });
+  board.append(grid);
+
+  if (done === DEVOTIONAL.days.length){
+    const f = el('div','dev-finish');
+    f.append(el('p', null, 'All 31 days are filled. Start again at day one, or go back to any day and add to what you wrote.'));
+    board.append(f);
+  }
+}
+
+/* The share hands over the card image and the text together. The URL rides in
+   the text because a PNG cannot carry a link, and it stays printed on the card
+   as well for the platforms that drop the text. */
+function devotionalTools(t){
+  const bar = el('div','topic-tools');
+  const share = el('button', null, 'Share this day');
+  share.onclick = async () => {
+    const data = {title: 'Kingdom Life Daily Devotional, ' + t.title,
+                  text: t.shareText};
+    try {
+      const r = await fetch(t.card);
+      if (r.ok && navigator.canShare){
+        const blob = await r.blob();
+        const file = new File([blob], 'day' + String(t.day).padStart(2,'0') + '.png',
+                              {type:'image/png'});
+        if (navigator.canShare({files:[file]})) data.files = [file];
+      }
+    } catch(e){}
+    try { await navigator.share(data); }
+    catch(e){
+      try { await navigator.clipboard.writeText(t.shareText); toast('Copied'); }
+      catch(e2){ toast('Sharing is not available here'); }
+    }
+  };
+  bar.append(share);
+  return bar;
+}
+
+/* Today's Step, with the answer kept. Saving is also what fills the square,
+   so there is one action rather than a save and a separate tick. */
+function devotionalFooter(t){
+  const wrap = el('div','dev-step');
+  const rec = devRec(t.day);
+
+  const ta = document.createElement('textarea');
+  ta.className = 'dev-note';
+  ta.placeholder = 'Write your answer here.';
+  ta.value = rec.note || '';
+  wrap.append(ta);
+
+  const row = el('div','dev-actions');
+  const save = el('button','go solid', rec.done ? 'Save note' : 'I did this');
+  save.onclick = () => {
+    devSave(t.day, {done:true, note:ta.value, at:Date.now()});
+    toast('Saved');
+    save.textContent = 'Save note';
+    if (!clear.parentNode) row.append(clear);
+  };
+  const clear = el('button','go','Clear this day');
+  clear.onclick = () => {
+    devSave(t.day, {done:false, note:ta.value});
+    toast('Cleared');
+    save.textContent = 'I did this';
+    clear.remove();
+  };
+  row.append(save);
+  if (rec.done) row.append(clear);
+  wrap.append(row);
+
+  const back = el('button','go','Back to the 31 days');
+  back.onclick = () => { renderDevotional(); go('devotional'); };
+  wrap.append(back);
+
+  if (t.note) wrap.append(el('p','hint', t.note));
+  return wrap;
+}
+
+/* Its own handler rather than data-hub, so this does not depend on however
+   the other hub buttons happen to be bound. */
+document.addEventListener('DOMContentLoaded', () => {
+  const b = document.getElementById('hub-devotional');
+  if (b) b.onclick = () => { renderDevotional(); go('devotional'); };
+});
