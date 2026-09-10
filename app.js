@@ -2102,7 +2102,9 @@ const SITE_RX = /\b(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:com|org|net|info|gov
 function linkHTML(html){
   return html
     .replace(TEL_RX, m => `<a href="tel:${m.replace(/-/g, '')}" class="extlink">${m}</a>`)
-    .replace(SITE_RX, m => `<a href="https://${m}" class="extlink" target="_blank" rel="noopener noreferrer">${m}</a>`);
+    // The reader is already in the app, so a link to it is a link to here.
+    .replace(SITE_RX, m => /(^|\.)kingdom-life-ministry\.com/i.test(m) ? m
+      : `<a href="https://${m}" class="extlink" target="_blank" rel="noopener noreferrer">${m}</a>`);
 }
 
 /** Escaped HTML with every scripture citation turned into a tappable link. */
