@@ -406,6 +406,8 @@ body.scrolling .chapnav{opacity:.28}
   text-decoration:none;color:var(--link)
 }
 .reflink.inline:active{background:var(--band)}
+.extlink{color:var(--link);text-decoration:none;border-bottom:1px solid var(--rule);word-break:break-word}
+.extlink:active{background:var(--band)}
 
 .topic-footer{border-top:1px solid var(--rule);margin-top:26px;padding-top:14px}
 .sharelink{

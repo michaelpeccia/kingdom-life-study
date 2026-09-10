@@ -2092,9 +2092,22 @@ const REF_RX = new RegExp(
   '\\s+(\\d{1,3})(?::(\\d{1,3}(?:\\s*[-–]\\s*\\d{1,3})?' +
   '(?:\\s*,\\s*\\d{1,3}(?:\\s*[-–]\\s*\\d{1,3})?)*))?', 'g');
 
+/** A hotline number and a bare domain are the two things in a handout a
+    reader needs to act on, so they are made tappable alongside the citations.
+    Both run on already-escaped text, and the phone pattern is deliberately
+    narrow so a verse range or a year is never turned into a dial link. */
+const TEL_RX  = /\b1-\d{3}-\d{3}-\d{4}\b/g;
+const SITE_RX = /\b(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:com|org|net|info|gov)(?:\/[^\s<>"]*[^\s<>".,;:!?)])?/gi;
+
+function linkHTML(html){
+  return html
+    .replace(TEL_RX, m => `<a href="tel:${m.replace(/-/g, '')}" class="extlink">${m}</a>`)
+    .replace(SITE_RX, m => `<a href="https://${m}" class="extlink" target="_blank" rel="noopener noreferrer">${m}</a>`);
+}
+
 /** Escaped HTML with every scripture citation turned into a tappable link. */
 function refHTML(s){
-  return esc(s).replace(REF_RX, m => `<a href="#" class="reflink inline" data-ref="${m}">${m}</a>`);
+  return linkHTML(esc(s).replace(REF_RX, m => `<a href="#" class="reflink inline" data-ref="${m}">${m}</a>`));
 }
 
 /** A standalone reference, shown as `label` and opening `ref`. */
