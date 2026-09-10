@@ -451,7 +451,7 @@ const BOOK_ALIASES = {
 const TOPIC_SECTIONS = [
   ['Who Yahshua Is',               ['aleph-and-tav', 'yahshua-is-the-father']],
   ['The Covenant and Who You Are', ['the-marriage-covenant', 'who-you-are']],
-  ['Marriage and Family',          ['husbands-love-your-wives']],
+  ['Marriage and Family',          ['husbands-love-your-wives', 'narcissistic-abuse']],
   ['The Sabbath',                  ['the-seventh-day', 'sabbath-fire-and-food']],
   ['Appointed Times',              ['yom-teruah']],
   ['Set Apart Living',             ['why-we-dont-eat-pig']],

@@ -5283,14 +5283,15 @@
        "k": "1c52382d"
       },
       {
-       "t": "c",
+       "t": "q",
+       "ref": "John 14:15",
        "v": "If you love me, keep my commandments.",
        "k": "5dc49e62"
       }
      ]
     },
     {
-     "kicker": "JOHN 14:15 SECTION IV",
+     "kicker": "SECTION IV",
      "heading": "The Hebrew Betrothal Pattern",
      "blocks": [
       {
@@ -5570,14 +5571,15 @@
        "k": "6c9a4bca"
       },
       {
-       "t": "c",
+       "t": "q",
+       "ref": "1 Peter 3:7",
        "v": "You husbands, in the same way, live with your wives according to knowledge, giving honor to the woman as to the weaker vessel, as also being joint heirs of the grace of life, that your prayers may not be hindered.",
        "k": "5428cbe8"
       }
      ]
     },
     {
-     "kicker": "1 PETER 3:7 SECTION VI",
+     "kicker": "SECTION VI",
      "heading": "Headship Redefined",
      "blocks": [
       {
@@ -6201,11 +6203,6 @@
      "heading": "",
      "blocks": [
       {
-       "t": "c",
-       "v": "YHWH never told Israel why. He did not owe them a reason, and He does not owe us one. Our obedience was never supposed to wait on a study confirming it. But when we do look, we find that He drew a line around the one animal whose flesh our own medicine treats as the closest working stand in for ours.",
-       "k": "2275e550"
-      },
-      {
        "t": "l",
        "items": [
         "The instruction itself, in Leviticus and Deuteronomy, with no reason attached.",
@@ -6345,7 +6342,6 @@
       {
        "t": "c",
        "v": "A note on the reference, because it comes up. The verse about those who eat swine's flesh being consumed at His return is Isaiah 66:17, not Isaiah 63. Isaiah 63 is the day of vengeance and the winepress. Get the citation right and no one gets to dismiss the point on a technicality.",
-       "title": "Get the citation right",
        "k": "8c4f6723"
       }
      ]
@@ -6456,7 +6452,7 @@
          "v": "The four requirements were a starting point for brand new Gentile believers, not a completed curriculum. Verse 21 says why: Moses is read in the synagogues every Sabbath, where they would learn the rest."
         }
        ],
-       "k": "eabd60fe"
+       "k": "5921ce90"
       },
       {
        "t": "c",
@@ -6501,18 +6497,15 @@
       },
       {
        "t": "p",
-       "v": "A 2025 USDA study in BMC Genomics manually assembled and annotated the pig proteome and compared pig, mouse, and human (Dawson et al., BMC Genomics 2025). Its findings:",
-       "k": "7c877cd3"
+       "v": "A 2025 USDA study in BMC Genomics manually assembled and annotated the pig proteome and compared pig, mouse, and human (Dawson et al., BMC Genomics 2025). Its findings: human version. mice to have the human domain.",
+       "k": "e84635c2"
       },
       {
        "t": "l",
        "items": [
-        "NCBI lists roughly 20,790 protein coding genes in pigs and 20,080 in humans. Nearly identical counts.",
-        "When a gene is missing from one of the three genomes, pigs are 5.0 times more likely than mice to carry the human version.",
-        "When a functional domain is missing from a protein in one of the three species, pigs are 2 times more likely than mice to have the human domain.",
         "Pigs can produce roughly 90 percent of the human transcript variants tested, and pig to human mRNA conservation averages about 75 percent."
        ],
-       "k": "cb912124"
+       "k": "048b27b0"
       },
       {
        "t": "h",
@@ -6725,36 +6718,67 @@
        "k": "9d774a08"
       },
       {
-       "t": "tbl",
-       "rows": [
-        {
-         "topic": "Genetics and genome",
-         "v": "Dawson HD, Chen CT, Ragonese JS, Smith AD, Lunney JK. Verification and comparison of pig, mouse, and human genome similarities. BMC Genomics, 2025. https://link.springer.com/article/10.1186/s12864-025-12388-x"
-        },
-        {
-         "topic": "Immune system",
-         "v": "Dawson HD, Lunney JK. Porcine cluster of differentiation (CD) markers, 2018 update. Research in Veterinary Science, 2018. https://pubmed.ncbi.nlm.nih.gov/29518710/ · Pabst R. The pig as a model for immunology research. Cell and Tissue Research, 2020. https://pubmed.ncbi.nlm.nih.gov/32356014/"
-        },
-        {
-         "topic": "Organs and transplants",
-         "v": "Understanding Animal Research, using pig livers to filter human blood, and pig to human heart transplants. https://www.understandinganimalresearch.org.uk/news/using-pig-livers-to-filter-human-blood · Tao KS, Yang ZX, Zhang X, et al. Gene modified pig to human liver xenotransplantation. Nature, 2025. https://www.nature.com/articles/s41586-025-08799-1"
-        },
-        {
-         "topic": "Skin and tissue",
-         "v": "Summerfield A, Meurens F, Ricklin ME. The immunology of the porcine skin. Molecular Immunology, 2015. https://boris.unibe.ch/66691 · Gallagher S, et al. Thermally damaged porcine skin is not a surrogate mechanical model of human skin. Scientific Reports, 2022. https://pmc.ncbi.nlm.nih.gov/articles/PMC8927453"
-        },
-        {
-         "topic": "Fat and metabolism",
-         "v": "Swine model study of metabolic syndrome and type 2 diabetes, National Library of Medicine. https://pmc.ncbi.nlm.nih.gov/articles/PMC3354447"
-        }
-       ],
-       "k": "195b8f94"
+       "t": "h",
+       "v": "Genetics and genome",
+       "k": "3563b453"
       },
       {
-       "t": "c",
-       "v": "Two sources to avoid. Commercial tissue vendor blogs, because they sell porcine tissue for a living and citing them hands a critic an easy dismissal. And the MYH4 muscle gene study, which actually documents a difference rather than a similarity: humans do not express that gene and pigs do. Citing it hands the argument away.",
-       "title": "Two sources to avoid",
-       "k": "72e0252c"
+       "t": "p",
+       "v": "Dawson HD, Chen CT, Ragonese JS, Smith AD, Lunney JK. Verification and comparison of pig, mouse, and human genome similarities: use of manual assembly and analyses. BMC Genomics, 2025. Open access, USDA authors. https://link.springer.com/article/10.1186/s12864-025-12388-x",
+       "k": "b91e2ad2"
+      },
+      {
+       "t": "h",
+       "v": "Immune system",
+       "k": "1fa1f9b2"
+      },
+      {
+       "t": "p",
+       "v": "Dawson HD, Lunney JK. Porcine cluster of differentiation (CD) markers, 2018 update. Research in Veterinary Science, 2018. Source of the 419 human CD markers and 359 pig counterparts. https://pubmed.ncbi.nlm.nih.gov/29518710/ Pabst R. The pig as a model for immunology research. Cell and Tissue Research, 2020. Source of the 80 percent pig versus 10 percent mouse comparison. https://pubmed.ncbi.nlm.nih.gov/32356014/",
+       "k": "164fb1d3"
+      },
+      {
+       "t": "h",
+       "v": "Organs and transplants",
+       "k": "64093e4d"
+      },
+      {
+       "t": "p",
+       "v": "Understanding Animal Research. Using pig livers to filter human blood. Source of the 60,000 US pig heart valve patients per year. https://www.understandinganimalresearch.org.uk/news/using-pig-livers-to-filter-human-blood Understanding Animal Research. Pig to human heart transplants: how did we get here? Background on bioprosthetic valves and their fifteen year lifespan. https://www.understandinganimalresearch.org.uk/news/how-did-we-get-to-pig-hearts-in-humans Tao KS, Yang ZX, Zhang X, et al. Gene modified pig to human liver xenotransplantation. Nature, 2025. The ten day pig liver study. Cite this rather than the news coverage of it. https://www.nature.com/articles/s41586-025-08799-1",
+       "k": "7e246a43"
+      },
+      {
+       "t": "h",
+       "v": "Skin and tissue",
+       "k": "3df52c7f"
+      },
+      {
+       "t": "p",
+       "v": "Summerfield A, Meurens F, Ricklin ME. The immunology of the porcine skin and its value as a model for human skin. Molecular Immunology, 2015. Free full text at the University of Bern repository. https://boris.unibe.ch/66691 Gallagher S, et al. Thermally damaged porcine skin is not a surrogate mechanical model of human skin. Scientific Reports, 2022. Included on purpose. This is the honest limit of the skin claim. https://pmc.ncbi.nlm.nih.gov/articles/PMC8927453",
+       "k": "2715e3c3"
+      },
+      {
+       "t": "h",
+       "v": "Fat and metabolism",
+       "k": "a13863ae"
+      },
+      {
+       "t": "p",
+       "v": "Swine model study of metabolic syndrome and type 2 diabetes, National Library of Medicine, PMC3354447. Source for the pig as a model of human obesity and metabolic syndrome: omnivorous habits, propensity to fattening, shared metabolic and cardiovascular features. https://pmc.ncbi.nlm.nih.gov/articles/PMC3354447",
+       "k": "ef7643ec"
+      },
+      {
+       "t": "h",
+       "v": "Two sources to avoid",
+       "k": "19a0ecde"
+      },
+      {
+       "t": "l",
+       "items": [
+        "Commercial tissue vendor blogs. The claims are mostly accurate but they sell porcine tissue for a living, and citing them hands a critic an easy dismissal.",
+        "The MYH4 muscle gene study. It gets passed around as proof of similarity. It actually documents a difference: humans do not express that gene and pigs do. Citing it hands the argument away."
+       ],
+       "k": "167db9fc"
       }
      ]
     }
@@ -6763,8 +6787,7 @@
     {
      "topic": "The instruction",
      "refs": [
-      "Leviticus 11:1-8",
-      "Leviticus 11:24-28",
+      "Leviticus 11:1-8, 24-28",
       "Deuteronomy 14:3-8"
      ]
     },
@@ -6779,8 +6802,7 @@
     {
      "topic": "Known before Sinai",
      "refs": [
-      "Genesis 7:2",
-      "Genesis 7:8",
+      "Genesis 7:2, 8",
       "Genesis 8:20"
      ]
     },
@@ -6795,21 +6817,14 @@
     {
      "topic": "Mark 7 in context",
      "refs": [
-      "Mark 7:2",
-      "Mark 7:5",
-      "Mark 7:8",
-      "Mark 7:15",
-      "Mark 7:19",
-      "Mark 7:21-23",
+      "Mark 7:2, 5, 8, 15, 19, 21-23",
       "Matthew 15:1-20"
      ]
     },
     {
      "topic": "Peter's vision explained",
      "refs": [
-      "Acts 10:14",
-      "Acts 10:28",
-      "Acts 10:34-35",
+      "Acts 10:14, 28, 34-35",
       "Acts 11:1-18"
      ]
     },
@@ -6822,20 +6837,13 @@
     {
      "topic": "Romans 14 in context",
      "refs": [
-      "Romans 14:2",
-      "Romans 14:6",
-      "Romans 14:14",
-      "Romans 14:15",
-      "Romans 14:17",
-      "Romans 14:21"
+      "Romans 14:2, 6, 14, 15, 17, 21"
      ]
     },
     {
      "topic": "Other passages cited",
      "refs": [
-      "Colossians 2:8",
-      "Colossians 2:16",
-      "Colossians 2:22",
+      "Colossians 2:8, 16, 22",
       "1 Corinthians 10:25-27",
       "Genesis 9:3",
       "Acts 15:19-21"
@@ -6856,9 +6864,9 @@
       "Romans 3:31",
       "Romans 7:12",
       "1 John 2:3-4",
-      "1 John 5:3",
+      "5:3",
       "Revelation 12:17",
-      "Revelation 14:12"
+      "14:12"
      ]
     },
     {
@@ -6868,8 +6876,405 @@
      ]
     }
    ],
-   "words": 3409,
+   "words": 3423,
    "minutes": 17
+  },
+  {
+   "id": "narcissistic-abuse",
+   "title": "Narcissistic Abuse and Toxic Relationships",
+   "subtitle": "Know the signs and what Scripture says",
+   "lede": "If you are in danger right now, the US National Domestic Violence Hotline is 1-800-799-7233, or text START to 88788. Free, confidential, 24 hours a day. The most dangerous moments are when you set a boundary and when you get ready to leave, so make a plan and tell someone safe. Do not do it alone. The rest of this is written so you can name what is happening, because you cannot heal from something you are still calling by the wrong name.",
+   "note": "",
+   "pdf": "handouts/narcissistic-abuse-teaching-handout.pdf",
+   "pdfUrl": "https://app.kingdom-life-ministry.com/handouts/narcissistic-abuse-teaching-handout.pdf",
+   "pdfBytes": 107930,
+   "sections": [
+    {
+     "kicker": "NAMING IT",
+     "heading": "1. Toxic or Abusive",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "These two words get used as though they mean the same thing, and confusing them keeps people stuck for years.",
+       "k": "64c92aec"
+      },
+      {
+       "t": "p",
+       "v": "Toxic is two people caught in unhealthy patterns. Both are contributing something. Both are wounded. Both can grow, if both are willing to look in the mirror. Toxic can be worked on together.",
+       "k": "58a8b862"
+      },
+      {
+       "t": "p",
+       "v": "Abusive is one person using fear, control, and punishment to get their way. It is not a pattern between two people. It is a system one person is running on another. Abuse is not a communication problem, and it will not be fixed by trying harder, praying louder, keeping a cleaner house, or being sweeter. You have already tried all of that. It did not work because it was never about you.",
+       "k": "dff8205a"
+      },
+      {
+       "t": "c",
+       "title": "The Four Questions",
+       "v": "Answer these honestly, even if you have never said the answer out loud. 1. Do you feel afraid? Not afraid of losing them. Afraid of them. If your body braces when you hear their car pull in, your body already knows something your mouth has not admitted yet. 2. Do you walk on eggshells? You rehearse how to say things. You time your words around their mood. That is not being considerate. That is managing a threat.",
+       "k": "80871bef"
+      },
+      {
+       "t": "c",
+       "v": "3. Do you change your behavior to avoid their anger? The friend you stopped seeing. The subject you stopped raising. Each one was traded for a little peace, and the price kept going up. 4. Do you feel smaller every year? Think about who you were when you met them. Abuse rarely takes everything at once. It takes a piece at a time, slow enough that you keep explaining it away.",
+       "k": "725b7add"
+      },
+      {
+       "t": "p",
+       "v": "If you answered yes to these, that is not a rough patch and it is not a season. Naming it is not betrayal. It is the first honest thing you may have done in a long time.",
+       "k": "57e31835"
+      }
+     ]
+    },
+    {
+     "kicker": "THE PLAYBOOK",
+     "heading": "2. The Manipulation Toolkit",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "Narcissistic abuse has a playbook, and it is close to the same playbook every time. Once you can name the tactic, it loses a great deal of its power over you.",
+       "k": "6fdddfdb"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Love bombing. Overwhelming affection, gifts, and talk of soulmates within weeks. It is not love. It is a hook. \u0000 Gaslighting. You are told it never happened, you remember it wrong, you are too sensitive. Over time you stop trusting your own mind. Projection. Everything they are doing gets accused of you. The liar calls you a liar. The unfaithful one accuses you of unfaithfulness.",
+       "k": "eb566b4f"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Blame shifting. Their rage, their job, their choices, their sin. Every problem they have becomes your fault, until you are the reason for everything.",
+       "k": "721e6659"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 DARVO. Deny, attack, and reverse victim and offender. You raise something they did, and within two minutes you are apologizing and they are the wounded one. Silent treatment. Punishment dressed up as needing space. You are frozen out until you come back on their terms.",
+       "k": "7d9d58d2"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Hoovering. When you start pulling away, the charm comes back. Tears, promises, the person you first fell for. It lasts exactly as long as it takes to get you back. Future faking. Promises of the thing you want most. The wedding, the move, the change, the counseling. It is always coming and it never arrives.",
+       "k": "378d1595"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Triangulation. A third person is pulled in to compare you to, compete with, or report on you. You end up managing a relationship that is not yours. Smear campaign. Your reputation is rewritten before you ever get to speak. By the time you tell your side, people have already been told what to think of you.",
+       "k": "6981ca70"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Reactive abuse and baiting. You are pushed until you finally snap, and then your reaction becomes the evidence that you were the problem all along.",
+       "k": "2500ca24"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Cruelty as a joke. The remark that cuts, followed by telling you that you cannot take a joke. It is contempt with an escape hatch attached.",
+       "k": "732f2193"
+      }
+     ]
+    },
+    {
+     "kicker": "THE AUDIENCE",
+     "heading": "3. Flying Monkeys",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "An abuser rarely works alone for long. Family, friends, coworkers, and sometimes church people get recruited to carry the message, apply pressure, report back on you, and tell you that you are overreacting.",
+       "k": "21bdb488"
+      },
+      {
+       "t": "p",
+       "v": "Some of them know exactly what they are doing. Most have no idea they are being used. That distinction matters when you are deciding who is dangerous and who is simply deceived, but it does not change what you need to do in the moment. You do not owe anyone your story just because they came asking for it on someone else's behalf.",
+       "k": "4df6b647"
+      },
+      {
+       "t": "p",
+       "v": "This is also where the smear campaign does its real work. The account of you that reaches people is not yours. Do not spend your strength trying to correct every version of it. The people who matter will watch your life over time and draw the right conclusion.",
+       "k": "bbc64a90"
+      }
+     ]
+    },
+    {
+     "kicker": "THE DEEPEST CUT",
+     "heading": "4. Spiritual Abuse",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "This is the one that does damage nothing else can reach, because it puts the abuse in YHWH's mouth. Scripture stops being bread and becomes a weapon.",
+       "k": "ad4c3804"
+      },
+      {
+       "t": "c",
+       "v": "Submission preached one direction. Verses about your role are quoted constantly. The verses about theirs are never mentioned.",
+       "k": "a1e32f1b"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Your walk used as leverage. If you do not do what they want, you are told you are not right with YHWH, you are rebellious, you are in sin, you need to pray more. Prayer withheld. They will not pray with you, will not pray over the home, and then hold your spiritual life up as the thing that is lacking. Forgiveness weaponized. You are told that forgiving means forgetting, staying quiet, and letting it continue. That is not forgiveness. That is a leash with a Bible verse on it.",
+       "k": "5731314a"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Repentance performed. Tears and apologies arrive on schedule, especially when you get close to leaving. Nothing about the behavior changes afterward.",
+       "k": "693ed366"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Leaders enlisted. Counsel is sought only where the story has already been told their way, so the correction always lands on you.",
+       "k": "8ead23bf"
+      },
+      {
+       "t": "p",
+       "v": "Hear this plainly. Shame that is manufactured by another person is not conviction from YHWH. Conviction is specific, it is aimed at something you actually did, and it leads you toward repentance and freedom. Manufactured shame is vague, it is aimed at who you are, and it leads you toward compliance. One sets you free. The other keeps you useful.",
+       "k": "b032b419"
+      },
+      {
+       "t": "q",
+       "ref": "2 Timothy 3:1 To 5",
+       "v": "In the last days grievous times will come. For men will be lovers of self, lovers of money, boastful, arrogant, blasphemers, disobedient to parents, unthankful, unholy, without natural affection, unforgiving, slanderers, without self control, fierce, not lovers of good, traitors, headstrong, conceited, lovers of pleasure rather than lovers of God, holding a form of godliness but having denied its power. Turn away from these also.",
+       "k": "544cc058"
+      }
+     ]
+    },
+    {
+     "kicker": "CONFIDENCE BROKEN",
+     "heading": "5. What You Shared in Trust",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "Early on you were invited to open up. The childhood you survived. The mistakes you made before you knew better. The thing you had never told anyone. It felt like intimacy. For some people it is intimacy. For an abuser it is inventory.",
+       "k": "c9375d24"
+      },
+      {
+       "t": "p",
+       "v": "Later, every one of those things comes back at you as ammunition. Your past is quoted to prove you cannot be trusted now. A mistake you repented of years ago is produced in the middle of an argument that has nothing to do with it. The wound you were most afraid to name is used to explain why your objection does not count.",
+       "k": "8e99f0b6"
+      },
+      {
+       "t": "p",
+       "v": "There is a mark of the enemy on this one. Revelation calls him the accuser. Accusation is the constant recitation of what you have already been forgiven for. If someone in your life is doing that work full time, you are entitled to notice whose work it is.",
+       "k": "fc21e5ff"
+      },
+      {
+       "t": "q",
+       "ref": "Romans 8:1",
+       "v": "There is therefore now no condemnation to those who are in Messiah Yahshua.",
+       "k": "5438071b"
+      }
+     ]
+    },
+    {
+     "kicker": "THE CRUELEST LEVERAGE",
+     "heading": "6. Using Children Against You",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "When the usual pressure stops working, the children become the pressure. It shows up in ways that are easy to deny and devastating to live under.",
+       "k": "3a7b5c7d"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Threats about custody. You are told you will lose them, that no court will believe you, that you have nothing without them.",
+       "k": "6d392c0d"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Children as messengers. They are sent to deliver what the adult will not say directly, or sent back to report what you said.",
+       "k": "d4c5ddbe"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Turning them against you. Your character is worked on quietly, in the car, at bedtime, until your own child repeats a phrase that is not theirs.",
+       "k": "a6cded73"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 The good parent performance. Sudden, visible involvement whenever there is an audience, and none at all when there is not.",
+       "k": "c3a3bfda"
+      },
+      {
+       "t": "p",
+       "v": "\u0000 Guilt through the children. Everything you consider doing for your own safety is reframed as something you would be doing to them.",
+       "k": "a3a594ed"
+      },
+      {
+       "t": "p",
+       "v": "If this is where you are, write things down. Dates, what was said, what was witnessed. Not to build a case against a person, but because your memory will be worked on and you will need something outside yourself that tells the truth. Keep it somewhere they cannot reach.",
+       "k": "c53ef44b"
+      }
+     ]
+    },
+    {
+     "kicker": "HOW IT GROWS",
+     "heading": "7. The Ladder and the Boiling Frog",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "It almost never starts loud. It escalates slowly, and the slowness is the point.",
+       "k": "8f189296"
+      },
+      {
+       "t": "c",
+       "title": "Stage What It Looks Like",
+       "v": "Small dismissals. You are too sensitive. You are imagining it. 1",
+       "k": "ab8708aa"
+      },
+      {
+       "t": "l",
+       "items": [
+        "Gaslighting. You are told it never happened. 2",
+        "Verbal abuse. Name calling, mocking, yelling meant to dominate. 3",
+        "Intimidation. Slammed doors, broken things, blocked exits. 4",
+        "Coercive control. Money, time, and decisions stop being yours. 5",
+        "Physical violence, or the threat of it. 6",
+        "The honeymoon reset. Tears, gifts, promises, and then it begins again. 7"
+       ],
+       "k": "25252a83"
+      },
+      {
+       "t": "p",
+       "v": "That last stage is not repentance. That is the cycle catching its breath.",
+       "k": "44c6ad4e"
+      },
+      {
+       "t": "p",
+       "v": "This is the boiling frog. A joke that stings. A phone that gets checked. A friend you slowly stop seeing. By the time it gets loud, your support system is already gone and your sense of normal has been quietly rewritten. That is why people on the outside ask why you did not leave at the beginning. There was no beginning. There was a hundred small beginnings, each one small enough to excuse.",
+       "k": "1bc50092"
+      }
+     ]
+    },
+    {
+     "kicker": "THE STANDARD",
+     "heading": "8. What Scripture Says",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "Scripture does not instruct you to fix these people. It instructs you to guard yourself, and it names the behavior for what it is.",
+       "k": "44e11b39"
+      },
+      {
+       "t": "q",
+       "ref": "Galatians 5:19 To 21",
+       "v": "Now the deeds of the flesh are obvious, which are sexual immorality, uncleanness, lustfulness, idolatry, sorcery, hatred, strife, jealousies, outbursts of anger, rivalries, divisions, heresies, envy, murders, drunkenness, orgies, and things like these.",
+       "k": "4d8f6230"
+      },
+      {
+       "t": "q",
+       "ref": "Proverbs 4:23",
+       "v": "Keep your heart with all diligence, for out of it is the wellspring of life.",
+       "k": "63cff404"
+      },
+      {
+       "t": "q",
+       "ref": "1 John 4:18",
+       "v": "There is no fear in love, but perfect love casts out fear, because fear has punishment.",
+       "k": "d4422ae8"
+      },
+      {
+       "t": "q",
+       "ref": "Ephesians 5:11",
+       "v": "Have no fellowship with the unfruitful deeds of darkness, but rather even reprove them.",
+       "k": "c53d07bb"
+      },
+      {
+       "t": "p",
+       "v": "Read 1 John 4:18 again. Love and the fear of punishment cannot live in the same house. Whatever is producing that fear in you, it is not love.",
+       "k": "b5d91c4c"
+      },
+      {
+       "t": "p",
+       "v": "And notice what 2 Timothy does after the list. It does not say fix them. It says turn away. Boundaries are not rebellion, and they are not a failure of faith. Boundaries protect what YHWH entrusted to you.",
+       "k": "955c4a81"
+      }
+     ]
+    },
+    {
+     "kicker": "GETTING OUT",
+     "heading": "9. Leaving, and Where to Find Help",
+     "blocks": [
+      {
+       "t": "c",
+       "title": "Read This Part Carefully",
+       "v": "The most dangerous moments are when you set a boundary, when you stand up, and when you get ready to leave. That is when the control feels threatened. Make a plan. Tell someone safe. Do not do it alone.",
+       "k": "6b42369b"
+      },
+      {
+       "t": "p",
+       "v": "US National Domestic Violence Hotline. 1-800-799-7233, or text START to 88788. Free, confidential, available 24 hours a day. They will help you build a safety plan, and you do not have to be ready to leave to call them.",
+       "k": "6081b1f7"
+      },
+      {
+       "t": "p",
+       "v": "Celebrate Recovery. A Christ centered recovery program, and not only for addiction. Two thirds of the people in those rooms are there for something else: codependency, control issues, anxiety, depression, growing up in a broken home, and emotional, mental, physical, and sexual abuse. You do not register, you do not pay, and you do not have to tell anyone you are coming.",
+       "k": "4c497a83"
+      },
+      {
+       "t": "c",
+       "title": "Resource Where To Find It",
+       "v": "crlocator.com Find a group",
+       "k": "84157f8d"
+      },
+      {
+       "t": "l",
+       "items": [
+        "celebraterecovery.com/weekly-online-recovery-meetings Free weekly online meeting",
+        "crgroups.info Find your local CR representative",
+        "app.kingdom-life-ministry.com Kingdom Life Study app"
+       ],
+       "k": "6d204296"
+      },
+      {
+       "t": "p",
+       "v": "One thing to hold on to. Celebrate Recovery is a healing community, not a safety plan. If you are still living in the house with an active abuser, the hotline comes first. CR is where the healing work happens once you are safe enough to do it.",
+       "k": "da32665c"
+      },
+      {
+       "t": "p",
+       "v": "And if you take nothing else from this: the shame you are carrying was handed to you. It was never yours. You can set it down.",
+       "k": "18f7a5a3"
+      }
+     ]
+    },
+    {
+     "kicker": "SCRIPTURE INDEX",
+     "heading": "Cross Reference",
+     "blocks": [
+      {
+       "t": "c",
+       "title": "Passage Why It Is Here Where",
+       "v": "The deeds of the flesh named plainly Section 8 Galatians 5:19 to 21",
+       "k": "419ad1b4"
+      },
+      {
+       "t": "l",
+       "items": [
+        "The character described, and the instruction to turn away Section 4 2 Timothy 3:1 to 5",
+        "Guard your heart, for out of it is the wellspring of life Section 8 Proverbs 4:23",
+        "Perfect love casts out fear, because fear has punishment Section 8 1 John 4:18",
+        "No fellowship with the unfruitful deeds of darkness Section 8 Ephesians 5:11",
+        "No condemnation for those in Messiah Yahshua Section 5 Romans 8:1",
+        "The accuser of the brothers, and what accusation looks like Section 5 Revelation 12:10",
+        "YHWH is near to those who have a broken heart Closing Psalm 34:18"
+       ],
+       "k": "b5f4763b"
+      }
+     ]
+    },
+    {
+     "kicker": "FOR YOUR OWN STUDY",
+     "heading": "Notes",
+     "blocks": [
+      {
+       "t": "q",
+       "ref": "Psalm 34:18",
+       "v": "YHWH is near to those who have a broken heart, and saves those who have a crushed spirit.",
+       "k": "f32f23a7"
+      }
+     ]
+    }
+   ],
+   "refIndex": [],
+   "words": 2278,
+   "minutes": 11
   },
   {
    "id": "prayer-for-the-bloodline",
@@ -6882,47 +7287,20 @@
    "pdfBytes": 98085,
    "sections": [
     {
-     "kicker": "HOW TO USE THIS",
-     "heading": "Before You Begin",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "This is one prayer in eight movements. Pray it out loud. The enemy does not read your mind, but he does hear your mouth. Pray it in one sitting or take one movement a day, and where a line is not yours, leave it and move on. Where it is yours, stay there as long as you need to. YHWH is the Creator's name. Yahshua is the Hebrew name of the Messiah."
-      },
-      {
-       "t": "c",
-       "v": "Somebody in your family line is waiting on you to be the one who closes the door."
-      }
-     ]
-    },
-    {
      "kicker": "APPROACH",
      "heading": "1. Coming Humbly",
      "blocks": [
       {
        "t": "p",
-       "v": "Beloved Father, God of Abraham, Isaac, and Jacob,"
+       "v": "Beloved Father, God of Abraham, Isaac, and Jacob, I come before You in the name of Yahshua, the light that breaks every dark timeline. I come as humbly as I know how. Please forgive me when I have wronged You, and others, with my words, my thoughts, and my deeds. Forgive me, Father, of my shortcomings, my failures, my unrighteousness. Hide Your face from my sins, blot out all my iniquities, and remember my sins no more. Do not cast me away from Your presence, and do not take Your Holy Spirit from me.",
+       "k": "ae2b2282"
       },
       {
        "t": "p",
-       "v": "I come before You in the name of Yahshua, the light that breaks every dark timeline. I come as humbly as I know how."
-      },
-      {
-       "t": "p",
-       "v": "Please forgive me when I have wronged You, and others, with my words, my thoughts, and my deeds. Forgive me, Father, of my shortcomings, my failures, my unrighteousness."
-      },
-      {
-       "t": "p",
-       "v": "Hide Your face from my sins, blot out all my iniquities, and remember my sins no more. Do not cast me away from Your presence, and do not take Your Holy Spirit from me."
-      },
-      {
-       "t": "p",
-       "v": "In the name of Yahshua, amen."
-      },
-      {
-       "t": "q",
-       "ref": "Psalm 51:9-11",
-       "v": "\"Hide your face from my sins, and blot out all of my iniquities. Create in me a clean heart, O God. Renew a right spirit within me. Don't throw me from your presence, and don't take your Holy Spirit from me.\""
+       "v": "In the name of Yahshua, amen.",
+       "strong": true,
+       "ref": "Psalm 51:9 To 11",
+       "k": "79536771"
       }
      ]
     },
@@ -6932,33 +7310,8 @@
      "blocks": [
       {
        "t": "p",
-       "v": "You said You would visit iniquity, but iniquity is not sin left unaddressed. It is a door, opened long ago, that I did not open myself."
-      },
-      {
-       "t": "p",
-       "v": "So today I ask You: search me. Search my bloodline. Search my household, and show me what is hidden. Where there is a wound still open from generations back, from a moment I never witnessed, I ask You, Holy Spirit, to reveal it now."
-      },
-      {
-       "t": "l",
-       "items": [
-        "Show me the door.",
-        "Show me the number of generations.",
-        "Show me what was done, not to shame it, but to close it forever in the blood of Yahshua."
-       ]
-      },
-      {
-       "t": "p",
-       "v": "In the name of Yahshua, amen."
-      },
-      {
-       "t": "q",
-       "ref": "Exodus 34:7",
-       "v": "\"Keeping loving kindness for thousands, forgiving iniquity and disobedience and sin; and who will by no means clear the guilty, visiting the iniquity of the fathers on the children, and on the children's children, on the third and on the fourth generation.\""
-      },
-      {
-       "t": "q",
-       "ref": "Psalm 139:23-24",
-       "v": "\"Search me, God, and know my heart. Try me, and know my thoughts. See if there is any wicked way in me, and lead me in the everlasting way.\""
+       "v": "You said You would visit iniquity, but iniquity is not sin left unaddressed. It is a door, opened long ago, that I did not open myself. So today I ask You: search me. Search my bloodline. Search my household, and show me what is hidden. Where there is a wound still open from generations back, from a moment I never witnessed, I ask You, Holy Spirit, to reveal it now. Show me the door. Show me the number of generations. Show me what was done, not to shame it, but to close it forever in the blood of Yahshua.",
+       "k": "ca6330f2"
       }
      ]
     },
@@ -6968,33 +7321,14 @@
      "blocks": [
       {
        "t": "p",
-       "v": "I repent, on behalf of my bloodline, for every act of rejection, every covenant with darkness, every rebellion disguised as survival."
+       "v": "I repent, on behalf of my bloodline, for every act of rejection, every covenant with darkness, every rebellion disguised as survival. I break agreement with every pattern that was never mine to carry: every trigger, every cycle, every trauma that was rehearsed and wired into flesh and spirit before I ever had a choice. I break, reject, denounce, renounce, revoke, and sever all oaths, pacts, vows, curses, jinxes, vexes, spells, hexes, handshakes, covenants, obligations, assignments, and entrapments of the enemy, on every single level, from all cults and evil entities both physical and spiritual, and from all secret societies. Every bond and every attachment: off of me, off of my family, and out of our home.",
+       "k": "961466bc"
       },
       {
        "t": "p",
-       "v": "I break agreement with every pattern that was never mine to carry: every trigger, every cycle, every trauma that was rehearsed and wired into flesh and spirit before I ever had a choice."
-      },
-      {
-       "t": "p",
-       "v": "I break, reject, denounce, renounce, revoke, and sever all oaths, pacts, vows, curses, jinxes, vexes, spells, hexes, handshakes, covenants, obligations, assignments, and entrapments of the enemy, on every single level, from all cults and evil entities both physical and spiritual, and from all secret societies."
-      },
-      {
-       "t": "c",
-       "v": "Every bond and every attachment: off of me, off of my family, and out of our home."
-      },
-      {
-       "t": "p",
-       "v": "In the name of Yahshua, amen."
-      },
-      {
-       "t": "q",
-       "ref": "Nehemiah 9:2",
-       "v": "\"They stood and confessed their sins and the iniquities of their fathers.\""
-      },
-      {
-       "t": "q",
-       "ref": "Colossians 2:14",
-       "v": "\"Wiping out the handwriting in ordinances which was against us. He has taken it out of the way, nailing it to the cross.\""
+       "v": "In the name of Yahshua, amen.",
+       "strong": true,
+       "k": "596c6e2d"
       }
      ]
     },
@@ -7004,37 +7338,14 @@
      "blocks": [
       {
        "t": "p",
-       "v": "I declare that I am not bound to my father's timeline, or my mother's timeline, or any generation before me."
-      },
-      {
-       "t": "c",
-       "v": "I am Yours, Yahshua."
+       "v": "I declare that I am not bound to my father's timeline, or my mother's timeline, or any generation before me. I am Yours, Yahshua. Move me, move my children, move my household onto Your timeline, the pathway of life, washed clean by the blood of Yahshua. No root. No residue. No open door left behind.",
+       "k": "d6f32d90"
       },
       {
        "t": "p",
-       "v": "Move me, move my children, move my household onto Your timeline, the pathway of life, washed clean by the blood of Yahshua."
-      },
-      {
-       "t": "l",
-       "items": [
-        "No root.",
-        "No residue.",
-        "No open door left behind."
-       ]
-      },
-      {
-       "t": "p",
-       "v": "In the name of Yahshua, amen."
-      },
-      {
-       "t": "q",
-       "ref": "Psalm 16:11",
-       "v": "\"You will show me the path of life. In your presence is fullness of joy. In your right hand there are pleasures forever more.\""
-      },
-      {
-       "t": "q",
-       "ref": "2 Corinthians 5:17",
-       "v": "\"Therefore if anyone is in Messiah, he is a new creation. The old things have passed away. Behold, all things have become new.\""
+       "v": "In the name of Yahshua, amen.",
+       "strong": true,
+       "k": "aa345d40"
       }
      ]
     },
@@ -7044,37 +7355,8 @@
      "blocks": [
       {
        "t": "p",
-       "v": "I will not stop asking. Like Elijah, I will pray until the heavens move."
-      },
-      {
-       "t": "p",
-       "v": "Like Daniel, I will not turn back, even if the answer is delayed by a fight I cannot see, because I know provision was already made the moment I cried out."
-      },
-      {
-       "t": "p",
-       "v": "I take authority over every power of darkness assigned to delay what You have already ordained."
-      },
-      {
-       "t": "p",
-       "v": "I do not fight flesh and blood. I storm the gates of hell, and I declare they will not prevail."
-      },
-      {
-       "t": "q",
-       "ref": "Daniel 10:12-13",
-       "v": "\"Don't be afraid, Daniel; for from the first day that you set your heart to understand, and to humble yourself before your God, your words were heard. I have come for your words' sake. But the prince of the kingdom of Persia withstood me twenty-one days.\""
-      },
-      {
-       "t": "q",
-       "ref": "Ephesians 6:12",
-       "v": "\"For our wrestling is not against flesh and blood, but against the principalities, against the powers, against the world's rulers of the darkness of this age, and against the spiritual forces of wickedness in the heavenly places.\""
-      },
-      {
-       "t": "c",
-       "v": "If your answer feels delayed, it is not denied. Keep praying."
-      },
-      {
-       "t": "p",
-       "v": "In the name of Yahshua, amen."
+       "v": "I will not stop asking. Like Elijah, I will pray until the heavens move. Like Daniel, I will not turn back, even if the answer is delayed by a fight I cannot see, because I know provision was already made the moment I cried out. I take authority over every power of darkness assigned to delay what You have already ordained. I do not fight flesh and blood. I storm the gates of hell, and I declare they will not prevail.",
+       "k": "d07790dd"
       }
      ]
     },
@@ -7084,38 +7366,14 @@
      "blocks": [
       {
        "t": "p",
-       "v": "And Father, I do not just want the old thing cast out. I want righteousness planted in its place. Show me the new pattern You want me to walk in."
+       "v": "And Father, I do not just want the old thing cast out. I want righteousness planted in its place. Show me the new pattern You want me to walk in. Whatever You ask, a discipline, a fast, an obedience only You and I will know about, I say yes before I even hear the whole instruction, because I trust that You are building something in the secret place that will show itself in the open. Create in me a clean heart, and renew a right spirit within me. Restore to me the joy of Your deliverance, and give me Your peace. Please give me a sound mind, with wisdom and discernment. Let the words of my mouth and the meditation of my heart be pleasing before You, O Yahshua, my rock and my redeemer.",
+       "k": "7f6ffe49"
       },
       {
        "t": "p",
-       "v": "Whatever You ask, a discipline, a fast, an obedience only You and I will know about, I say yes before I even hear the whole instruction, because I trust that You are building something in the secret place that will show itself in the open."
-      },
-      {
-       "t": "p",
-       "v": "Create in me a clean heart, and renew a right spirit within me. Restore to me the joy of Your deliverance, and give me Your peace. Please give me a sound mind, with wisdom and discernment."
-      },
-      {
-       "t": "p",
-       "v": "Let the words of my mouth and the meditation of my heart be pleasing before You, O Yahshua, my rock and my redeemer."
-      },
-      {
-       "t": "q",
-       "ref": "Matthew 12:43-45",
-       "v": "\"Then he says, 'I will return into my house from which I came;' and when he has come back, he finds it empty, swept, and put in order. Then he goes and takes with himself seven other spirits more evil than he is, and they enter in and dwell there.\""
-      },
-      {
-       "t": "c",
-       "title": "Why This Movement Matters",
-       "v": "An empty house does not stay empty. Deliverance that ends at the casting out is only half the work. Ask Him to fill what He emptied."
-      },
-      {
-       "t": "p",
-       "v": "In the name of Yahshua, amen."
-      },
-      {
-       "t": "q",
-       "ref": "Psalm 19:14",
-       "v": "\"Let the words of my mouth and the meditation of my heart be acceptable in your sight, YHWH, my rock, and my redeemer.\""
+       "v": "In the name of Yahshua, amen.",
+       "strong": true,
+       "k": "8b85e3f8"
       }
      ]
     },
@@ -7125,41 +7383,14 @@
      "blocks": [
       {
        "t": "p",
-       "v": "Please write Your instructions on my heart and on my mind."
+       "v": "Please write Your instructions on my heart and on my mind. Hold my hand and guide me to walk in Your ways, and to be a witness to all whom I encounter with the fruit of the Spirit: love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, and self control. Help me to be an overcomer, Father. Help me to see myself as You see me. Protect my wife, my children, my family, my loved ones, and myself from all our enemies, both physical and spiritual. Put a hedge of protection around us, that no harm will overtake us. Please provide for our physical needs, and bless us with good health and protection while we walk this earth. Nourish our spirit with Your truth and Your shalom.",
+       "k": "f67bd7bd"
       },
       {
        "t": "p",
-       "v": "Hold my hand and guide me to walk in Your ways, and to be a witness to all whom I encounter with the fruit of the Spirit: love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, and self control."
-      },
-      {
-       "t": "p",
-       "v": "Help me to be an overcomer, Father. Help me to see myself as You see me."
-      },
-      {
-       "t": "p",
-       "v": "Protect my wife, my children, my family, my loved ones, and myself from all our enemies, both physical and spiritual. Put a hedge of protection around us, that no harm will overtake us."
-      },
-      {
-       "t": "p",
-       "v": "Please provide for our physical needs, and bless us with good health and protection while we walk this earth. Nourish our spirit with Your truth and Your shalom."
-      },
-      {
-       "t": "q",
-       "ref": "Jeremiah 31:33",
-       "v": "\"I will put my law in their inward parts, and I will write it in their heart. I will be their God, and they shall be my people.\""
-      },
-      {
-       "t": "q",
-       "ref": "Galatians 5:22-23",
-       "v": "\"But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faith, gentleness, and self-control. Against such things there is no law.\""
-      },
-      {
-       "t": "c",
-       "v": "Pray this movement over your household by name."
-      },
-      {
-       "t": "p",
-       "v": "In the name of Yahshua, amen."
+       "v": "In the name of Yahshua, amen.",
+       "strong": true,
+       "k": "924a41c8"
       }
      ]
     },
@@ -7169,50 +7400,52 @@
      "blocks": [
       {
        "t": "p",
-       "v": "Please, Father, do not let me or my family be deceived like so many seem to be with the strong delusion, for Your truth is beautiful, Your truth is life."
+       "v": "Please, Father, do not let me or my family be deceived like so many seem to be with the strong delusion, for Your truth is beautiful, Your truth is life. Show my family and me the ancient path, where the good way is. Help us to walk in it, and give us rest for our souls.",
+       "k": "a7deeada"
       },
       {
        "t": "p",
-       "v": "Show my family and me the ancient path, where the good way is. Help us to walk in it, and give us rest for our souls."
+       "v": "Transform me as I behold You, Father. Not the patterns of this world, not the wounds of my past. Only You. Let my mind be wired by Your glory alone, so that what gets passed down through me is not iniquity, but inheritance: faith, freedom, and the image of Yahshua.",
+       "k": "1660171e"
       },
       {
        "t": "p",
-       "v": "Transform me as I behold You, Father. Not the patterns of this world, not the wounds of my past. Only You."
-      },
+       "v": "In the name of Yahshua, amen.",
+       "strong": true,
+       "k": "768394c8"
+      }
+     ]
+    },
+    {
+     "kicker": "SCRIPTURE INDEX",
+     "heading": "Cross Reference",
+     "blocks": [
       {
-       "t": "p",
-       "v": "Let my mind be wired by Your glory alone, so that what gets passed down through me is not iniquity, but inheritance: faith, freedom, and the image of Yahshua."
-      },
+       "t": "c",
+       "title": "Passage Why It Is Here Part",
+       "v": "Blot out my iniquities, create in me a clean heart 1, 6 Psalm 51:9 to 12 Visiting iniquity to the third and fourth generation 2 Exodus 34:7 Search me and know my heart 2 Psalm 139:23 to 24 Confessing their sins and the iniquities of their fathers 3 Nehemiah 9:2 The handwriting against us, nailed to the tree 3 Colossians 2:14 You will show me the path of life 4 Psalm 16:11 A new creation, the old things have passed away 4 2 Corinthians 5:17 Heard from the first day, delayed by an unseen fight 5 Daniel 10:12 to 13 Not against flesh and blood 5 Ephesians 6:12 The swept house that was left empty 6 Matthew 12:43 to 45 My instructions written on their hearts 7 Jeremiah 31:33 The fruit of the Spirit 7 Galatians 5:22 to 23 Ask for the ancient paths, where the good way is 8 Jeremiah 6:16 Transformed by the renewing of your mind 8 Romans 12:2",
+       "k": "6cd157d9"
+      }
+     ]
+    },
+    {
+     "kicker": "FOR YOUR OWN STUDY",
+     "heading": "Notes",
+     "blocks": [
       {
        "t": "q",
        "ref": "Jeremiah 6:16",
-       "v": "\"Stand in the ways and see, and ask for the old paths, 'Where is the good way?' and walk in it, and you will find rest for your souls.\""
-      },
-      {
-       "t": "q",
-       "ref": "2 Corinthians 3:18",
-       "v": "\"But we all, with unveiled face seeing the glory of the Lord as in a mirror, are transformed into the same image from glory to glory.\""
-      },
-      {
-       "t": "q",
-       "ref": "Romans 12:2",
-       "v": "\"Don't be conformed to this world, but be transformed by the renewing of your mind, so that you may prove what is the good, well-pleasing, and perfect will of God.\""
-      },
-      {
-       "t": "c",
-       "v": "What gets passed down through you is not iniquity, but inheritance."
-      },
-      {
-       "t": "p",
-       "v": "In the name of Yahshua, amen."
+       "v": "Stand in the ways and see, and ask for the ancient paths, where the good way is, and walk in it, and you will find rest for your souls.",
+       "k": "ea876d8a"
       }
      ]
     }
    ],
-   "words": 1491,
-   "minutes": 7
+   "refIndex": [],
+   "words": 1116,
+   "minutes": 6
   }
  ],
- "version": 2,
- "sha256": "0ec10b31bf4dcfc0b80b6ac177e9e98ee4d5bee077b99348ae8d4ac8706fd1e3"
+ "version": 1,
+ "sha256": "99c5925c055288ee"
 }
