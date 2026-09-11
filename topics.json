@@ -7453,36 +7453,30 @@
    "note": "Scripture from the World English Bible, divine name rendered YHWH, Elohim, and Adonai. A free printable prayer guide for husbands and wives.",
    "pdf": "handouts/Praying-Over-Your-Marriage-Handout.pdf",
    "pdfUrl": "https://app.kingdom-life-ministry.com/handouts/Praying-Over-Your-Marriage-Handout.pdf",
-   "pdfBytes": 58397,
+   "pdfBytes": 82332,
    "sections": [
     {
      "kicker": "BEFORE YOU BEGIN",
-     "heading": "",
+     "heading": "How to Pray These",
      "blocks": [
       {
        "t": "p",
-       "v": "How to Pray These",
-       "k": "6b173b64"
+       "v": "These prayers were written to be prayed by a husband and wife together, out loud, in plain words. There is nothing magic about the order and nothing magic about the wording. They are here so you have somewhere to start when you do not know what to say, and so you stop praying vaguely about a covenant that deserves to be prayed over specifically.",
+       "k": "89961956"
+      },
+      {
+       "t": "l",
+       "items": [
+        "Pray them out loud and pray them together. Something changes when a husband and wife hear each other say these things.",
+        "One section at a time is better than all thirty one at once. This is not a race and there is no prize for finishing fast.",
+        "Read the scripture after each prayer. The prayer is the ask. The verse is the ground it stands on."
+       ],
+       "k": "0c7bad66"
       },
       {
        "t": "p",
-       "v": "These prayers were written to be prayed by a husband and wife together, out loud, in plain words. There is nothing magic about the order and nothing magic about the wording. They are here so you have somewhere to start when you do not know what to say, and so you stop praying vaguely about a covenant that deserves to be prayed over specifically. 1",
-       "k": "33f150b2"
-      },
-      {
-       "t": "c",
-       "v": "Pray them out loud and pray them together. Something changes when a husband and wife hear each other say these things.",
-       "k": "9db7022e"
-      },
-      {
-       "t": "p",
-       "v": "2 One section at a time is better than all thirty one at once. This is not a race and there is no prize for finishing fast. 3",
-       "k": "83b13dd3"
-      },
-      {
-       "t": "c",
-       "v": "Read the scripture after each prayer. The prayer is the ask. The verse is the ground it stands on. 4",
-       "k": "80229657"
+       "v": "•",
+       "k": "ecf727ea"
       },
       {
        "t": "c",
@@ -7490,9 +7484,11 @@
        "k": "0dc8329a"
       },
       {
-       "t": "p",
-       "v": "5 When you say amen, start living like it is true. Prayer without a change in how you treat each other is just noise.",
-       "k": "93941ca2"
+       "t": "l",
+       "items": [
+        "When you say amen, start living like it is true. Prayer without a change in how you treat each other is just noise."
+       ],
+       "k": "f5525aeb"
       },
       {
        "t": "c",
@@ -7503,684 +7499,756 @@
     },
     {
      "kicker": "PART I",
-     "heading": "",
+     "heading": "Coming Before the Father",
      "blocks": [
-      {
-       "t": "p",
-       "v": "Coming Before the Father",
-       "k": "f84e963b"
-      },
       {
        "t": "p",
        "v": "Nothing else in this book works until this part is settled. You cannot war for a marriage you are not willing to be corrected in.",
        "k": "0b8e3741"
       },
       {
-       "t": "q",
-       "ref": "Prayer 1",
+       "t": "c",
        "v": "Pride is the root of unforgiveness. Humility is the root of forgiveness. Start here, or none of the rest of these prayers will land.",
        "k": "f669f3bb"
       },
       {
-       "t": "p",
-       "v": "Prayer of Approach Father YHWH, we come to You together. Not as two people trying to fix each other, but as two people who need You. You made this covenant and You know every part of it that is working and every part of it that is broken. We are not hiding anything from You today. Open our ears and let us hear what You actually say, not what we want to hear. In the name of Yahshua Messiah.",
-       "k": "244a901a"
+       "t": "h",
+       "v": "1. Prayer of Approach",
+       "k": "92854b6f"
       },
       {
-       "t": "q",
-       "ref": "Psalm 127:1",
+       "t": "p",
+       "v": "Father YHWH, we come to You together. Not as two people trying to fix each other, but as two people who need You. You made this covenant and You know every part of it that is working and every part of it that is broken. We are not hiding anything from You today. Open our ears and let us hear what You actually say, not what we want to hear. In the name of Yahshua Messiah.",
+       "k": "9c3dd291"
+      },
+      {
+       "t": "c",
        "v": "Unless YHWH builds the house, they who build it labor in vain. Unless YHWH watches over the city, the watchman guards it in vain.",
        "k": "a2cd4414"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 2",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer for Humility Father YHWH, show us where pride is hiding in us, and do not let us call it something else. It disguises itself as being right, as being tired, as having a point. We would rather be corrected than be right. Take the part of us that keeps score and put it to death. In the name of Yahshua Messiah.",
-       "k": "e42581c1"
       },
       {
-       "t": "q",
-       "ref": "James 4:6-7",
-       "v": "But he gives more grace. Therefore it says, Elohim resists the proud, but gives grace to the humble. Be subject therefore to Elohim. But resist the devil, and he will flee from you.",
-       "k": "af937658"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 3",
-     "heading": "",
-     "blocks": [
+       "t": "p",
+       "v": "Psalm 127:1",
+       "k": "f27704b7"
+      },
+      {
+       "t": "h",
+       "v": "2. Prayer for Humility",
+       "k": "1c837373"
+      },
       {
        "t": "p",
-       "v": "Prayer for Correction Father YHWH, we are asking for correction and we mean it. Show each of us our own part before You show us our spouse's part. Let Your Spirit lead us into every change this marriage needs, and give us the courage to make it instead of waiting for the other person to move first. In the name of Yahshua Messiah.",
-       "k": "6c44fb42"
+       "v": "Father YHWH, show us where pride is hiding in us, and do not let us call it something else. It disguises itself as being right, as being tired, as having a point. We would rather be corrected than be right. Take the part of us that keeps score and put it to death. In the name of Yahshua Messiah.",
+       "k": "fdaf9182"
+      },
+      {
+       "t": "c",
+       "v": "But he gives more grace. Therefore it says, Elohim resists the proud, but gives grace to the humble. Be subject therefore to Elohim. But resist the devil, and he will flee from you.",
+       "k": "af937658"
+      },
+      {
+       "t": "p",
+       "v": "James 4:6-7",
+       "k": "d468210f"
+      },
+      {
+       "t": "h",
+       "v": "3. Prayer for Correction",
+       "k": "cc0e7929"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, we are asking for correction and we mean it. Show each of us our own part before You show us our spouse's part. Let Your Spirit lead us into every change this marriage needs, and give us the courage to make it instead of waiting for the other person to move first. In the name of Yahshua Messiah.",
+       "k": "5c50f35d"
       },
       {
        "t": "c",
        "v": "Don't grieve the Holy Spirit of Elohim, in whom you were sealed for the day of redemption. Let all bitterness, wrath, anger, outcry, and slander be put away from you, with all malice. And be kind to one another, tender hearted, forgiving each other, just as Elohim also in Messiah forgave you.",
        "k": "78c2019a"
-      }
-     ]
-    },
-    {
-     "kicker": "EPHESIANS 4:30-32 PRAYER 4",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer for Forgiveness Between Us Father YHWH, we forgive each other today. Not when the feeling shows up. Now. Every offense we have carried, every record we have kept, every wound we have held onto because it gave us leverage, we let it go. Forgive us the same way we have forgiven each other, and let forgiveness be the ground everything else in this house is built on. In the name of Yahshua Messiah.",
-       "k": "8e9aaffa"
       },
       {
-       "t": "q",
-       "ref": "Matthew 6:14-15",
+       "t": "p",
+       "v": "Ephesians 4:30-32",
+       "k": "9fc8f9de"
+      },
+      {
+       "t": "h",
+       "v": "4. Prayer for Forgiveness Between Us",
+       "k": "8ce6f3e5"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, we forgive each other today. Not when the feeling shows up. Now. Every offense we have carried, every record we have kept, every wound we have held onto because it gave us leverage, we let it go. Forgive us the same way we have forgiven each other, and let forgiveness be the ground everything else in this house is built on. In the name of Yahshua Messiah.",
+       "k": "44d14f88"
+      },
+      {
+       "t": "c",
        "v": "For if you forgive men their trespasses, your heavenly Father will also forgive you. But if you don't forgive men their trespasses, neither will your Father forgive your trespasses.",
        "k": "6059414e"
+      },
+      {
+       "t": "p",
+       "v": "Matthew 6:14-15",
+       "k": "81399d9e"
       }
-     ]
+     ],
+     "collapsed": true
     },
     {
      "kicker": "PART II",
-     "heading": "",
+     "heading": "The Covenant Itself",
      "blocks": [
-      {
-       "t": "p",
-       "v": "The Covenant Itself",
-       "k": "adbc745c"
-      },
       {
        "t": "p",
        "v": "Marriage was not invented by a culture or a government, so no culture or government gets to redefine it for you. It was given in a garden before there was a nation, a temple, or a priesthood.",
-       "ref": "Prayer 5",
        "k": "761a0ad4"
       },
       {
-       "t": "p",
-       "v": "Thanksgiving for Marriage Father YHWH, thank You for marriage. Thank You that You looked at a man standing alone and said that was the one thing in all of creation that was not good. Thank You that You did not leave him that way. We receive this covenant as a gift and not as a sentence. In the name of Yahshua Messiah.",
-       "k": "f261fe19"
+       "t": "h",
+       "v": "5. Thanksgiving for Marriage",
+       "k": "a61cb439"
       },
       {
-       "t": "q",
-       "ref": "Genesis 2:18",
+       "t": "p",
+       "v": "Father YHWH, thank You for marriage. Thank You that You looked at a man standing alone and said that was the one thing in all of creation that was not good. Thank You that You did not leave him that way. We receive this covenant as a gift and not as a sentence. In the name of Yahshua Messiah.",
+       "k": "8761bddf"
+      },
+      {
+       "t": "c",
        "v": "YHWH Elohim said, It is not good for the man to be alone. I will make him a helper comparable to him.",
        "k": "cf0d4a88"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 6",
-     "heading": "",
-     "blocks": [
+      },
       {
        "t": "p",
-       "v": "Prayer for YHWH's Design Father YHWH, keep us inside Your design. Not the world's version of marriage, not the version we watched growing up, not the version we picked up somewhere along the way. Teach us Your order for a husband and a wife, and give us the willingness to walk in it even where it costs us something. In the name of Yahshua Messiah.",
-       "k": "25efe9db"
+       "v": "Genesis 2:18",
+       "k": "e45dbbe4"
+      },
+      {
+       "t": "h",
+       "v": "6. Prayer for YHWH's Design",
+       "k": "df80e656"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, keep us inside Your design. Not the world's version of marriage, not the version we watched growing up, not the version we picked up somewhere along the way. Teach us Your order for a husband and a wife, and give us the willingness to walk in it even where it costs us something. In the name of Yahshua Messiah.",
+       "k": "9223341f"
       },
       {
        "t": "c",
        "v": "But from the beginning of the creation, Elohim made them male and female. For this cause a man will leave his father and mother, and will join to his wife, and the two will become one flesh, so that they are no longer two, but one flesh. What therefore Elohim has joined together, let no man separate.",
        "k": "940fdfbe"
-      }
-     ]
-    },
-    {
-     "kicker": "MARK 10:6-9 PRAYER 7",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer Against Divorce and Separation Father YHWH, we take the word divorce out of our mouths and out of our thinking. Cancel every plan of separation, every threat thrown in anger, and every quiet expectation that this will not last. What You joined, no man separates, and we refuse to be the ones who try. In the name of Yahshua Messiah.",
-       "k": "662a7e6b"
       },
       {
-       "t": "q",
-       "ref": "Malachi 2:14",
+       "t": "p",
+       "v": "Mark 10:6-9",
+       "k": "4105735f"
+      },
+      {
+       "t": "h",
+       "v": "7. Prayer Against Divorce and Separation",
+       "k": "c7a49099"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, we take the word divorce out of our mouths and out of our thinking. Cancel every plan of separation, every threat thrown in anger, and every quiet expectation that this will not last. What You joined, no man separates, and we refuse to be the ones who try. In the name of Yahshua Messiah.",
+       "k": "c3a04ede"
+      },
+      {
+       "t": "c",
        "v": "Yet you say, Why? Because YHWH has been witness between you and the wife of your youth, against whom you have dealt treacherously, though she is your companion and the wife of your covenant.",
        "k": "9b58a503"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 8",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer for One Flesh Father YHWH, make us one and not two people sharing an address. Join our hearts, our thinking, our money, our bodies, and our purpose. Where we have quietly pulled apart, close the gap before it becomes a canyon. Let nothing stand in the middle of what You made one. In the name of Yahshua Messiah.",
-       "k": "68172759"
       },
       {
-       "t": "q",
-       "ref": "Genesis 2:24",
+       "t": "p",
+       "v": "Malachi 2:14",
+       "k": "1135f8ab"
+      },
+      {
+       "t": "h",
+       "v": "8. Prayer for One Flesh",
+       "k": "8dd3abc5"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, make us one and not two people sharing an address. Join our hearts, our thinking, our money, our bodies, and our purpose. Where we have quietly pulled apart, close the gap before it becomes a canyon. Let nothing stand in the middle of what You made one. In the name of Yahshua Messiah.",
+       "k": "b8436d9b"
+      },
+      {
+       "t": "c",
        "v": "Therefore a man will leave his father and his mother, and will join with his wife, and they will be one flesh.",
        "k": "2a8fa360"
+      },
+      {
+       "t": "p",
+       "v": "Genesis 2:24",
+       "k": "532b7543"
       }
-     ]
+     ],
+     "collapsed": true
     },
     {
      "kicker": "PART III",
-     "heading": "",
+     "heading": "Cleansing and Healing",
      "blocks": [
-      {
-       "t": "p",
-       "v": "Cleansing and Healing",
-       "k": "8e9fedd7"
-      },
       {
        "t": "p",
        "v": "You cannot build something new on top of a wound you keep covering. This section is about letting YHWH get underneath it.",
        "k": "c1cf9188"
       },
       {
-       "t": "q",
-       "ref": "Prayer 9",
+       "t": "c",
        "v": "Cleansing is not a feeling. It is a settled fact, paid for at the cross. Pray it as something already finished, not something you are hoping He will get around to.",
        "k": "43a79898"
       },
       {
+       "t": "h",
+       "v": "9. Prayer for Cleansing by the Blood",
+       "k": "99ca5a8a"
+      },
+      {
        "t": "p",
-       "v": "Prayer for Cleansing by the Blood Father YHWH, cover this marriage in the blood of Yahshua. Every sin we have confessed is already forgiven, and every accusation against us was answered at the cross. Let nothing rise up against this home that Your Son has not already paid for. In the name of Yahshua Messiah.",
-       "k": "079a9545"
+       "v": "Father YHWH, cover this marriage in the blood of Yahshua. Every sin we have confessed is already forgiven, and every accusation against us was answered at the cross. Let nothing rise up against this home that Your Son has not already paid for. In the name of Yahshua Messiah.",
+       "k": "4eaa359c"
       },
       {
        "t": "c",
        "v": "But if we walk in the light as he is in the light, we have fellowship with one another, and the blood of Yahshua Messiah his Son cleanses us from all sin. If we confess our sins, he is faithful and righteous to forgive us the sins and to cleanse us from all unrighteousness.",
        "k": "726e8c62"
-      }
-     ]
-    },
-    {
-     "kicker": "1 JOHN 1:7, 9 PRAYER 10",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer Over Our Bloodlines Father YHWH, we bring our families before You, both sides, as far back as it goes. Where there were patterns of divorce, betrayal, addiction, and control, we refuse to carry them one more generation. We are not bound to what our fathers did. Cut the line here and let a new pattern start with us. In the name of Yahshua Messiah.",
-       "k": "2a212392"
       },
       {
-       "t": "q",
-       "ref": "Galatians 3:13",
+       "t": "p",
+       "v": "1 John 1:7, 9",
+       "k": "6019bc3a"
+      },
+      {
+       "t": "h",
+       "v": "10. Prayer Over Our Bloodlines",
+       "k": "41c66632"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, we bring our families before You, both sides, as far back as it goes. Where there were patterns of divorce, betrayal, addiction, and control, we refuse to carry them one more generation. We are not bound to what our fathers did. Cut the line here and let a new pattern start with us. In the name of Yahshua Messiah.",
+       "k": "6836e16c"
+      },
+      {
+       "t": "c",
        "v": "Messiah redeemed us from the curse of the law, having become a curse for us.",
        "k": "13352007"
       },
       {
        "t": "q",
-       "ref": "Ezekiel 18:20",
+       "ref": "Galatians 3:13",
        "v": "The son will not bear the iniquity of the father, neither will the father bear the iniquity of the son.",
        "k": "d7d7c6b4"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 11",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer to Uproot What Was Planted Father YHWH, pull up every root of bitterness, suspicion, and resentment that has been growing in this marriage. Do not trim it back. Pull it out. Throw it into the depths of the sea, and do not let us go wading out there looking for it again. In the name of Yahshua Messiah.",
-       "k": "e7ed4157"
       },
       {
-       "t": "q",
-       "ref": "Micah 7:19",
+       "t": "p",
+       "v": "Ezekiel 18:20",
+       "k": "4634c68e"
+      },
+      {
+       "t": "h",
+       "v": "11. Prayer to Uproot What Was Planted",
+       "k": "e1c5c49c"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, pull up every root of bitterness, suspicion, and resentment that has been growing in this marriage. Do not trim it back. Pull it out. Throw it into the depths of the sea, and do not let us go wading out there looking for it again. In the name of Yahshua Messiah.",
+       "k": "4ed4d3fd"
+      },
+      {
+       "t": "c",
        "v": "He will again have compassion on us. He will tread our iniquities under foot, and you will cast all their sins into the depths of the sea.",
        "k": "4829396c"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 12",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer for Deep Healing Father YHWH, heal what is under the surface. Heal the words that landed years ago and never came back out. Heal the memories that still make us flinch. Heal the trust that was broken, and rebuild it stronger than it was before it broke. In the name of Yahshua Messiah.",
-       "k": "20e53a8b"
       },
       {
-       "t": "q",
-       "ref": "Jeremiah 17:14",
+       "t": "p",
+       "v": "Micah 7:19",
+       "k": "a44ddb8b"
+      },
+      {
+       "t": "h",
+       "v": "12. Prayer for Deep Healing",
+       "k": "b2cff5f3"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, heal what is under the surface. Heal the words that landed years ago and never came back out. Heal the memories that still make us flinch. Heal the trust that was broken, and rebuild it stronger than it was before it broke. In the name of Yahshua Messiah.",
+       "k": "c8aff7f8"
+      },
+      {
+       "t": "c",
        "v": "Heal me, YHWH, and I will be healed. Save me, and I will be saved, for you are my praise.",
        "k": "7243695a"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 13",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer for Restored Years Father YHWH, give us back the years we lost. The seasons we spent arguing, the time we spent apart while living in the same house, everything the enemy ate out of this marriage while we were not paying attention. Give them back with interest, and let the second half be better than the first. In the name of Yahshua Messiah.",
-       "k": "28fa8c94"
       },
       {
-       "t": "q",
-       "ref": "Joel 2:25",
+       "t": "p",
+       "v": "Jeremiah 17:14",
+       "k": "f22f8f94"
+      },
+      {
+       "t": "h",
+       "v": "13. Prayer for Restored Years",
+       "k": "21f17afb"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, give us back the years we lost. The seasons we spent arguing, the time we spent apart while living in the same house, everything the enemy ate out of this marriage while we were not paying attention. Give them back with interest, and let the second half be better than the first. In the name of Yahshua Messiah.",
+       "k": "96778780"
+      },
+      {
+       "t": "c",
        "v": "I will restore to you the years that the swarming locust has eaten, the great locust, the grasshopper, and the caterpillar, my great army which I sent among you.",
        "k": "a73d9b35"
+      },
+      {
+       "t": "p",
+       "v": "Joel 2:25",
+       "k": "b0eab2d8"
       }
-     ]
+     ],
+     "collapsed": true
     },
     {
      "kicker": "PART IV",
-     "heading": "",
+     "heading": "Standing Against the Enemy",
      "blocks": [
-      {
-       "t": "p",
-       "v": "Standing Against the Enemy",
-       "k": "0fd0d7e6"
-      },
       {
        "t": "p",
        "v": "There is real opposition to a covenant marriage, and pretending otherwise has never helped anyone. But the fight is not where most couples aim it.",
        "k": "0c9ca7e2"
       },
       {
-       "t": "q",
-       "ref": "Prayer 14",
+       "t": "c",
        "v": "You are not praying against your spouse. Read that again before you start this section, and do not pray a single one of these with your husband or wife in mind as the target.",
        "k": "8aaae094"
       },
       {
-       "t": "p",
-       "v": "Prayer Against Spiritual Attack Father YHWH, open our eyes to see what is actually coming against us. Tear down every stronghold built in our thinking, every argument that has become a fortress, and every lie we have agreed with. We stand in the authority of Yahshua and not in our own strength. In the name of Yahshua Messiah.",
-       "k": "cf52b6af"
+       "t": "h",
+       "v": "14. Prayer Against Spiritual Attack",
+       "k": "f37c54c9"
       },
       {
-       "t": "q",
-       "ref": "2 Corinthians 10:3-5",
+       "t": "p",
+       "v": "Father YHWH, open our eyes to see what is actually coming against us. Tear down every stronghold built in our thinking, every argument that has become a fortress, and every lie we have agreed with. We stand in the authority of Yahshua and not in our own strength. In the name of Yahshua Messiah.",
+       "k": "9e3393df"
+      },
+      {
+       "t": "c",
        "v": "For though we walk in the flesh, we don't wage war according to the flesh; for the weapons of our warfare are not of the flesh, but mighty before Elohim to the throwing down of strongholds, throwing down imaginations and every high thing that is exalted against the knowledge of Elohim, and bringing every thought into captivity to the obedience of Messiah.",
        "k": "ca004037"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 15",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer Against Principalities and Rulers Father YHWH, we stand against every principality, power, and ruler of darkness assigned to this marriage and to our children. We are not wrestling with flesh and blood, so we will stop fighting with flesh and blood weapons. Send them out of this home in the name of Yahshua Messiah.",
-       "k": "68ee2a67"
       },
       {
-       "t": "q",
-       "ref": "Ephesians 6:12",
-       "v": "For our wrestling is not against flesh and blood, but against the principalities, against the powers, against the world's rulers of the darkness of this age, and against the spiritual forces of wickedness in the heavenly places.",
-       "k": "3c16ebc8"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 16",
-     "heading": "",
-     "blocks": [
+       "t": "p",
+       "v": "2 Corinthians 10:3-5",
+       "k": "d57722c4"
+      },
+      {
+       "t": "h",
+       "v": "15. Prayer Against Principalities and Rulers",
+       "k": "dfe90478"
+      },
       {
        "t": "p",
-       "v": "Prayer Against Every Counterfeit Covenant Father YHWH, we break every tie and every agreement that competes with this covenant. Every attachment formed before we met, every attachment formed since, and every unclean thing that thinks it still has a claim on either of us. It has no claim. We belong to You, and we belong to each other. In the name of Yahshua Messiah.",
-       "k": "8470ab4f"
+       "v": "Father YHWH, we stand against every principality, power, and ruler of darkness assigned to this marriage and to our children. We are not wrestling with flesh and blood, so we will stop fighting with flesh and blood weapons. Send them out of this home in the name of Yahshua Messiah.",
+       "k": "58f3a3f8"
+      },
+      {
+       "t": "c",
+       "v": "For our wrestling is not against flesh and blood, but against the principalities, against the powers, against the world's rulers of the darkness of this age, and against the spiritual forces of wickedness in the heavenly places.",
+       "k": "3c16ebc8"
+      },
+      {
+       "t": "p",
+       "v": "Ephesians 6:12",
+       "k": "ec45eeea"
+      },
+      {
+       "t": "h",
+       "v": "16. Prayer Against Every Counterfeit Covenant",
+       "k": "f48a3d60"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, we break every tie and every agreement that competes with this covenant. Every attachment formed before we met, every attachment formed since, and every unclean thing that thinks it still has a claim on either of us. It has no claim. We belong to You, and we belong to each other. In the name of Yahshua Messiah.",
+       "k": "7f64999f"
       },
       {
        "t": "c",
        "v": "But he who is joined to Adonai is one spirit.",
        "k": "29539957"
-      }
-     ]
-    },
-    {
-     "kicker": "1 CORINTHIANS 6:17 PRAYER 17",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer Against Manipulation and Control Father YHWH, take manipulation and control out of this marriage. The silent treatment, the flattery that is really a setup, the threats we make to get our way. We refuse the spirit that runs on strife. Give us plain speech, straight answers, and a home where love leads instead of fear. In the name of Yahshua Messiah.",
-       "k": "40fbf78d"
       },
       {
-       "t": "q",
-       "ref": "James 3:16",
+       "t": "p",
+       "v": "1 Corinthians 6:17",
+       "k": "48055ad8"
+      },
+      {
+       "t": "h",
+       "v": "17. Prayer Against Manipulation and Control",
+       "k": "52b38b00"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, take manipulation and control out of this marriage. The silent treatment, the flattery that is really a setup, the threats we make to get our way. We refuse the spirit that runs on strife. Give us plain speech, straight answers, and a home where love leads instead of fear. In the name of Yahshua Messiah.",
+       "k": "900fcee9"
+      },
+      {
+       "t": "c",
        "v": "For where jealousy and selfish ambition are, there is confusion and every evil deed.",
        "k": "e3b5d4ac"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 18",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer Against Witchcraft and Spoken Curses Father YHWH, every incantation, hex, spell, and curse spoken over this marriage falls to the ground unanswered. Every word spoken against us in secret, whether by a stranger or by someone who sat at our table, has no power here. We answer all of it with Your word. In the name of Yahshua Messiah.",
-       "k": "0a77497d"
       },
       {
-       "t": "q",
-       "ref": "Isaiah 54:17",
+       "t": "p",
+       "v": "James 3:16",
+       "k": "51b78647"
+      },
+      {
+       "t": "h",
+       "v": "18. Prayer Against Witchcraft and Spoken Curses",
+       "k": "af3a6d2f"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, every incantation, hex, spell, and curse spoken over this marriage falls to the ground unanswered. Every word spoken against us in secret, whether by a stranger or by someone who sat at our table, has no power here. We answer all of it with Your word. In the name of Yahshua Messiah.",
+       "k": "dd8195fb"
+      },
+      {
+       "t": "c",
        "v": "No weapon that is formed against you will prevail; and you will condemn every tongue that rises against you in judgment.",
        "k": "1caed643"
       },
       {
        "t": "q",
-       "ref": "Numbers 23:23",
+       "ref": "Isaiah 54:17",
        "v": "Surely there is no enchantment with Jacob; neither is there any divination with Israel.",
        "k": "73a0ec95"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 19",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer Against What Devours the Seed Father YHWH, guard what You have planted in us. Every good word, every promise, every fresh start gets stolen before it can take root unless You watch over it. Do not let distraction, exhaustion, or the enemy take one more seed off the ground. Let this one grow up and bear fruit. In the name of Yahshua Messiah.",
-       "k": "2c00381d"
       },
       {
-       "t": "q",
-       "ref": "Matthew 13:3-4",
+       "t": "p",
+       "v": "Numbers 23:23",
+       "k": "ce95f70b"
+      },
+      {
+       "t": "h",
+       "v": "19. Prayer Against What Devours the Seed",
+       "k": "b0d7aa1a"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, guard what You have planted in us. Every good word, every promise, every fresh start gets stolen before it can take root unless You watch over it. Do not let distraction, exhaustion, or the enemy take one more seed off the ground. Let this one grow up and bear fruit. In the name of Yahshua Messiah.",
+       "k": "c1b88c6c"
+      },
+      {
+       "t": "c",
        "v": "He spoke to them many things in parables, saying, Behold, a farmer went out to sow. As he sowed, some seeds fell by the roadside, and the birds came and devoured them.",
        "k": "720dd7d9"
+      },
+      {
+       "t": "p",
+       "v": "Matthew 13:3-4",
+       "k": "28be2aad"
       }
-     ]
+     ],
+     "collapsed": true
     },
     {
      "kicker": "PART V",
-     "heading": "",
+     "heading": "Guarding the Home",
      "blocks": [
-      {
-       "t": "p",
-       "v": "Guarding the Home",
-       "k": "9c6ab472"
-      },
       {
        "t": "p",
        "v": "Most marriages are not lost in one dramatic moment. They are lost through a door somebody left propped open.",
-       "ref": "Prayer 20",
        "k": "28f379f9"
       },
       {
-       "t": "p",
-       "v": "Prayer Against Outside Interference Father YHWH, block every outside hand reaching into this marriage. Family members who take sides, friends who carry our business back and forth, coworkers who get more of us in a week than we give each other. Nothing gets access to this house unless it is building this house. In the name of Yahshua Messiah.",
-       "k": "0ca67efc"
+       "t": "h",
+       "v": "20. Prayer Against Outside Interference",
+       "k": "4b9130ef"
       },
       {
-       "t": "q",
-       "ref": "Proverbs 26:20",
+       "t": "p",
+       "v": "Father YHWH, block every outside hand reaching into this marriage. Family members who take sides, friends who carry our business back and forth, coworkers who get more of us in a week than we give each other. Nothing gets access to this house unless it is building this house. In the name of Yahshua Messiah.",
+       "k": "bf56dcbf"
+      },
+      {
+       "t": "c",
        "v": "For lack of wood a fire goes out. Without gossip, contention ceases.",
        "k": "49165c72"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 21",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer Against Evil Counsel Father YHWH, shut the mouth of every voice telling us to quit. We will not take advice about marriage from people who have never built one. Surround us with counselors who fear You and who will tell us the truth even when we do not want to hear it. In the name of Yahshua Messiah.",
-       "k": "9ceef131"
       },
       {
-       "t": "q",
-       "ref": "Proverbs 11:14",
+       "t": "p",
+       "v": "Proverbs 26:20",
+       "k": "d8a955bd"
+      },
+      {
+       "t": "h",
+       "v": "21. Prayer Against Evil Counsel",
+       "k": "d305703f"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, shut the mouth of every voice telling us to quit. We will not take advice about marriage from people who have never built one. Surround us with counselors who fear You and who will tell us the truth even when we do not want to hear it. In the name of Yahshua Messiah.",
+       "k": "dad26afc"
+      },
+      {
+       "t": "c",
        "v": "Where there is no wise guidance, the nation falls, but in the multitude of counselors there is victory.",
        "k": "cfa612da"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 22",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer for Discernment Father YHWH, sharpen our discernment. Let us know the difference between a hard season and an actual attack, between conviction and condemnation, between a friend and a flatterer. Train our senses so we stop getting caught by the same thing twice. In the name of Yahshua Messiah.",
-       "k": "cc445f72"
       },
       {
-       "t": "q",
-       "ref": "Hebrews 5:14",
+       "t": "p",
+       "v": "Proverbs 11:14",
+       "k": "023ae5fa"
+      },
+      {
+       "t": "h",
+       "v": "22. Prayer for Discernment",
+       "k": "4f4bcb05"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, sharpen our discernment. Let us know the difference between a hard season and an actual attack, between conviction and condemnation, between a friend and a flatterer. Train our senses so we stop getting caught by the same thing twice. In the name of Yahshua Messiah.",
+       "k": "db207fe0"
+      },
+      {
+       "t": "c",
        "v": "But solid food is for those who are full grown, who by reason of use have their senses exercised to discern good and evil.",
        "k": "754d6d0f"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 23",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer Over What Enters Our Home Father YHWH, we take responsibility for what comes through our doors and through our screens. What we watch, what we scroll, what we listen to, what we let sit in our minds at night. If it works against this marriage, we are finished with it. As for us and our house, we serve YHWH. In the name of Yahshua Messiah.",
-       "k": "7a2a0d22"
       },
       {
-       "t": "q",
-       "ref": "Psalm 101:2-3",
+       "t": "p",
+       "v": "Hebrews 5:14",
+       "k": "f169b008"
+      },
+      {
+       "t": "h",
+       "v": "23. Prayer Over What Enters Our Home",
+       "k": "bb215236"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, we take responsibility for what comes through our doors and through our screens. What we watch, what we scroll, what we listen to, what we let sit in our minds at night. If it works against this marriage, we are finished with it. As for us and our house, we serve YHWH. In the name of Yahshua Messiah.",
+       "k": "8a6a98d0"
+      },
+      {
+       "t": "c",
        "v": "I will walk within my house with a perfect heart. I will set no vile thing before my eyes. I hate the deeds of faithless men. They will not cling to me.",
        "k": "1ea61672"
+      },
+      {
+       "t": "p",
+       "v": "Psalm 101:2-3",
+       "k": "cc448e41"
       }
-     ]
+     ],
+     "collapsed": true
     },
     {
      "kicker": "PART VI",
-     "heading": "",
+     "heading": "The Heart Between Us",
      "blocks": [
-      {
-       "t": "p",
-       "v": "The Heart Between Us",
-       "k": "50568da0"
-      },
       {
        "t": "p",
        "v": "Warfare prayers do not replace kindness. You can bind every principality over your city and still lose your marriage by how you speak at the kitchen table.",
        "k": "822c7a49"
       },
       {
-       "t": "q",
-       "ref": "Prayer 24",
+       "t": "c",
        "v": "Most of what married people fight about is not what they are actually fighting about. Ask before you assume.",
        "k": "1fd95009"
       },
       {
-       "t": "p",
-       "v": "Prayer Against Misunderstanding Father YHWH, clear the fog between us. So much of what we argue over is not even the thing we think it is. Give us the patience to hear the whole sentence before we answer, and the humility to ask what was meant instead of assuming the worst. In the name of Yahshua Messiah.",
-       "k": "6e4ce298"
+       "t": "h",
+       "v": "24. Prayer Against Misunderstanding",
+       "k": "5274cbc0"
       },
       {
-       "t": "q",
-       "ref": "James 1:19",
+       "t": "p",
+       "v": "Father YHWH, clear the fog between us. So much of what we argue over is not even the thing we think it is. Give us the patience to hear the whole sentence before we answer, and the humility to ask what was meant instead of assuming the worst. In the name of Yahshua Messiah.",
+       "k": "d57c3651"
+      },
+      {
+       "t": "c",
        "v": "So then, my beloved brothers, let every man be swift to hear, slow to speak, and slow to anger.",
        "k": "12e6c795"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 25",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer for Love and Patience Father YHWH, fill us with the love Yahshua commanded, which is not a feeling we wait around for but a decision we make. Patient when it is inconvenient. Kind when it is not deserved. Keeping no record of wrongs. Let people know whose we are by how we treat each other at home. In the name of Yahshua Messiah.",
-       "k": "fc06f8c5"
       },
       {
-       "t": "q",
-       "ref": "John 13:34-35",
-       "v": "A new commandment I give to you, that you love one another. Just as I have loved you, you also love one another. By this everyone will know that you are my disciples, if you have love for one another.",
-       "k": "831bb2f0"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 26",
-     "heading": "",
-     "blocks": [
+       "t": "p",
+       "v": "James 1:19",
+       "k": "dfa10607"
+      },
+      {
+       "t": "h",
+       "v": "25. Prayer for Love and Patience",
+       "k": "c6df0897"
+      },
       {
        "t": "p",
-       "v": "Prayer Against Fear and Rejection Father YHWH, take fear out of this marriage. Fear of being left, fear of not being enough, fear of being fully known. You did not give us a spirit of fear, and perfect love drives it out. Make us safe with each other. In the name of Yahshua Messiah.",
-       "k": "f33061c3"
+       "v": "Father YHWH, fill us with the love Yahshua commanded, which is not a feeling we wait around for but a decision we make. Patient when it is inconvenient. Kind when it is not deserved. Keeping no record of wrongs. Let people know whose we are by how we treat each other at home. In the name of Yahshua Messiah.",
+       "k": "37b5d6cf"
+      },
+      {
+       "t": "c",
+       "v": "A new commandment I give to you, that you love one another. Just as I have loved you, you also love one another. By this everyone will know that you are my disciples, if you have love for one another.",
+       "k": "831bb2f0"
+      },
+      {
+       "t": "p",
+       "v": "John 13:34-35",
+       "k": "564de04d"
+      },
+      {
+       "t": "h",
+       "v": "26. Prayer Against Fear and Rejection",
+       "k": "a00e2919"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, take fear out of this marriage. Fear of being left, fear of not being enough, fear of being fully known. You did not give us a spirit of fear, and perfect love drives it out. Make us safe with each other. In the name of Yahshua Messiah.",
+       "k": "bfbce446"
       },
       {
        "t": "c",
        "v": "There is no fear in love; but perfect love casts out fear, because fear has punishment. He who fears is not made perfect in love.",
        "k": "3218ba23"
-      }
-     ]
-    },
-    {
-     "kicker": "1 JOHN 4:18 PRAYER 27",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer Over Our Words Father YHWH, guard our mouths. Death and life are in the tongue, and we have used ours both ways. Stop the words that tear down before they ever leave us, and give us words that build. Do not let us fall asleep angry or leave the enemy an opening. In the name of Yahshua Messiah.",
-       "k": "87dd2b64"
       },
       {
-       "t": "q",
-       "ref": "Ephesians 4:29",
+       "t": "p",
+       "v": "1 John 4:18",
+       "k": "437380eb"
+      },
+      {
+       "t": "h",
+       "v": "27. Prayer Over Our Words",
+       "k": "6a1cba21"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, guard our mouths. Death and life are in the tongue, and we have used ours both ways. Stop the words that tear down before they ever leave us, and give us words that build. Do not let us fall asleep angry or leave the enemy an opening. In the name of Yahshua Messiah.",
+       "k": "4db23b10"
+      },
+      {
+       "t": "c",
        "v": "Let no corrupt speech proceed out of your mouth, but only what is good for building others up as the need may be, that it may give grace to those who hear.",
        "k": "40ba4757"
       },
       {
        "t": "q",
-       "ref": "Ephesians 4:26-27",
+       "ref": "Ephesians 4:29",
        "v": "Be angry, and don't sin. Don't let the sun go down on your wrath, and don't give place to the devil.",
        "k": "ac1ef453"
+      },
+      {
+       "t": "p",
+       "v": "Ephesians 4:26-27",
+       "k": "bedd0227"
       }
-     ]
+     ],
+     "collapsed": true
     },
     {
      "kicker": "PART VII",
-     "heading": "",
+     "heading": "Walking It Out",
      "blocks": [
       {
        "t": "p",
-       "v": "Walking It Out",
-       "k": "2eea7b81"
-      },
-      {
-       "t": "p",
        "v": "Prayer sets the direction. Obedience covers the distance. These last four are for the road ahead.",
-       "ref": "Prayer 28",
        "k": "c0583a20"
       },
       {
-       "t": "p",
-       "v": "Prayer for Wisdom Father YHWH, give us wisdom for the decisions right in front of us. Not opinions, not whatever everyone else is doing, but Your wisdom. You give it freely to anyone who asks, so we are asking. Build this house by wisdom and hold it up by understanding. In the name of Yahshua Messiah.",
-       "k": "35f481e8"
+       "t": "h",
+       "v": "28. Prayer for Wisdom",
+       "k": "0bb87c17"
       },
       {
-       "t": "q",
-       "ref": "Proverbs 24:3-4",
+       "t": "p",
+       "v": "Father YHWH, give us wisdom for the decisions right in front of us. Not opinions, not whatever everyone else is doing, but Your wisdom. You give it freely to anyone who asks, so we are asking. Build this house by wisdom and hold it up by understanding. In the name of Yahshua Messiah.",
+       "k": "5e0c3b71"
+      },
+      {
+       "t": "c",
        "v": "Through wisdom a house is built; by understanding it is established; by knowledge the rooms are filled with all rare and beautiful treasure.",
        "k": "cedd8e2e"
       },
       {
        "t": "q",
-       "ref": "James 1:5",
+       "ref": "Proverbs 24:3-4",
        "v": "But if any of you lacks wisdom, let him ask of Elohim, who gives to all liberally and without reproach, and it will be given to him.",
        "k": "626f6a44"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 29",
-     "heading": "",
-     "blocks": [
+      },
       {
        "t": "p",
-       "v": "Prayer for Purpose Father YHWH, remind us why You put us together. We are not here just to survive each other. There is work in front of us, children to raise, people to serve, and a testimony to carry. Take off every weight slowing us down and make this marriage useful to Your kingdom. In the name of Yahshua Messiah.",
-       "k": "d2872b64"
+       "v": "James 1:5",
+       "k": "d7320082"
+      },
+      {
+       "t": "h",
+       "v": "29. Prayer for Purpose",
+       "k": "e4074828"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, remind us why You put us together. We are not here just to survive each other. There is work in front of us, children to raise, people to serve, and a testimony to carry. Take off every weight slowing us down and make this marriage useful to Your kingdom. In the name of Yahshua Messiah.",
+       "k": "838a1cc9"
       },
       {
        "t": "c",
        "v": "Two are better than one, because they have a good reward for their labor. And if a man prevails against one who is alone, two shall withstand him; and a threefold cord is not quickly broken.",
        "k": "212d9a8f"
-      }
-     ]
-    },
-    {
-     "kicker": "ECCLESIASTES 4:9, 12 PRAYER 30",
-     "heading": "",
-     "blocks": [
-      {
-       "t": "p",
-       "v": "Prayer for Forward Movement Father YHWH, we are not going back. Not to the old arguments, not to the old habits, not to the version of this marriage we already repented of. You said You are doing a new thing. Help us recognize it and walk straight into it. In the name of Yahshua Messiah.",
-       "k": "9b0a98a8"
       },
       {
-       "t": "q",
-       "ref": "Isaiah 43:18-19",
-       "v": "Don't remember the former things, and don't consider the things of old. Behold, I will do a new thing. It springs out now. Don't you know it? I will even make a way in the wilderness, and rivers in the desert.",
-       "k": "e49d4f10"
-      }
-     ]
-    },
-    {
-     "kicker": "PRAYER 31",
-     "heading": "",
-     "blocks": [
-      {
        "t": "p",
-       "v": "Prayer of Agreement Father YHWH, we agree together on everything we have prayed. We agree that this covenant stands. We agree that forgiveness is the ground we walk on. We agree that You finish what You start. Whatever two of us agree on in the name of Yahshua, You hear. So let it be done. In the name of Yahshua Messiah.",
-       "k": "1555eae7"
+       "v": "Ecclesiastes 4:9, 12",
+       "k": "5c8501fe"
       },
       {
-       "t": "q",
-       "ref": "Matthew 18:19-20",
-       "v": "Again, assuredly I tell you, that if two of you will agree on earth concerning anything that they will ask, it will be done for them by my Father who is in heaven. For where two or three are gathered together in my name, there I am in the middle of them.",
-       "k": "021f4c99"
-      }
-     ]
-    },
-    {
-     "kicker": "REFERENCE",
-     "heading": "",
-     "blocks": [
+       "t": "h",
+       "v": "30. Prayer for Forward Movement",
+       "k": "349d7eb6"
+      },
       {
        "t": "p",
-       "v": "Cross Reference Index",
-       "k": "684e85df"
+       "v": "Father YHWH, we are not going back. Not to the old arguments, not to the old habits, not to the version of this marriage we already repented of. You said You are doing a new thing. Help us recognize it and walk straight into it. In the name of Yahshua Messiah.",
+       "k": "7eca4f29"
       },
       {
        "t": "c",
-       "title": "Scripture Prayer Scripture Prayer",
-       "v": "Genesis 2:18 5 Matthew 18:19-20 31",
-       "k": "95107516"
+       "v": "Don't remember the former things, and don't consider the things of old. Behold, I will do a new thing. It springs out now. Don't you know it? I will even make a way in the wilderness, and rivers in the desert.",
+       "k": "e49d4f10"
       },
       {
-       "t": "l",
-       "items": [
-        "Genesis 2:24 8 Mark 10:6-9 6",
-        "Numbers 23:23 18 John 13:34-35 25",
-        "Psalm 101:2-3 23 1 Corinthians 6:17 16",
-        "Psalm 127:1 1 2 Corinthians 10:3-5 14",
-        "Proverbs 11:14 21 Galatians 3:13 10",
-        "Proverbs 24:3-4 28 Ephesians 4:26-27 27",
-        "Proverbs 26:20 20 Ephesians 4:29 27",
-        "Ecclesiastes 4:9, 12 29 Ephesians 4:30-32 3",
-        "Isaiah 43:18-19 30 Ephesians 6:12 15",
-        "Isaiah 54:17 18 Hebrews 5:14 22",
-        "Jeremiah 17:14 12 James 1:5 28",
-        "Ezekiel 18:20 10 James 1:19 24",
-        "Joel 2:25 13 James 3:16 17",
-        "Micah 7:19 11 James 4:6-7 2",
-        "Malachi 2:14 7 1 John 1:7, 9 9",
-        "Matthew 6:14-15 4 1 John 4:18 26",
-        "Matthew 13:3-4 19"
-       ],
-       "k": "c9bd298e"
+       "t": "p",
+       "v": "Isaiah 43:18-19",
+       "k": "fa14d30e"
       },
+      {
+       "t": "h",
+       "v": "31. Prayer of Agreement",
+       "k": "3828e938"
+      },
+      {
+       "t": "p",
+       "v": "Father YHWH, we agree together on everything we have prayed. We agree that this covenant stands. We agree that forgiveness is the ground we walk on. We agree that You finish what You start. Whatever two of us agree on in the name of Yahshua, You hear. So let it be done. In the name of Yahshua Messiah.",
+       "k": "777b163f"
+      },
+      {
+       "t": "c",
+       "v": "Again, assuredly I tell you, that if two of you will agree on earth concerning anything that they will ask, it will be done for them by my Father who is in heaven. For where two or three are gathered together in my name, there I am in the middle of them.",
+       "k": "021f4c99"
+      },
+      {
+       "t": "p",
+       "v": "Matthew 18:19-20",
+       "k": "8ee7e2aa"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "REFERENCE",
+     "heading": "Cross Reference Index",
+     "blocks": [
       {
        "t": "p",
        "v": "Every prayer in this guide is anchored to Scripture. If you disagree with something written here, go to the text and let the text settle it.",
@@ -8190,13 +8258,8 @@
     },
     {
      "kicker": "FOR YOUR OWN WORDS",
-     "heading": "",
+     "heading": "Notes",
      "blocks": [
-      {
-       "t": "p",
-       "v": "Notes",
-       "k": "70440046"
-      },
       {
        "t": "p",
        "v": "Write down what you are believing for, what you forgave, and the date you prayed it. Come back later and see what YHWH did.",
@@ -8210,11 +8273,222 @@
      ]
     }
    ],
-   "refIndex": [],
-   "words": 3671,
+   "refIndex": [
+    {
+     "topic": "Genesis 2:18",
+     "refs": [
+      "Prayer 5"
+     ]
+    },
+    {
+     "topic": "Genesis 2:24",
+     "refs": [
+      "Prayer 8"
+     ]
+    },
+    {
+     "topic": "Numbers 23:23",
+     "refs": [
+      "Prayer 18"
+     ]
+    },
+    {
+     "topic": "Psalm 101:2-3",
+     "refs": [
+      "Prayer 23"
+     ]
+    },
+    {
+     "topic": "Psalm 127:1",
+     "refs": [
+      "Prayer 1"
+     ]
+    },
+    {
+     "topic": "Proverbs 11:14",
+     "refs": [
+      "Prayer 21"
+     ]
+    },
+    {
+     "topic": "Proverbs 24:3-4",
+     "refs": [
+      "Prayer 28"
+     ]
+    },
+    {
+     "topic": "Proverbs 26:20",
+     "refs": [
+      "Prayer 20"
+     ]
+    },
+    {
+     "topic": "Ecclesiastes 4:9, 12",
+     "refs": [
+      "Prayer 29"
+     ]
+    },
+    {
+     "topic": "Isaiah 43:18-19",
+     "refs": [
+      "Prayer 30"
+     ]
+    },
+    {
+     "topic": "Isaiah 54:17",
+     "refs": [
+      "Prayer 18"
+     ]
+    },
+    {
+     "topic": "Jeremiah 17:14",
+     "refs": [
+      "Prayer 12"
+     ]
+    },
+    {
+     "topic": "Ezekiel 18:20",
+     "refs": [
+      "Prayer 10"
+     ]
+    },
+    {
+     "topic": "Joel 2:25",
+     "refs": [
+      "Prayer 13"
+     ]
+    },
+    {
+     "topic": "Micah 7:19",
+     "refs": [
+      "Prayer 11"
+     ]
+    },
+    {
+     "topic": "Malachi 2:14",
+     "refs": [
+      "Prayer 7"
+     ]
+    },
+    {
+     "topic": "Matthew 6:14-15",
+     "refs": [
+      "Prayer 4"
+     ]
+    },
+    {
+     "topic": "Matthew 13:3-4",
+     "refs": [
+      "Prayer 19"
+     ]
+    },
+    {
+     "topic": "Matthew 18:19-20",
+     "refs": [
+      "Prayer 31"
+     ]
+    },
+    {
+     "topic": "Mark 10:6-9",
+     "refs": [
+      "Prayer 6"
+     ]
+    },
+    {
+     "topic": "John 13:34-35",
+     "refs": [
+      "Prayer 25"
+     ]
+    },
+    {
+     "topic": "1 Corinthians 6:17",
+     "refs": [
+      "Prayer 16"
+     ]
+    },
+    {
+     "topic": "2 Corinthians 10:3-5",
+     "refs": [
+      "Prayer 14"
+     ]
+    },
+    {
+     "topic": "Galatians 3:13",
+     "refs": [
+      "Prayer 10"
+     ]
+    },
+    {
+     "topic": "Ephesians 4:26-27",
+     "refs": [
+      "Prayer 27"
+     ]
+    },
+    {
+     "topic": "Ephesians 4:29",
+     "refs": [
+      "Prayer 27"
+     ]
+    },
+    {
+     "topic": "Ephesians 4:30-32",
+     "refs": [
+      "Prayer 3"
+     ]
+    },
+    {
+     "topic": "Ephesians 6:12",
+     "refs": [
+      "Prayer 15"
+     ]
+    },
+    {
+     "topic": "Hebrews 5:14",
+     "refs": [
+      "Prayer 22"
+     ]
+    },
+    {
+     "topic": "James 1:5",
+     "refs": [
+      "Prayer 28"
+     ]
+    },
+    {
+     "topic": "James 1:19",
+     "refs": [
+      "Prayer 24"
+     ]
+    },
+    {
+     "topic": "James 3:16",
+     "refs": [
+      "Prayer 17"
+     ]
+    },
+    {
+     "topic": "James 4:6-7",
+     "refs": [
+      "Prayer 2"
+     ]
+    },
+    {
+     "topic": "1 John 1:7, 9",
+     "refs": [
+      "Prayer 9"
+     ]
+    },
+    {
+     "topic": "1 John 4:18",
+     "refs": [
+      "Prayer 26"
+     ]
+    }
+   ],
+   "words": 3655,
    "minutes": 18
   }
  ],
  "version": 1,
- "sha256": "10e2434e5bd0b516"
+ "sha256": "a3930eff015274d8"
 }
