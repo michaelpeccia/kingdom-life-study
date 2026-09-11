@@ -460,7 +460,7 @@ const TOPIC_SECTIONS = [
 /* Prayers live on their own screen off the Library, not inside Further
    Study. Listed here so renderTopics can leave them out and renderPrayers
    can pick them up. Order here is the order they appear. */
-const PRAYER_TOPICS = ['prayer-for-the-bloodline'];
+const PRAYER_TOPICS = ['prayer-for-the-bloodline', 'praying-over-your-marriage'];
 
 /* Two studies that name each other as companions on their own title pages. */
 const TOPIC_COMPANION = {
