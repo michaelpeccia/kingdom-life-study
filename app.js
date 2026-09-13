@@ -28,7 +28,7 @@ async function openLink(url){
     try {
       await P.Browser.open({
         url,
-        toolbarColor: State.prefs.theme==='dark' ? '#15161C' : '#1B1B2F',
+        toolbarColor: State.prefs.theme==='dark' ? '#15161C' : '#1E2B5C',
         presentationStyle: 'popover',
       });
       return;

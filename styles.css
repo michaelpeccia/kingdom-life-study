@@ -2,8 +2,8 @@
    No frameworks, no build step: this file ships exactly as written. */
 
 :root{
-  --ink:#141414; --muted:#5d5952; --navy:#1B1B2F; --gold:#B8860B; --link:#1155CC;
-  --band:#F4F0E6; --rule:#E2DCCE; --paper:#FFFDF8; --shell:#EFEBE3;
+  --ink:#26262A; --muted:#6B6259; --navy:#1E2B5C; --gold:#8A6A2F; --gold-lt:#C6A664; --link:#1155CC;
+  --band:#EDE6D6; --rule:#D9CDB4; --paper:#FFFDF8; --shell:#F4EFE3;
   --marker:#C0392B; --ok:#2E7D52;
   --h1:#FFE9A8; --h2:#BFE7C4; --h3:#BBD9F5; --h4:#F3C9DF; --h5:#E2D2F2;
   --pad:16px; --radius:14px; --reading:19px; --lh:1.62;
