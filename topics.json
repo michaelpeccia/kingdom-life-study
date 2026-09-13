@@ -3879,7 +3879,7 @@
    "note": "A Kingdom Life teaching handout on Leviticus 23 Scripture from the World English Bible, divine name rendered YHWH, Elohim, and Adonai",
    "pdf": "handouts/The-Seven-Feasts-Handout.pdf",
    "pdfUrl": "https://app.kingdom-life-ministry.com/handouts/The-Seven-Feasts-Handout.pdf",
-   "pdfBytes": 186536,
+   "pdfBytes": 186029,
    "sections": [
     {
      "kicker": "",
@@ -4479,101 +4479,16 @@
      "heading": "Cross Reference Index",
      "blocks": [
       {
-       "t": "q",
-       "ref": "Primary text",
-       "v": "Leviticus 23:1-44",
-       "k": "a9e6027b"
-      },
-      {
-       "t": "q",
-       "ref": "Appointed times in",
-       "v": "Genesis 1:14; Psalm 81:3; Psalm 104:19 creation",
-       "k": "b1d8650d"
-      },
-      {
-       "t": "q",
-       "ref": "The Sabbath as the first",
-       "v": "Genesis 2:2-3; Exodus 20:8-11; Leviticus 23:3; Isaiah 58:13-14 moed",
-       "k": "e80e9a2c"
-      },
-      {
-       "t": "q",
-       "ref": "The lampstand",
-       "v": "Exodus 25:31-40; Zechariah 4:2, 6; Revelation 1:12-13, 20",
-       "k": "da0dda5d"
-      },
-      {
-       "t": "q",
-       "ref": "Pilgrimage feasts",
-       "v": "Exodus 23:14-17; Deuteronomy 16:16",
-       "k": "f8f30053"
-      },
-      {
-       "t": "q",
-       "ref": "Passover",
-       "v": "Exodus 12:1-14, 21-27, 39, 46; Numbers 9:12; Psalm 34:20; Isaiah 53:4-9; John 1:29, 36; John 19:14, 31-36; 1 Corinthians 5:7; Hebrews 9:22; 1 Peter 1:18-19; Revelation 5:6-9",
-       "k": "1a273bad"
-      },
-      {
-       "t": "q",
-       "ref": "Unleavened Bread",
-       "v": "Exodus 12:15-20; Exodus 13:6-7; Micah 5:2; Psalm 16:10; Matthew 16:6-12; John 6:35, 48-51; Acts 2:27, 31; Acts 13:35-37; 1 Corinthians 5:6-8; 2 Corinthians 5:21; Hebrews 4:15; 1 Peter 2:22",
-       "k": "ed88b2f6"
-      },
-      {
-       "t": "q",
-       "ref": "Firstfruits",
-       "v": "Leviticus 23:9-14; Matthew 12:40; Matthew 27:52-53; Matthew 28:1-6; Mark 16:2-6; John 19:31; John 20:1, 17; Romans 8:29; 1 Corinthians 15:20-23; Colossians 1:18; James 1:18",
-       "k": "bd38a0a4"
-      },
-      {
-       "t": "q",
-       "ref": "Pentecost",
-       "v": "Leviticus 23:15-22; Exodus 19:1, 16-20; Exodus 20:1-17; Exodus 31:18; Exodus 32:28; Deuteronomy 16:9-12; Ruth 1:22; Ruth 2:2-3, 23; Jeremiah 31:31-33; Ezekiel 36:26-27; Ezekiel 37:15-22; Joel 2:28-29; Acts 2:1-21, 41; Romans 8:23; 2 Corinthians 3:3; Ephesians 2:11-16",
-       "k": "ef45fed6"
-      },
-      {
-       "t": "q",
-       "ref": "Trumpets",
-       "v": "Leviticus 23:23-25; Numbers 10:1-10; Numbers 29:1-6; Isaiah 27:13; Joel 2:1; Zephaniah 1:14-16; Matthew 24:29-31, 36, 42-44; Matthew 25:1-13; 1 Corinthians 15:51-52; 1 Thessalonians 4:16-17; Revelation 11:15",
-       "k": "d5385ce9"
-      },
-      {
-       "t": "q",
-       "ref": "Atonement",
-       "v": "Leviticus 16:1-34; Leviticus 23:26-32; Leviticus 25:9-10; Isaiah 53:4-6; Isaiah 61:1-2; Zechariah 12:10; Zechariah 13:1; Luke 4:18-19; Romans 3:24-25; Hebrews 4:14-16; Hebrews 9:6-14, 24-28; Hebrews 10:1-14",
-       "k": "509eec68"
-      },
-      {
-       "t": "q",
-       "ref": "Tabernacles and the eighth",
-       "v": "Leviticus 23:33-43; Deuteronomy 16:13-15; Nehemiah 8:14-18; Ezekiel 37:26-27;",
-       "k": "e68749c1"
-      },
-      {
-       "t": "q",
-       "ref": "day",
-       "v": "Zechariah 14:16-19; John 1:14; John 7:2, 37-39; John 8:12; Revelation 7:9-10; Revelation 19:7-9; Revelation 21:1-5",
-       "k": "49b0e94b"
-      },
-      {
-       "t": "q",
-       "ref": "Shadow and fulfillment",
-       "v": "Matthew 5:17-18; Luke 22:15-18; Acts 20:6, 16; Colossians 2:16-17; Hebrews 8:5; Hebrews 10:1; Ezekiel 45:17, 21, 25; Isaiah 66:23; Amos 3:7",
-       "k": "6b93047f"
-      },
-      {
-       "t": "q",
-       "ref": "Teaching the household",
-       "v": "Exodus 12:26-27; Exodus 13:8-10; Deuteronomy 6:6-9; Psalm 78:4-7",
-       "k": "15cb3ff9"
+       "t": "p",
+       "v": "Primary text: Leviticus 23:1-44 Appointed times in creation: Genesis 1:14; Psalm 81:3; Psalm 104:19 The Sabbath as the first moed: Genesis 2:2-3; Exodus 20:8-11; Leviticus 23:3; Isaiah 58:13-14 The lampstand: Exodus 25:31-40; Zechariah 4:2, 6; Revelation 1:12-13, 20 Pilgrimage feasts: Exodus 23:14-17; Deuteronomy 16:16 Passover: Exodus 12:1-14, 21-27, 39, 46; Numbers 9:12; Psalm 34:20; Isaiah 53:4-9; John 1:29, 36; John 19:14, 31-36; 1 Corinthians 5:7; Hebrews 9:22; 1 Peter 1:18-19; Revelation 5:6-9 Unleavened Bread: Exodus 12:15-20; Exodus 13:6-7; Micah 5:2; Psalm 16:10; Matthew 16:6-12; John 6:35, 48-51; Acts 2:27, 31; Acts 13:35-37; 1 Corinthians 5:6-8; 2 Corinthians 5:21; Hebrews 4:15; 1 Peter 2:22 Firstfruits: Leviticus 23:9-14; Matthew 12:40; Matthew 27:52-53; Matthew 28:1-6; Mark 16:2-6; John 19:31; John 20:1, 17; Romans 8:29; 1 Corinthians 15:20-23; Colossians 1:18; James 1:18 Pentecost: Leviticus 23:15-22; Exodus 19:1, 16-20; Exodus 20:1-17; Exodus 31:18; Exodus 32:28; Deuteronomy 16:9-12; Ruth 1:22; Ruth 2:2-3, 23; Jeremiah 31:31-33; Ezekiel 36:26-27; Ezekiel 37:15-22; Joel 2:28-29; Acts 2:1-21, 41; Romans 8:23; 2 Corinthians 3:3; Ephesians 2:11-16 Trumpets: Leviticus 23:23-25; Numbers 10:1-10; Numbers 29:1-6; Isaiah 27:13; Joel 2:1; Zephaniah 1:14-16; Matthew 24:29-31, 36, 42-44; Matthew 25:1-13; 1 Corinthians 15:51-52; 1 Thessalonians 4:16-17; Revelation 11:15 Atonement: Leviticus 16:1-34; Leviticus 23:26-32; Leviticus 25:9-10; Isaiah 53:4-6; Isaiah 61:1-2; Zechariah 12:10; Zechariah 13:1; Luke 4:18-19; Romans 3:24-25; Hebrews 4:14-16; Hebrews 9:6-14, 24-28; Hebrews 10:1-14 Tabernacles and the eighth day: Leviticus 23:33-43; Deuteronomy 16:13-15; Nehemiah 8:14-18; Ezekiel 37:26-27; Zechariah 14:16-19; John 1:14; John 7:2, 37-39; John 8:12; Revelation 7:9-10; Revelation 19:7-9; Revelation 21:1-5 Shadow and fulfillment: Matthew 5:17-18; Luke 22:15-18; Acts 20:6, 16; Colossians 2:16-17; Hebrews 8:5; Hebrews 10:1; Ezekiel 45:17, 21, 25; Isaiah 66:23; Amos 3:7 Teaching the household: Exodus 12:26-27; Exodus 13:8-10; Deuteronomy 6:6-9; Psalm 78:4-7",
+       "k": "232bf0e6"
       }
      ],
      "collapsed": true
     }
    ],
    "refIndex": [],
-   "words": 5051,
+   "words": 5083,
    "minutes": 25
   },
   {
@@ -10714,5 +10629,5 @@
   }
  ],
  "version": 1,
- "sha256": "a33989f4f4636cdd"
+ "sha256": "7996cb76613ba4c2"
 }
