@@ -19,17 +19,18 @@
    The build id below is stamped in by build_web.py from a hash of the files
    themselves, so a deploy that changes nothing does not evict anybody's cache. */
 
-const BUILD = "466311fb5e45";
+const BUILD = "19243402e8c2";
 const SHELL = 'kls-shell-' + BUILD;
 const LEX   = 'kls-lex-'   + BUILD;
 const BOOKS = 'kls-books';
+const HAND  = 'kls-handouts';
 
 const PRECACHE = [
   "./",
   "index.html",
-  "styles.css?v=466311fb5e45",
-  "app.js?v=466311fb5e45",
-  "web.js?v=466311fb5e45",
+  "styles.css?v=19243402e8c2",
+  "app.js?v=19243402e8c2",
+  "web.js?v=19243402e8c2",
   "manifest.webmanifest",
   "packs/manifest.json",
   "topics.json",
@@ -57,7 +58,7 @@ self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
     await Promise.all(keys.map(k => {
-      if (k === SHELL || k === LEX || k === BOOKS) return null;
+      if (k === SHELL || k === LEX || k === BOOKS || k === HAND) return null;
       if (k.startsWith('kls-')) return caches.delete(k);
       return null;
     }));
@@ -89,6 +90,7 @@ self.addEventListener('fetch', event => {
     event.respondWith(networkFirst(req, BOOKS));
     return;
   }
+  if (/\/handouts\//.test(path)) { event.respondWith(networkFirst(req, HAND)); return; }
   event.respondWith(shellFirst(req));
 });
 
@@ -141,5 +143,5 @@ async function shellFirst(req){
 
 // Only same-origin app files are worth adding to the shell after the fact.
 function sameBuildWorthKeeping(req){
-  return !/\/packs\//.test(new URL(req.url).pathname);
+  return !/\/(packs|handouts)\//.test(new URL(req.url).pathname);
 }
