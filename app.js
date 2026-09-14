@@ -460,7 +460,7 @@ const TOPIC_SECTIONS = [
 /* Prayers live on their own screen off the Library, not inside Further
    Study. Listed here so renderTopics can leave them out and renderPrayers
    can pick them up. Order here is the order they appear. */
-const PRAYER_TOPICS = ['prayer-for-the-bloodline', 'praying-over-your-marriage', 'the-spirit-of-lust',
+const PRAYER_TOPICS = ['prayer-for-the-bloodline', 'curse-line', 'praying-over-your-marriage', 'the-spirit-of-lust',
                        'deliverance-prayer-spirit-of-lust',
                        'marriage-prayer-glenn-atkinson'];
 
