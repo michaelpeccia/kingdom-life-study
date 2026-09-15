@@ -361,7 +361,7 @@ function applyPrefs(){
 }
 
 /* ── navigation ───────────────────────────────────────────────────────── */
-const VIEWS = ['library','books','topics','prayers','testimonies','devotional','connect','book','front','read','search','marks','lex','topic','guides','guide'];
+const VIEWS = ['library','books','topics','prayers','testimonies','devotionals','devotional','armor','connect','book','front','read','search','marks','lex','topic','guides','guide'];
 function go(view, opts={}){
   if (State.view !== view && !opts.replace) State.history.push(State.view);
   State.view = view;
@@ -388,6 +388,8 @@ function setTitle(view){
                prayers:'Prayers & Deliverance',
                testimonies:'Testimonies',
                devotional:'Daily Devotional',
+               devotionals:'Devotionals',
+               armor:'Armor of Elohim',
                connect:'Connect with us', search:'Search', marks:'Marks', lex:'Concordance'};
   if (map[view]) { t.textContent = map[view]; s.textContent=''; return; }
   if (view==='book'){ t.textContent=b?b.title:''; s.textContent=b?`${b.chapterCount} chapters`:''; return; }
@@ -545,7 +547,8 @@ function renderHubCounts(){
   // count what Further Study actually lists: not the prayers, not the
   // testimonies, and not the devotional days, each of which has its own screen
   const elsewhere = new Set([...PRAYER_TOPICS, ...TESTIMONY_TOPICS,
-                             ...DEVOTIONAL.days.map(d => d.id)]);
+                             ...DEVOTIONAL.days.map(d => d.id),
+                             ...ARMOR.days.map(d => d.id)]);
   const nb = State.installed.length;
   const nt = State.topics.filter(t => !elsewhere.has(t.id)).length;
   const b = $('#hub-books-sub'), t = $('#hub-topics-sub');
@@ -1377,6 +1380,11 @@ async function loadTopics(){
       DEVOTIONAL.days = Array.isArray(v && v.days) ? v.days : [];
       State.topics = State.topics.concat(DEVOTIONAL.days);
     } catch(e){ DEVOTIONAL.days = []; console.warn('devotional unavailable', e); }
+    try {
+      const a = await (await fetch('armor.json', {cache:'no-store'})).json();
+      ARMOR.days = Array.isArray(a && a.days) ? a.days : [];
+      State.topics = State.topics.concat(ARMOR.days);
+    } catch(e){ ARMOR.days = []; console.warn('armor devotional unavailable', e); }
   } catch(e){
     State.topics = [];
     console.warn('topic studies unavailable', e);
@@ -1514,6 +1522,7 @@ function renderTopics(){
   // the prayers and testimonies have their own screens; keep them off this one
   const placed = new Set([...PRAYER_TOPICS, ...TESTIMONY_TOPICS]);
   DEVOTIONAL.days.forEach(d => placed.add(d.id));
+  ARMOR.days.forEach(d => placed.add(d.id));
   const groups = TOPIC_SECTIONS.map(([name, ids]) => {
     const list = ids.map(id => byId[id]).filter(Boolean);
     list.forEach(t => placed.add(t.id));
@@ -1895,7 +1904,7 @@ async function openTopic(id, opts={}){
 
   const box = $('#topic-body');
   box.innerHTML = '';
-  box.append(el('p','kicker', t.day ? 'Daily Devotional' : 'Topic Study'));
+  box.append(el('p','kicker', t.day ? (t.series === 'armor' ? 'Armor of Elohim' : 'Daily Devotional') : 'Topic Study'));
   box.append(el('h2','chapter', t.title));
   if (t.subtitle) box.append(el('p','topic-standfirst', t.subtitle));
   box.append(t.day ? devotionalTools(t) : topicTools(t));
@@ -2355,7 +2364,7 @@ function bindUI(){
   $('#btn-refresh').onclick = () => refreshCatalog();
   $('#btn-connect').onclick = connectSheet;
   $('#btn-support').onclick = supportSheet;
-  $$('.hub-btn').forEach(b => b.onclick = () => { if (b.dataset.hub === 'devotional') renderDevotional(); go(b.dataset.hub); });
+  $$('.hub-btn').forEach(b => b.onclick = () => { if (b.dataset.hub === 'devotional') renderDevotional(); if (b.dataset.hub === 'armor') renderArmor(); go(b.dataset.hub); });
   $$('#connect-scope button').forEach(b =>
     b.onclick = () => showConnectPanel(b.dataset.panel));
   $('#btn-settings').onclick = settingsSheet;
@@ -2471,13 +2480,13 @@ const DevStore = {
   set(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
 };
 
-function devRec(day){
-  const raw = DevStore.get('devotional:day:' + String(day).padStart(2,'0'));
+function devRec(day, series){
+  const raw = DevStore.get((series || 'devotional') + ':day:' + String(day).padStart(2,'0'));
   if (!raw) return {done:false, note:''};
   try { return JSON.parse(raw); } catch(e){ return {done:false, note:raw}; }
 }
-function devSave(day, rec){
-  DevStore.set('devotional:day:' + String(day).padStart(2,'0'), JSON.stringify(rec));
+function devSave(day, rec, series){
+  DevStore.set((series || 'devotional') + ':day:' + String(day).padStart(2,'0'), JSON.stringify(rec));
 }
 const devDone = () => DEVOTIONAL.days.filter(d => devRec(d.day).done).length;
 
@@ -2564,13 +2573,13 @@ function devotionalTools(t){
   const bar = devEl('div','topic-tools');
   const share = devEl('button','go solid', 'Share this day');
   share.onclick = async () => {
-    const data = {title: 'Kingdom Life Daily Devotional, ' + t.title,
+    const data = {title: (t.series === 'armor' ? 'Armor of Elohim, ' : 'Kingdom Life Daily Devotional, ') + t.title,
                   text: t.shareText};
     try {
       const r = await fetch(t.card);
       if (r.ok && navigator.canShare){
         const blob = await r.blob();
-        const file = new File([blob], 'day' + String(t.day).padStart(2,'0') + '.png',
+        const file = new File([blob], (t.series || 'day') + String(t.day).padStart(2,'0') + '.png',
                               {type:'image/png'});
         if (navigator.canShare({files:[file]})) data.files = [file];
       }
@@ -2589,7 +2598,7 @@ function devotionalTools(t){
    so there is one action rather than a save and a separate tick. */
 function devotionalFooter(t){
   const wrap = devEl('div','dev-step');
-  const rec = devRec(t.day);
+  const rec = devRec(t.day, t.series);
 
   const ta = document.createElement('textarea');
   ta.className = 'dev-note';
@@ -2600,14 +2609,14 @@ function devotionalFooter(t){
   const row = devEl('div','topic-tools');
   const save = devEl('button','go solid', rec.done ? 'Save note' : 'I did this');
   save.onclick = () => {
-    devSave(t.day, {done:true, note:ta.value, at:Date.now()});
+    devSave(t.day, {done:true, note:ta.value, at:Date.now()}, t.series);
     devToast('Saved');
     save.textContent = 'Save note';
     if (!clear.parentNode) row.append(clear);
   };
   const clear = devEl('button','go','Clear this day');
   clear.onclick = () => {
-    devSave(t.day, {done:false, note:ta.value});
+    devSave(t.day, {done:false, note:ta.value}, t.series);
     devToast('Cleared');
     save.textContent = 'I did this';
     clear.remove();
@@ -2617,8 +2626,12 @@ function devotionalFooter(t){
   wrap.append(row);
 
   const backRow = devEl('div','topic-tools');
-  const back = devEl('button','go','Back to the 31 days');
-  back.onclick = () => { renderDevotional(); go('devotional'); };
+  const isArmor = t.series === 'armor';
+  const back = devEl('button','go', isArmor ? 'Back to the 7 days' : 'Back to the 31 days');
+  back.onclick = () => {
+    if (isArmor){ renderArmor(); go('armor'); }
+    else { renderDevotional(); go('devotional'); }
+  };
   backRow.append(back);
   wrap.append(backRow);
 
@@ -2627,5 +2640,70 @@ function devotionalFooter(t){
 
 /* Its own handler rather than data-hub, so this does not depend on however
    the other hub buttons happen to be bound. */
+
+/* ── Armor of Elohim ─────────────────────────────────────────────────
+   Seven days, one piece of armor a day, prayer forward. Same reader and
+   the same kind of board as the 31 days, with its own progress keys
+   (armor:day:NN) so the two never touch each other. */
+const ARMOR = { days: [] };
+const armorDone = () => ARMOR.days.filter(d => devRec(d.day, 'armor').done).length;
+
+async function loadArmor(){
+  if (!ARMOR.days.length){
+    try {
+      const r = await fetch('armor.json?v=' + (window.BUILD || Date.now()), {cache:'no-store'});
+      const v = await r.json();
+      ARMOR.days = Array.isArray(v && v.days) ? v.days : [];
+    } catch(e){ console.warn('armor devotional unavailable', e); }
+  }
+  ARMOR.days.forEach(d => {
+    if (!State.topics.some(t => t.id === d.id)) State.topics.push(d);
+  });
+}
+
+async function renderArmor(){
+  await loadArmor();
+  const board = document.getElementById('armor-board');
+  const count = document.getElementById('armor-count');
+  if (!board) return;
+  board.innerHTML = '';
+
+  if (!ARMOR.days.length){
+    board.append(devEl('p','empty','This devotional is not in this build.'));
+    if (count) count.textContent = '';
+    return;
+  }
+
+  const done = armorDone();
+  if (count) count.textContent = done + ' of ' + ARMOR.days.length + ' days';
+
+  const grid = devEl('div','dev-grid');
+  ARMOR.days.forEach(d => {
+    const rec = devRec(d.day, 'armor');
+    const b = devEl('button', 'dev-sq' + (rec.done ? ' done' : ''), String(d.day));
+    b.setAttribute('aria-label',
+      'Day ' + d.day + ', ' + d.subtitle + (rec.done ? ', completed' : ''));
+    b.onclick = () => openTopic(d.id);
+    grid.append(b);
+  });
+  board.append(grid);
+
+  const list = devEl('div','armor-list');
+  ARMOR.days.forEach(d => {
+    const row = devEl('button','armor-row' + (devRec(d.day, 'armor').done ? ' done' : ''));
+    row.append(devEl('b', null, 'Day ' + d.day));
+    row.append(devEl('span', null, d.subtitle));
+    row.onclick = () => openTopic(d.id);
+    list.append(row);
+  });
+  board.append(list);
+
+  if (done === ARMOR.days.length){
+    const f = devEl('div','dev-finish');
+    f.append(devEl('p', null, 'All seven days are filled. Keep praying the full armor every morning, and come back to any day whenever you need it.'));
+    board.append(f);
+  }
+}
+
 
 })();

@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://app.kingdom-life-ministry.com/icons/icon-1024.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="styles.css?v=f51e3b1b984a">
+<link rel="stylesheet" href="styles.css?v=a7092df250b9">
 
 <style id="dev-css">
 #view-devotional .dev-grid{
@@ -57,6 +57,31 @@
 }
 .dev-actions{ display:flex; gap:10px; flex-wrap:wrap; margin:12px 0; }
 .topic-more > summary{ cursor:pointer; padding:8px 0; font-weight:600; }
+#view-armor .dev-grid{
+  display:grid; grid-template-columns:repeat(7,1fr); gap:7px; margin-top:14px;
+}
+#view-armor .dev-sq{
+  aspect-ratio:1; border:1px solid currentColor; background:transparent;
+  opacity:.55; font-size:.8rem; cursor:pointer; padding:0;
+  display:flex; align-items:center; justify-content:center;
+}
+#view-armor .dev-sq:hover{ opacity:1; }
+#view-armor .dev-sq.done{
+  opacity:1; font-weight:700; color:#1a1408; border-color:#C6A664;
+  background:radial-gradient(circle at 50% 42%,
+    rgba(255,246,220,.96), rgba(226,191,108,.92) 55%, rgba(190,152,70,.88) 100%);
+}
+#view-armor .dev-finish{
+  margin-top:20px; padding:16px; border:1px solid #C6A664; text-align:center;
+}
+#view-armor .armor-list{ display:flex; flex-direction:column; gap:6px; margin-top:18px; }
+#view-armor .armor-row{
+  display:flex; gap:12px; align-items:baseline; text-align:left; width:100%;
+  background:transparent; color:inherit; font:inherit; cursor:pointer;
+  border:0; border-bottom:1px solid rgba(198,166,100,.25); padding:10px 2px;
+}
+#view-armor .armor-row b{ min-width:4.2em; color:#C6A664; }
+#view-armor .armor-row.done span{ opacity:.6; }
 </style>
 </head>
 <body>
@@ -119,9 +144,9 @@
           <span class="hub-text"><b>Testimonies</b><i id="hub-testimonies-sub">What YHWH has done</i></span>
           <span class="hub-go" aria-hidden="true">›</span>
         </button>
-        <button class="hub-btn" id="hub-devotional" data-hub="devotional">
+        <button class="hub-btn" id="hub-devotionals" data-hub="devotionals">
           <span class="hub-icon" aria-hidden="true">🌅</span>
-          <span class="hub-text"><b>Daily Devotional</b><i id="hub-devotional-sub">31 days through Proverbs</i></span>
+          <span class="hub-text"><b>Devotionals</b><i id="hub-devotionals-sub">Daily reads, prayers, and steps</i></span>
           <span class="hub-go" aria-hidden="true">›</span>
         </button>
       </div>
@@ -185,6 +210,39 @@
         passages behind it one tap away. Every one can be shared or downloaded as a
         printable PDF.</p>
       <div id="testimony-sections"></div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────── Devotionals ───────────────────────────── -->
+  <section class="view" id="view-devotionals">
+    <div class="wrap">
+      <h2 class="display">Devotionals</h2>
+      <p class="lede">Short daily reads, each with a prayer and one step to take. Pick one
+        and start anywhere. The days fill in any order and nothing resets.</p>
+      <div class="hub-nav">
+        <button class="hub-btn" data-hub="devotional">
+          <span class="hub-icon" aria-hidden="true">🌅</span>
+          <span class="hub-text"><b>Daily Devotional</b><i>31 days through Proverbs</i></span>
+          <span class="hub-go" aria-hidden="true">›</span>
+        </button>
+        <button class="hub-btn" data-hub="armor">
+          <span class="hub-icon" aria-hidden="true">🛡️</span>
+          <span class="hub-text"><b>Armor of Elohim</b><i>7 days of spiritual warfare prayer</i></span>
+          <span class="hub-go" aria-hidden="true">›</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── Armor of Elohim ────────────────────────── -->
+  <section class="view" id="view-armor">
+    <div class="wrap">
+      <h2 class="display">Armor of Elohim</h2>
+      <p class="lede">Seven days through Ephesians 6, one piece of armor a day. Every piece
+        was worn by YHWH and His Messiah first. Each day gives you the Scripture, a short
+        word, a warfare prayer to pray out loud, and one step to take.</p>
+      <p class="hint" id="armor-count"></p>
+      <div id="armor-board"></div>
     </div>
   </section>
 
@@ -360,9 +418,9 @@
 
 <div id="toast" class="toast" hidden></div>
 
-<script src="app.js?v=f51e3b1b984a"></script>
-<script src="web.js?v=f51e3b1b984a"></script>
-<script src="web.js?v=f51e3b1b984a"></script>
+<script src="app.js?v=a7092df250b9"></script>
+<script src="web.js?v=a7092df250b9"></script>
+<script src="web.js?v=a7092df250b9"></script>
 <noscript>
   <p style="padding:24px;font:16px/1.6 system-ui,sans-serif">
     Kingdom Life Study needs JavaScript. Turn it on in your browser settings and
