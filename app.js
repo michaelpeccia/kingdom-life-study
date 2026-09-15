@@ -542,7 +542,12 @@ function renderLibrary(){
 /* The two hub buttons say what is actually behind them, so the front page is
    not two unlabelled doors. */
 function renderHubCounts(){
-  const nb = State.installed.length, nt = State.topics.length;
+  // count what Further Study actually lists: not the prayers, not the
+  // testimonies, and not the devotional days, each of which has its own screen
+  const elsewhere = new Set([...PRAYER_TOPICS, ...TESTIMONY_TOPICS,
+                             ...DEVOTIONAL.days.map(d => d.id)]);
+  const nb = State.installed.length;
+  const nt = State.topics.filter(t => !elsewhere.has(t.id)).length;
   const b = $('#hub-books-sub'), t = $('#hub-topics-sub');
   if (b) b.textContent = nb
     ? `${nb} book${nb===1?'':'s'} on this device`
