@@ -361,7 +361,7 @@ function applyPrefs(){
 }
 
 /* ── navigation ───────────────────────────────────────────────────────── */
-const VIEWS = ['library','books','topics','prayers','devotional','connect','book','front','read','search','marks','lex','topic','guides','guide'];
+const VIEWS = ['library','books','topics','prayers','testimonies','devotional','connect','book','front','read','search','marks','lex','topic','guides','guide'];
 function go(view, opts={}){
   if (State.view !== view && !opts.replace) State.history.push(State.view);
   State.view = view;
@@ -386,6 +386,7 @@ function setTitle(view){
   const b = State.book, t=$('#top-title'), s=$('#top-sub');
   const map = {library:'Library', books:'Bible Study', topics:'Further Study',
                prayers:'Prayers & Deliverance',
+               testimonies:'Testimonies',
                devotional:'Daily Devotional',
                connect:'Connect with us', search:'Search', marks:'Marks', lex:'Concordance'};
   if (map[view]) { t.textContent = map[view]; s.textContent=''; return; }
@@ -464,6 +465,11 @@ const PRAYER_TOPICS = ['prayer-for-the-bloodline', 'curse-line', 'praying-over-y
                        'deliverance-prayer-spirit-of-lust',
                        'marriage-prayer-glenn-atkinson'];
 
+/* Testimonies live on their own screen too. A testimony is not a teaching.
+   It is somebody telling you what YHWH did, and it should be findable as
+   itself rather than sitting in a list of handouts. */
+const TESTIMONY_TOPICS = ['testimony'];
+
 /* Two studies that name each other as companions on their own title pages. */
 const TOPIC_COMPANION = {
   'the-marriage-covenant': 'who-you-are',
@@ -522,6 +528,7 @@ function renderLibrary(){
 
   renderTopics();
   renderPrayers();
+  renderTestimonies();
   renderAppUpdate();
   renderScriptureCard();
   renderHubCounts();
@@ -1499,8 +1506,8 @@ function renderTopics(){
   }
 
   const byId   = Object.fromEntries(State.topics.map(t => [t.id, t]));
-  // the prayers have their own screen; keep them off this one
-  const placed = new Set(PRAYER_TOPICS);
+  // the prayers and testimonies have their own screens; keep them off this one
+  const placed = new Set([...PRAYER_TOPICS, ...TESTIMONY_TOPICS]);
   DEVOTIONAL.days.forEach(d => placed.add(d.id));
   const groups = TOPIC_SECTIONS.map(([name, ids]) => {
     const list = ids.map(id => byId[id]).filter(Boolean);
@@ -1532,6 +1539,23 @@ function renderPrayers(){
   const list = PRAYER_TOPICS.map(id => byId[id]).filter(Boolean);
   if (!list.length){
     box.append(el('p','empty','No prayers in this build.'));
+    return;
+  }
+  const cards = el('div','cards');
+  list.forEach(t => cards.append(topicCard(t)));
+  box.append(cards);
+}
+
+/* ── the Testimonies screen ─────────────────────────────────
+   Same cards as Further Study, on their own screen. */
+function renderTestimonies(){
+  const box = $('#testimony-sections');
+  if (!box) return;
+  box.innerHTML = '';
+  const byId = Object.fromEntries(State.topics.map(t => [t.id, t]));
+  const list = TESTIMONY_TOPICS.map(id => byId[id]).filter(Boolean);
+  if (!list.length){
+    box.append(el('p','empty','No testimonies in this build.'));
     return;
   }
   const cards = el('div','cards');
