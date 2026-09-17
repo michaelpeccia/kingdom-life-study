@@ -419,7 +419,7 @@ const MINISTRY = {
     ['Michael', 'https://www.facebook.com/MichaelBenYah777'],
     ['Rebekah', 'https://www.facebook.com/77rainbows'],
   ],
-  email:     'michaelpeccia@kingdomlifeministy.com',
+  email:     'michaelbenyah@kingdom-life-ministry.com',
   support: [
     ['GoFundMe',          'https://gofund.me/bb1986c2f'],
     ['Kingdom Life Gear', 'https://kingdomlifegear.etsy.com'],
