@@ -471,7 +471,7 @@ const TOPIC_SECTIONS = [
    can pick them up. Order here is the order they appear. */
 const PRAYER_TOPICS = ['prayer-for-the-bloodline', 'curse-line', 'praying-over-your-marriage', 'the-spirit-of-lust',
                        'deliverance-prayer-spirit-of-lust',
-                       'marriage-prayer-glenn-atkinson'];
+                       'marriage-prayer-glenn-atkinson', 'forgiveness'];
 
 /* Testimonies live on their own screen too. A testimony is not a teaching.
    It is somebody telling you what YHWH did, and it should be findable as
