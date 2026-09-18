@@ -415,6 +415,11 @@ const MINISTRY = {
   // the UC… id and the YouTube panel switches from a link card to a real
   // in-app player. Leave it empty and the card is shown instead.
   channelId: 'UCgDBnLbtkIr_LAyEarUZYXA',
+  // Extra playlists on the YouTube tab, after "Latest" (the uploads player).
+  // To add one: a label and the id after list= in the playlist link.
+  youtubePlaylists: [
+    ['Ancient Path Mix', 'PLCLBFwfQjpegji_STE-qUR3qlvUVUg6FZ'],
+  ],
   facebookPages: [
     ['Michael', 'https://www.facebook.com/MichaelBenYah777'],
     ['Rebekah', 'https://www.facebook.com/77rainbows'],
@@ -1816,19 +1821,57 @@ function outLink(url, label, cls){
 }
 
 function fillYouTube(box){
-  if (MINISTRY.channelId){
-    // the uploads playlist of a channel is its id with UC swapped for UU
-    const list = 'UU' + MINISTRY.channelId.slice(2);
-    box.append(embedFrame(
-      'https://www.youtube-nocookie.com/embed/videoseries?list=' + encodeURIComponent(list),
-      'Kingdom Life Ministry on YouTube'));
-  } else {
+  // "Latest" is the channel's uploads playlist (its id with UC swapped for UU),
+  // followed by any playlists listed in MINISTRY.youtubePlaylists. Each player
+  // is built the first time it is asked for, like the Facebook feeds.
+  const lists = [];
+  if (MINISTRY.channelId) lists.push(['Latest', 'UU' + MINISTRY.channelId.slice(2), true]);
+  (MINISTRY.youtubePlaylists || []).forEach(([label, id]) => lists.push([label, id, false]));
+
+  if (!lists.length){
     box.append(el('p','hint',
       'Every Midrash, and the teaching videos, live on the channel.'));
+    const row = el('div','connect-tools');
+    row.append(outLink(MINISTRY.youtube, 'Open the channel', 'go solid'));
+    box.append(row);
+    return;
   }
-  const row = el('div','connect-tools');
-  row.append(outLink(MINISTRY.youtube, 'Open the channel', 'go solid'));
-  box.append(row);
+
+  const seg   = el('div','seg yt-seg');
+  const stage = el('div','yt-stage');
+  const built = {};
+
+  const show = name => {
+    $$('.yt-seg button', seg).forEach(b => b.classList.toggle('on', b.dataset.list === name));
+    $$('.yt-feed', stage).forEach(n => { n.hidden = n.dataset.list !== name; });
+    if (built[name]) return;
+    built[name] = true;
+    const [label, id, isUploads] = lists.find(([l]) => l === name);
+    const feed = el('div','yt-feed');
+    feed.dataset.list = name;
+    feed.append(embedFrame(
+      'https://www.youtube-nocookie.com/embed/videoseries?list=' + encodeURIComponent(id),
+      label + ' \u00b7 Kingdom Life Ministry on YouTube'));
+    const row = el('div','connect-tools');
+    row.append(isUploads
+      ? outLink(MINISTRY.youtube, 'Open the channel', 'go solid')
+      : outLink('https://www.youtube.com/playlist?list=' + encodeURIComponent(id),
+                'Open the playlist', 'go solid'));
+    feed.append(row);
+    stage.append(feed);
+  };
+
+  if (lists.length > 1){
+    lists.forEach(([label], i) => {
+      const b = el('button', i === 0 ? 'on' : null, label);
+      b.dataset.list = label;
+      b.onclick = () => show(label);
+      seg.append(b);
+    });
+    box.append(seg);
+  }
+  box.append(stage);
+  show(lists[0][0]);
   box.append(el('p','hint','Live every Saturday, 6:30 PM CT.'));
 }
 

@@ -494,6 +494,11 @@ body.scrolling .chapnav{opacity:.28}
 .fb-stage{display:block}
 .fb-feed[hidden]{display:none}
 
+/* latest uploads and playlists inside the one YouTube panel */
+.yt-seg{margin-bottom:12px}
+.yt-stage{display:block}
+.yt-feed[hidden]{display:none}
+
 /* Study guides. The tools stack so Read and PDF both fit beside a card on a
    narrow phone, and the reader fills the gap between the two fixed bars. */
 .guide-tools{display:flex;flex-direction:column;gap:6px;flex:none}
