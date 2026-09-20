@@ -461,7 +461,7 @@ const TOPIC_SECTIONS = [
   ['The Covenant and Who You Are', ['the-marriage-covenant', 'who-you-are']],
   ['Marriage and Family',          ['husbands-love-your-wives', 'narcissistic-abuse', 'sex-before-marriage', 'polygamy']],
   ['The Sabbath',                  ['the-seventh-day', 'sabbath-fire-and-food']],
-  ['Appointed Times',              ['the-sabbath', 'the-seven-feasts', 'yom-teruah', 'the-day-of-atonement', 'the-feast-of-tabernacles']],
+  ['Appointed Times',              ['we-establish-the-torah', 'the-sabbath', 'the-seven-feasts', 'yom-teruah', 'the-day-of-atonement', 'the-feast-of-tabernacles']],
   ['Set Apart Living',             ['why-we-dont-eat-pig', 'tithe']],
   ['Spiritual Warfare',            ['armor-of-elohim']],
 ];
