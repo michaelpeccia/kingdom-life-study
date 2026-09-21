@@ -464,6 +464,7 @@ const TOPIC_SECTIONS = [
   ['The Sabbath',                  ['the-seventh-day', 'sabbath-fire-and-food']],
   ['Appointed Times',              ['the-sabbath', 'the-seven-feasts', 'yom-teruah', 'the-day-of-atonement', 'the-feast-of-tabernacles']],
   ['Set Apart Living',             ['why-we-dont-eat-pig', 'tithe']],
+  ['Unholy Days',             ['halloween']],
   ['Spiritual Warfare',            ['armor-of-elohim']],
 ];
 
