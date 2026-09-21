@@ -421,7 +421,7 @@ const MINISTRY = {
     ['Ancient Path Mix', 'PLCLBFwfQjpegji_STE-qUR3qlvUVUg6FZ'],
   ],
   facebookPages: [
-    ['Kingdom Life', 'https://www.facebook.com/profile.php?id=61588998865331'],
+    ['Kingdom Life', 'https://www.facebook.com/Kingdomlifeministry777'],
     ['Kingdom Life', 'PASTE_REAL_PAGE_URL_HERE'],
     ['Michael', 'https://www.facebook.com/MichaelBenYah777'],
     ['Rebekah', 'https://www.facebook.com/77rainbows'],
