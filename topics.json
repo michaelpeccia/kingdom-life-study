@@ -10613,7 +10613,7 @@
    "note": "A printable teaching handout. Scripture quoted from the World English Bible with the Names restored: YHWH, Yahshua, Elohim. Torah is referred to throughout as instructions, which is what the word means. Every scientific claim in this handout is linked to its source, so you can check it yourself.",
    "pdf": "handouts/Why-We-Dont-Eat-Pig-Handout.pdf",
    "pdfUrl": "https://app.kingdom-life-ministry.com/handouts/Why-We-Dont-Eat-Pig-Handout.pdf",
-   "pdfBytes": 118016,
+   "pdfBytes": 112244,
    "sections": [
     {
      "kicker": "WHAT THIS HANDOUT COVERS",
@@ -10908,8 +10908,8 @@
       },
       {
        "t": "c",
-       "v": "When modern medicine needs a stand in for human flesh, it does not reach for a cow, a sheep, a deer, or a goat. It reaches for the pig.",
-       "k": "2b91cd01"
+       "v": "When modern medicine needs an animal organ for a human body, it does not reach for a cow, a sheep, or a goat. It reaches for the pig.",
+       "k": "ee2d0fbb"
       },
       {
        "t": "h",
@@ -10955,8 +10955,8 @@
       },
       {
        "t": "p",
-       "v": "The pig is used as a model for human obesity and metabolic syndrome because it is omnivorous like we are, tends toward sedentary behavior and fattening like we do, and shares metabolic and cardiovascular features with us (swine metabolic syndrome study, PMC3354447). Not one of the other clean animals named in Leviticus 11 sits in that seat.",
-       "k": "89d4beb2"
+       "v": "The pig is used as a model for human obesity and metabolic syndrome because it is omnivorous like we are, tends toward sedentary behavior and fattening like we do, and shares metabolic and cardiovascular features with us (swine metabolic syndrome study, PMC3354447). Not one of the clean animals named in Leviticus 11 sits in that seat.",
+       "k": "400327df"
       }
      ],
      "collapsed": true
@@ -10974,11 +10974,11 @@
        "t": "l",
        "items": [
         "Do not say the pig is the closest genetic match to humans. It is not. Apes and primates are genetically closer, and that is not in dispute. The first person who knows it will use it to throw out everything else you said.",
-        "Say functional match instead. No surgeon puts a chimpanzee valve in a human chest. No hospital grafts monkey skin onto a burn ward patient. The pig is the animal our own medicine treats as nearly interchangeable with us at the operating table. That claim is true, verifiable, and it hits harder.",
+        "Say functional match instead. No surgeon puts a chimpanzee valve in a human chest. No hospital grafts monkey skin onto a burn ward patient. The pig is the animal our own medicine treats as the working stand in for us at the operating table. That claim is true, verifiable, and it hits harder.",
         "Do not claim the differences do not exist. They do. Burned pig skin does not behave mechanically like burned human skin (Gallagher et al., Scientific Reports 2022), and pig skin differs from human skin in stratum corneum thickness and blood vessel density. Naming the limits yourself is what makes the rest of it credible.",
         "Do not build the instruction on the science. If every finding here were reversed tomorrow, Leviticus 11:7 would still read exactly the same."
        ],
-       "k": "f240c15a"
+       "k": "3d569732"
       },
       {
        "t": "c",
@@ -10999,8 +10999,8 @@
       },
       {
        "t": "p",
-       "v": "But when we do look, when the microscopes finally catch up, we do not find an arbitrary rule. We find a Father who drew a line around the one animal whose flesh most closely mirrors the flesh of the man He made in His own image.",
-       "k": "618410ca"
+       "v": "But when we do look, when the microscopes finally catch up, we do not find an arbitrary rule. We find a Father who drew a line around an animal whose flesh our own medicine now uses to stand in for ours.",
+       "k": "65957fa9"
       },
       {
        "t": "q",
@@ -11122,10 +11122,10 @@
         "Clean and unclean were known in Noah's day, centuries before Sinai.",
         "The prophets were still naming pig's flesh centuries later, in judgment, not in food safety.",
         "Not one passage in the Renewed Covenant says the pig is clean. Every verse used is about something else.",
-        "Our own medicine treats pig flesh as the closest working stand in for human flesh on earth.",
+        "When our own medicine needs an animal organ for a human body, it reaches for the pig.",
         "And none of that is the reason. The reason is that He said so."
        ],
-       "k": "9effd445"
+       "k": "bc92e730"
       },
       {
        "t": "c",
@@ -11304,7 +11304,7 @@
      ]
     }
    ],
-   "words": 3423,
+   "words": 3418,
    "minutes": 17
   },
   {
@@ -18674,5 +18674,5 @@
   }
  ],
  "version": 1,
- "sha256": "eef9a16640350235"
+ "sha256": "bd10d5d814edebe8"
 }
