@@ -467,7 +467,7 @@ const TOPIC_SECTIONS = [
   ['Appointed Times',              ['the-sabbath', 'the-seven-feasts', 'yom-teruah', 'the-day-of-atonement', 'the-feast-of-tabernacles']],
   ['Set Apart Living',             ['why-we-dont-eat-pig', 'tithe']],
   ['Unholy Days',             ['halloween']],
-  ['Spiritual Warfare',            ['armor-of-elohim']],
+  ['Spiritual Warfare',            ['armor-of-elohim', 'the-jezebel-spirit']],
 ];
 
 /* Prayers live on their own screen off the Library, not inside Further
