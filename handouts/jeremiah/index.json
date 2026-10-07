@@ -2,7 +2,7 @@
   "schema": 2,
   "book": "Jeremiah",
   "slug": "jeremiah",
-  "updated": "2026-09-14",
+  "updated": "2026-10-07",
   "guides": [
     {
       "id": "jer-01-03",
@@ -107,6 +107,14 @@
       "date": "2026-09-19",
       "html": "jer-37-39.html",
       "pdf": "jer-37-39.pdf"
+    },
+    {
+      "id": "jer-40-42",
+      "title": "Asking YHWH With Your Mind Already Made Up",
+      "chapters": "Jeremiah 40 to 42",
+      "date": "2026-10-10",
+      "html": "jer-40-42.html",
+      "pdf": "jer-40-42.pdf"
     }
   ]
 }
