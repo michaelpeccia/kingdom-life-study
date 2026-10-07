@@ -357,6 +357,7 @@ function applyPrefs(){
   document.documentElement.dataset.theme = p.theme;
   document.documentElement.style.setProperty('--reading', p.size+'px');
   document.documentElement.style.setProperty('--lh', p.lh);
+  document.documentElement.style.setProperty('--pop', (p.pop || 16)+'px');
   document.body.classList.toggle('no-dropcap', !p.dropcap);
 }
 
@@ -1305,6 +1306,8 @@ function sheet(title, fill){
   $('#sheet-title').textContent = title;
   const body = $('#sheet-body'); body.innerHTML='';
   fill(body);
+  // passage popups get the A- / A+ size buttons, other sheets do not
+  $('#sheet-size').hidden = !body.querySelector('.vtext');
   $('#sheet').hidden = false;
 }
 function closeSheet(){ $('#sheet').hidden = true; }
@@ -1332,6 +1335,7 @@ function settingsSheet(){
     };
     body.append(mk('Text size','size',15,26,1));
     body.append(mk('Line spacing','lh',1.3,2.1,0.06));
+    body.append(mk('Popup text size','pop',14,34,2));
 
     [['showFn','Show footnote markers'],['dropcap','Drop capitals']].forEach(([k,label]) => {
       const o = el('div','opt'); o.append(el('span',null,label));
@@ -2419,6 +2423,10 @@ function bindUI(){
   $('#btn-settings').onclick = settingsSheet;
   $('#btn-chapters').onclick = chapterSheet;
   $('#sheet-close').onclick = closeSheet;
+  const popStep = d => { State.prefs.pop = Math.min(34, Math.max(14, (State.prefs.pop || 16) + d));
+    savePrefs(); applyPrefs(); };
+  $('#pop-minus').onclick = () => popStep(-2);
+  $('#pop-plus').onclick  = () => popStep(2);
   $('#sheet').onclick = e => { if (e.target.id==='sheet') closeSheet(); };
   $('#vb-close').onclick = hideVerseBar;
   $$('#vb-actions button, .vb-actions button').forEach(b => b.onclick = () => verseAction(b.dataset.act));
