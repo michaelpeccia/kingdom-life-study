@@ -466,7 +466,7 @@ const TOPIC_SECTIONS = [
   ['Marriage and Family',          ['yhwhs-design-for-marriage', 'husbands-love-your-wives', 'narcissistic-abuse', 'sex-before-marriage', 'polygamy']],
   ['The Sabbath',                  ['the-seventh-day', 'sabbath-fire-and-food']],
   ['Appointed Times',              ['the-sabbath', 'the-seven-feasts', 'yom-teruah', 'the-day-of-atonement', 'the-feast-of-tabernacles']],
-  ['Set Apart Living',             ['why-we-dont-eat-pig', 'tithe']],
+  ['Set Apart Living',             ['why-we-dont-eat-pig', 'tithe', 'walk-by-the-spirit']],
   ['Prophecy and Revelation',             ['two-witnesses-and-the-144000']],
   ['Unholy Days',             ['halloween']],
   ['Spiritual Warfare',            ['armor-of-elohim', 'the-jezebel-spirit']],
