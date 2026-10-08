@@ -9,7 +9,7 @@
    "note": "A printable deep dive study. Scripture quoted from the World English Bible, divine name rendered YHWH, Elohim, and Adonai, with the names Yahshua and Messiah restored. Hebrew and Greek words are given with their Strong’s numbers (H for Hebrew, G for Greek) so you can check every one for yourself.",
    "pdf": "handouts/Yahshua-Is-YHWH-Handout.pdf",
    "pdfUrl": "https://app.kingdom-life-ministry.com/handouts/Yahshua-Is-YHWH-Handout.pdf",
-   "pdfBytes": 682390,
+   "pdfBytes": 684458,
    "sections": [
     {
      "kicker": "WHAT THIS HANDOUT COVERS",
@@ -360,8 +360,8 @@
       {
        "t": "q",
        "ref": "Isaiah 9:6 (9:5 in Hebrew Bibles)",
-       "v": "“For a child is born to us. A son is given to us; and the government will be on his shoulders. His name will be called Wonderful Counselor, Mighty El, Everlasting Father, Prince of Peace.” pele yoetz, El gibbor, Avi ad, sar shalom El gibbor (H410, H1368): Mighty El. The child is called El, the singular word for God, with gibbor, mighty, warrior. Turn one chapter over: “A remnant will return, even the remnant of Jacob, to the Mighty El” (Isaiah 10:21). The exact same title, El gibbor, is used there of YHWH Himself. Avi ad (H1, H5703): Father of eternity. Av is father. Ad is perpetuity, forever, eternity. The child who is born is called the Father of eternity, the Everlasting Father. Not a messenger from the Father. Not an ambassador of the Father. Father.",
-       "k": "b44a987c"
+       "v": "“For a child is born to us. A son is given to us; and the government will be on his shoulders. His name will be called Wonderful Counselor, Mighty El, Everlasting Father, Prince of Peace.” pele yoetz, El gibbor, Avi ad, sar shalom El gibbor (H410, H1368): Mighty El. The child is called El, the singular word for God, with gibbor, mighty, warrior. Turn one chapter over: “A remnant will return, even the remnant of Jacob, to the Mighty El” (Isaiah 10:21). The exact same title, El gibbor, is used there of YHWH Himself. Avi ad (H1, H5703): Father of eternity. Av is father. Ad is perpetuity, forever, eternity. The child who is born is called the Father of eternity, the Everlasting Father. Not a messenger from the Father. Not an ambassador of the Father. Father. A NOTE ON THE TEXT. The Hebrew verb in this verse is active, vayikra, “and he called his name.” Many Jewish translations read it so that the titles name the One doing the calling, and the child is named only Prince of Peace. The grammar allows that reading, and it should be acknowledged. But the next verse still has to fit the child: “Of the increase of his government and of peace there shall be no end, on the throne of David… from that time on, even forever” (Isaiah 9:7). The Aramaic Targum of Isaiah, read in the synagogues, reads this child as the Messiah. So read Isaiah 9:6 alongside John 14:9-10 and Colossians 2:9 rather than resting on it alone.",
+       "k": "b5d31da6"
       },
       {
        "t": "q",
@@ -509,8 +509,13 @@
       },
       {
        "t": "p",
-       "v": "Parakletos appears only five times in the New Testament, all of them in John: four times of the Spirit (John 14:16, 26; 15:26; 16:7) and once by name of Yahshua Messiah (1 John 2:1). The same writer, the same word, the same Counselor. Read verse 16 with verse 18 and the meaning is plain: “He will give you another Counselor… I will come to you.” The Counselor who was with them in the flesh would come back to be in them by the Spirit. erchomai pros humas: I am coming to you. Present tense in John 14:18. Not “someone is coming in my place.” I am coming. Then in verse 23: “My Father will love him, and we will come to him, and make our home with him.” The Father and the Son come to make their home in the believer, and there is only one Spirit who lives in the believer.",
-       "k": "328e3df5"
+       "v": "Parakletos appears only five times in the New Testament, all of them in John: four times of the Spirit (John 14:16, 26; 15:26; 16:7) and once by name of Yahshua Messiah (1 John 2:1). The same writer, the same word, the same Counselor.",
+       "k": "164cb8d4"
+      },
+      {
+       "t": "p",
+       "v": "Read verse 16 with verse 18 and the meaning is plain: “He will give you another Counselor… I will come to you.” The Counselor who was with them in the flesh would come back to be in them by the Spirit. erchomai pros humas: I am coming to you. Present tense in John 14:18. Not “someone is coming in my place.” I am coming. Then in verse 23: “My Father will love him, and we will come to him, and make our home with him.” The Father and the Son come to make their home in the believer, and there is only one Spirit who lives in the believer.",
+       "k": "e8025e58"
       },
       {
        "t": "q",
@@ -972,7 +977,7 @@
     }
    ],
    "refIndex": [],
-   "words": 6506,
+   "words": 6627,
    "minutes": 33
   },
   {
@@ -23221,5 +23226,5 @@
   }
  ],
  "version": 1,
- "sha256": "5b820e22df6211f1"
+ "sha256": "5f2343ab8a762d68"
 }
