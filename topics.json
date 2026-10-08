@@ -2,6 +2,980 @@
  "packFormat": 1,
  "topics": [
   {
+   "id": "yahshua-is-yhwh",
+   "title": "Yahshua Is YHWH",
+   "subtitle": "The Father, the Son, and the Spirit Are One A Deep Dive into the Hebrew and Greek",
+   "lede": "YHWH did not send a second person to save us. He came Himself. The invisible Father dwelt fully in the visible Son, and He comes to live in us by His Spirit. One Elohim. One Name. One Savior. And His name is Yahshua.",
+   "note": "A printable deep dive study. Scripture quoted from the World English Bible, divine name rendered YHWH, Elohim, and Adonai, with the names Yahshua and Messiah restored. Hebrew and Greek words are given with their Strong’s numbers (H for Hebrew, G for Greek) so you can check every one for yourself.",
+   "pdf": "handouts/Yahshua-Is-YHWH-Handout.pdf",
+   "pdfUrl": "https://app.kingdom-life-ministry.com/handouts/Yahshua-Is-YHWH-Handout.pdf",
+   "pdfBytes": 681879,
+   "sections": [
+    {
+     "kicker": "WHAT THIS HANDOUT COVERS",
+     "heading": "",
+     "blocks": [
+      {
+       "t": "l",
+       "items": [
+        "The Shema in Hebrew, and what the word echad does and does not mean.",
+        "The one Name: from the burning bush, to the name above every name, to baptism.",
+        "Passages written about YHWH that the apostles apply directly to Yahshua.",
+        "Yahshua is the Father: Isaiah 9:6 in Hebrew, John 14, and the fullness of the Deity bodily.",
+        "Yahshua is the Holy Spirit: the Comforter, “Adonai is the Spirit,” and the breath of John 20:22.",
+        "Man made in His image: spirit, soul, and body, one man, and where that picture stops.",
+        "The hard passages answered one at a time, plus a Hebrew and Greek word index."
+       ],
+       "k": "01ec176a"
+      }
+     ]
+    },
+    {
+     "kicker": "BEFORE WE BEGIN",
+     "heading": "How to Read This Study",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "This study is built to be checked. Every verse is written out, every Hebrew and Greek word comes with its Strong’s number, and wherever a manuscript reading or a point of grammar is debated, you will find a gold box marked A Note on the Text. Those notes are there on purpose. A teaching that can only stand when the hard parts are hidden is not worth standing on.",
+       "k": "b32a200e"
+      },
+      {
+       "t": "p",
+       "v": "One rule runs through the whole handout: where Scripture stops speaking, we stop. An illustration can help us see a truth, but only Scripture can tell us what is true. So the illustration of spirit, soul, and body comes near the end, after the verses have already done the work.",
+       "k": "4de7d880"
+      },
+      {
+       "t": "p",
+       "v": "We are also not here to win an argument against anyone. Many who love Yahshua describe Him differently. Our aim is to open the text, let it say what it says, and worship the One it reveals.",
+       "k": "4488cc67"
+      },
+      {
+       "t": "q",
+       "ref": "Acts 17:11",
+       "v": "“Now these were more noble than those in Thessalonica, in that they received the word with all readiness of the mind, examining the Scriptures daily to see whether these things were so.”",
+       "k": "274c8617"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "PART I",
+     "heading": "Hear, O Israel: YHWH Is One",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "Everything begins with the confession Yahshua Himself called the first of all the commandments. Israel spoke it morning and evening. It is the foundation stone, and every other verse in this study has to fit on top of it.",
+       "k": "528c4375"
+      },
+      {
+       "t": "c",
+       "v": "Shema Yisra’el, YHWH Eloheinu, YHWH echad",
+       "k": "0ba58be6"
+      },
+      {
+       "t": "q",
+       "ref": "Deuteronomy 6:4",
+       "v": "“Hear, Israel: YHWH is our Elohim. YHWH is one.” echad (H259): one. The ordinary Hebrew word for the number one. It can describe a single thing made of parts, as in “one flesh” (Genesis 2:24) or one cluster of grapes (Numbers 13:23), but its plain meaning is simply one. Some build a doctrine of three persons on the idea of a “compound” one; others build the opposite on the absence of yachid (H3173, only, solitary). Neither word can carry that weight alone. Let the word mean what it means, one, and let the rest of Scripture show us who the One is. Elohim (H430): God, mighty one. Plural in form, but when it names the true Elohim it takes singular verbs: “In the beginning Elohim created” (Genesis 1:1, bara, a singular verb). The same plural form is used of a single man, Moses: “I have made you as Elohim to Pharaoh” (Exodus 7:1), and of a single false god, Chemosh (Judges 11:24). The plural form speaks of majesty and fullness. It does not count persons.",
+       "k": "0b3eb3d0"
+      },
+      {
+       "t": "p",
+       "v": "When a scribe asked Yahshua which commandment was first, He did not revise the Shema. He quoted it.",
+       "k": "8869f5d7"
+      },
+      {
+       "t": "q",
+       "ref": "Mark 12:29",
+       "v": "“Yahshua answered, ‘The greatest is: “Hear, Israel, Adonai our Elohim, Adonai is one.”’” heis (G1520): one. The Greek of Mark 12:29 is kurios heis estin, “the Lord is one,” with the masculine form of one. This is the same Shema, carried into Greek on the lips of Yahshua Himself.",
+       "k": "8ef21aad"
+      },
+      {
+       "t": "h",
+       "v": "He Says It Again and Again",
+       "k": "c25a4067"
+      },
+      {
+       "t": "p",
+       "v": "Through the prophets, YHWH repeats the point so often that it cannot be missed. Notice especially the words alone, by myself, and besides me.",
+       "k": "488af8b0"
+      },
+      {
+       "t": "q",
+       "ref": "Isaiah 43:10-11",
+       "v": "“…Before me there was no Elohim formed, neither will there be after me. I myself am YHWH. Besides me, there is no savior.”",
+       "k": "d16aa0c0"
+      },
+      {
+       "t": "q",
+       "ref": "Isaiah 44:6",
+       "v": "“This is what YHWH, the King of Israel, and his Redeemer, YHWH of Armies, says: ‘I am the first, and I am the last; and besides me there is no Elohim.’”",
+       "k": "45a111d9"
+      },
+      {
+       "t": "q",
+       "ref": "Isaiah 44:24",
+       "v": "“YHWH, your Redeemer, and he who formed you from the womb says: ‘I am YHWH, who makes all things; who alone stretches out the heavens; who spreads out the earth by myself.’”",
+       "k": "10d33f5c"
+      },
+      {
+       "t": "q",
+       "ref": "Isaiah 45:5",
+       "v": "“I am YHWH, and there is no one else. Besides me, there is no Elohim.” moshia (H3467): savior, deliverer. From yasha, to save, to deliver. Hold on to this root. YHWH says there is no moshia besides Him (Isaiah 43:11). In Part II we will see that the name of the Messiah is built from this very word.",
+       "k": "35c86ca9"
+      },
+      {
+       "t": "c",
+       "v": "YHWH alone is Savior. YHWH alone is Creator. YHWH alone stretched out the heavens, by Himself. Keep those three “alones” in hand. The apostles are about to give all three to Yahshua.",
+       "k": "116ed5c1"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "PART II",
+     "heading": "One Name",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "In Scripture a name is not a label. It is a revelation of who someone is. So the question is not only how many YHWH is, but what His name is, and Scripture answers that question in a line that runs from a burning bush to the end of the book.",
+       "k": "fad8f61e"
+      },
+      {
+       "t": "q",
+       "ref": "Exodus 3:14-15",
+       "v": "“Elohim said to Moses, ‘I AM WHO I AM,’ and he said, ‘You shall tell the children of Israel this: “I AM has sent me to you.”’ …This is my name forever, and this is my memorial to all generations.” ehyeh asher ehyeh: I AM WHO I AM. From hayah (H1961), to be. The Name YHWH is formed from this same verb: the One who is, the self existing One. Hold this next to the Greek below.",
+       "k": "5a6d7e77"
+      },
+      {
+       "t": "q",
+       "ref": "John 8:58-59",
+       "v": "“Yahshua said to them, ‘Most certainly, I tell you, before Abraham came into existence, I AM.’ Therefore they took up stones to throw at him…” ego eimi (G1473, G1510): I AM. Not “before Abraham was, I was,” but I AM, the same words the Greek Septuagint uses for the Name in Exodus 3:14. The crowd understood Him perfectly. That is why they picked up stones.",
+       "k": "6992692e"
+      },
+      {
+       "t": "h",
+       "v": "The Name of the Son",
+       "k": "00fe3296"
+      },
+      {
+       "t": "q",
+       "ref": "Matthew 1:21",
+       "v": "“She shall give birth to a son. You shall name him Yahshua, for it is he who shall save his people from their sins.” Yehoshua (H3091): YHWH saves. The Hebrew name joins the short form of the Name, Yah, with yasha, to save. It is shortened in the later books to Yeshua and carried into Greek as Iesous (G2424). Remember Isaiah 43:11, “besides me, there is no savior.” The angel did not give the child a name that points away from YHWH. He gave a name that says YHWH Himself is the one who saves, and then said he shall save.",
+       "k": "40139c5b"
+      },
+      {
+       "t": "q",
+       "ref": "John 5:43",
+       "v": "“I have come in my Father’s name, and you don’t receive me.”",
+       "k": "6b6236e1"
+      },
+      {
+       "t": "q",
+       "ref": "John 17:11",
+       "v": "“…Holy Father, keep them through your name which you have given me, that they may be one, even as we are.”",
+       "k": "46b40c22"
+      },
+      {
+       "t": "p",
+       "v": "The Father’s name was given to the Son. He came carrying it. And so when Yahshua tells His disciples to baptize, He uses a singular word.",
+       "k": "ba23c560"
+      },
+      {
+       "t": "q",
+       "ref": "Matthew 28:19",
+       "v": "“Go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.” onoma (G3686): name, singular. eis to onoma, “into the name.” Not names. Father, Son, and Holy Spirit are titles; the instruction is to baptize into one name. The apostles show us what that name is, every single time a baptism is described.",
+       "k": "89b50c3a"
+      },
+      {
+       "t": "q",
+       "ref": "Acts 2:38",
+       "v": "“Peter said to them, ‘Repent, and be baptized, every one of you, in the name of Yahshua Messiah for the forgiveness of sins, and you will receive the gift of the Holy Spirit.’”",
+       "k": "d0e18c1b"
+      },
+      {
+       "t": "l",
+       "items": [
+        "Acts 8:16, the Samaritans were baptized in the name of Adonai Yahshua.",
+        "Acts 10:48, Cornelius’ house was baptized in the name of Yahshua Messiah.",
+        "Acts 19:5, the disciples at Ephesus were baptized in the name of Adonai Yahshua."
+       ],
+       "k": "e6c40a77"
+      },
+      {
+       "t": "q",
+       "ref": "Acts 4:12",
+       "v": "“There is salvation in no one else, for there is no other name under heaven, that is given among men, by which we must be saved!”",
+       "k": "62f8082e"
+      },
+      {
+       "t": "q",
+       "ref": "Zechariah 14:9",
+       "v": "“YHWH will be King over all the earth. In that day YHWH will be one, and his name one.”",
+       "k": "8b778324"
+      },
+      {
+       "t": "p",
+       "v": "And YHWH said He would not share His glory with another (Isaiah 42:8). Yet here is Paul, taking a sentence YHWH swore by Himself and setting the name of Yahshua inside it.",
+       "k": "a6155f04"
+      },
+      {
+       "t": "q",
+       "ref": "Isaiah 45:23",
+       "v": "“I have sworn by myself. The word has gone out of my mouth in righteousness, and will not be revoked, that to me every knee shall bow, every tongue shall take an oath.”",
+       "k": "cf387235"
+      },
+      {
+       "t": "q",
+       "ref": "Philippians 2:10-11",
+       "v": "“…that at the name of Yahshua every knee should bow, of those in heaven, those on earth, and those under the earth, and that every tongue should confess that Yahshua Messiah is Adonai, to the glory of Elohim the Father.”",
+       "k": "9e3eebf5"
+      },
+      {
+       "t": "c",
+       "v": "Every knee bows to YHWH. Every knee bows at the name of Yahshua. Either YHWH gave His glory to another, which He said He would never do, or the name of Yahshua is the name of YHWH.",
+       "k": "062dd92c"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "PART III",
+     "heading": "Written of YHWH, Fulfilled in Yahshua",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "This may be the quietest part of the study, and the strongest. Again and again the apostles take a passage that is plainly about YHWH and apply it to Yahshua without hesitation and without explanation, as though it were obvious. To them, it was.",
+       "k": "5211f7dd"
+      },
+      {
+       "t": "c",
+       "v": "Isaiah 40:3, prepare the way of YHWH: Matthew 3:3; Mark 1:3; Luke 3:4; John 1:23",
+       "k": "969127c2"
+      },
+      {
+       "t": "l",
+       "items": [
+        "Malachi 3:1, the Master will suddenly come to his temple: Mark 1:2; Matthew 11:10"
+       ],
+       "k": "c5e34745"
+      },
+      {
+       "t": "c",
+       "v": "Joel 2:32, whoever calls on the name of YHWH will be saved: Romans 10:9-13; Acts 2:21, 36 Isaiah 45:23, to me every knee shall bow: Philippians 2:10-11; Romans 14:11",
+       "k": "2f506057"
+      },
+      {
+       "t": "l",
+       "items": [
+        "Zechariah 12:10, they will look to me whom they have pierced: John 19:37; Revelation 1:7",
+        "Psalm 102:25-27, YHWH laid the foundation of the earth: Hebrews 1:10-12"
+       ],
+       "k": "4a62fb47"
+      },
+      {
+       "t": "c",
+       "v": "Isaiah 8:13-14, YHWH a stone of stumbling: 1 Peter 2:7-8; Romans 9:33",
+       "k": "ae5f28c1"
+      },
+      {
+       "t": "l",
+       "items": [
+        "Exodus 3:14, I AM: John 8:58"
+       ],
+       "k": "7dcdc119"
+      },
+      {
+       "t": "c",
+       "v": "Isaiah 44:6, the first and the last: Revelation 1:17-18; 22:13 Isaiah 6:1-5, Isaiah saw the King, YHWH of Armies: John 12:41",
+       "k": "fc617fb1"
+      },
+      {
+       "t": "l",
+       "items": [
+        "Psalm 23:1; Ezekiel 34:11-15, YHWH my shepherd: John 10:11; Hebrews 13:20 Isaiah 54:5, your Maker is your husband: John 3:29; Ephesians 5:25-32; Revelation 19:7"
+       ],
+       "k": "c0429825"
+      },
+      {
+       "t": "h",
+       "v": "Isaiah Saw His Glory",
+       "k": "16aaed8c"
+      },
+      {
+       "t": "q",
+       "ref": "Isaiah 6:1, 5",
+       "v": "“…I saw Adonai sitting on a throne, high and lifted up… for my eyes have seen the King, YHWH of Armies!”",
+       "k": "22df4234"
+      },
+      {
+       "t": "q",
+       "ref": "John 12:41",
+       "v": "“Isaiah said these things when he saw his glory, and spoke of him.”",
+       "k": "46961514"
+      },
+      {
+       "t": "p",
+       "v": "John has just quoted Isaiah 6:10 in the verse before. The glory Isaiah saw on the throne was the glory of YHWH of Armies, and John says it was the glory of Yahshua.",
+       "k": "1d756860"
+      },
+      {
+       "t": "h",
+       "v": "The Pierced One",
+       "k": "a768c833"
+      },
+      {
+       "t": "q",
+       "ref": "Zechariah 12:10",
+       "v": "“…and they will look to me whom they have pierced…”",
+       "k": "1735fd57"
+      },
+      {
+       "t": "p",
+       "v": "The speaker is YHWH, and the word in Hebrew is elai, “to me.” YHWH says He will be pierced. John 19:37 says this was fulfilled at the cross.",
+       "k": "cc749398"
+      },
+      {
+       "t": "h",
+       "v": "My Adonai and My Elohim",
+       "k": "f78ca6c2"
+      },
+      {
+       "t": "q",
+       "ref": "John 20:28",
+       "v": "“Thomas answered him, ‘My Adonai and my Elohim!’” ho kurios mou kai ho theos mou (G2962, G2316). My Lord and my God, spoken to Yahshua (“answered him”), with the article on both titles. This is the Greek Septuagint’s way of saying Adonai and Elohim (compare Psalm 35:23). Yahshua did not correct him. He blessed those who would believe the same without seeing.",
+       "k": "dea4fc04"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "PART IV",
+     "heading": "Yahshua Is the Father",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "In our last teaching we walked through why Yahshua is the Father. Here is that foundation again, now with the Hebrew and Greek underneath it.",
+       "k": "6ac0eb6d"
+      },
+      {
+       "t": "q",
+       "ref": "Isaiah 9:6 (9:5 in Hebrew Bibles)",
+       "v": "“For a child is born to us. A son is given to us; and the government will be on his shoulders. His name will be called Wonderful Counselor, Mighty El, Everlasting Father, Prince of Peace.” pele yoetz, El gibbor, Avi ad, sar shalom El gibbor (H410, H1368): Mighty El. The child is called El, the singular word for God, with gibbor, mighty, warrior. Turn one chapter over: “A remnant will return, even the remnant of Jacob, to the Mighty El” (Isaiah 10:21). The exact same title, El gibbor, is used there of YHWH Himself. Avi ad (H1, H5703): Father of eternity. Av is father. Ad is perpetuity, forever, eternity. The child who is born is called the Father of eternity, the Everlasting Father. Not a messenger from the Father. Not an ambassador of the Father. Father.",
+       "k": "b44a987c"
+      },
+      {
+       "t": "q",
+       "ref": "Isaiah 63:16",
+       "v": "“For you are our Father… You, YHWH, are our Father. Our Redeemer from everlasting is your name.” go’el (H1350): kinsman redeemer. The redeemer had to be a near relative, flesh and blood kin (Leviticus 25:25; Ruth 4:4-6). YHWH calls Himself Israel’s Go’el (Isaiah 44:6, 24; 54:5). To redeem as a kinsman, the Redeemer had to become kin. That is exactly what John 1:14 says He did.",
+       "k": "0a6a27f7"
+      },
+      {
+       "t": "h",
+       "v": "Who Fathered the Child?",
+       "k": "985551d9"
+      },
+      {
+       "t": "q",
+       "ref": "Matthew 1:20",
+       "v": "“…for that which is conceived in her is of the Holy Spirit.”",
+       "k": "b3f30c2e"
+      },
+      {
+       "t": "q",
+       "ref": "Luke 1:35",
+       "v": "“The Holy Spirit will come on you, and the power of the Most High will overshadow you. Therefore also the holy one who is born from you will be called the Son of Elohim.”",
+       "k": "1dac52f8"
+      },
+      {
+       "t": "p",
+       "v": "Matthew says the child was conceived of the Holy Spirit. Yet Yahshua never once calls the Holy Spirit His Father. He calls YHWH His Father. A child does not have two fathers. The Holy Spirit who overshadowed Mary and the Father of Yahshua are not two. They are one.",
+       "k": "50522efe"
+      },
+      {
+       "t": "h",
+       "v": "Show Us the Father",
+       "k": "145b324f"
+      },
+      {
+       "t": "q",
+       "ref": "John 14:8-10",
+       "v": "“Philip said to him, ‘Adonai, show us the Father, and that will be enough for us.’ Yahshua said to him, ‘Have I been with you such a long time, and do you not know me, Philip? He who has seen me has seen the Father. How do you say, “Show us the Father?” Don’t you believe that I am in the Father, and the Father in me? The words that I tell you, I speak not from myself; but the Father who lives in me does his works.’”",
+       "k": "e2557bcc"
+      },
+      {
+       "t": "p",
+       "v": "Philip asked to see the Father. Yahshua did not say, “I can show you the way to Him.” He said, you are looking at Him. And do not skip the last line. The Father who lives in me does his works. The Son is the visible Man; the Father is the One living in Him and working through Him. That one sentence is the key to most of the hard passages in Part IX.",
+       "k": "1954eedc"
+      },
+      {
+       "t": "q",
+       "ref": "John 10:30",
+       "v": "“I and the Father are one.” A NOTE ON THE TEXT. In John 10:30 the Greek word for one is hen, the neuter form, not heis, the masculine. Taken alone, the neuter means one thing, one in nature and unity, and it does not by itself say one person. Others will point that out, and they are right about the grammar. This study does not rest on John 10:30 alone. It rests on John 14:9, Isaiah 9:6, and Colossians 2:9 standing together with it. Notice how the crowd heard it: they took up stones because, they said, “you, being a man, make yourself Elohim” (John 10:33).",
+       "k": "f6bc3582"
+      },
+      {
+       "t": "q",
+       "ref": "John 12:45",
+       "v": "“He who sees me sees him who sent me.”",
+       "k": "9bffba68"
+      },
+      {
+       "t": "h",
+       "v": "The Invisible Made Visible",
+       "k": "1327a4ee"
+      },
+      {
+       "t": "q",
+       "ref": "John 1:18",
+       "v": "“No one has seen Elohim at any time. The one and only Son, who is in the bosom of the Father, he has declared him.”",
+       "k": "1a5e2b7e"
+      },
+      {
+       "t": "q",
+       "ref": "John 1:1, 14",
+       "v": "“In the beginning was the Word, and the Word was with Elohim, and the Word was Elohim… The Word became flesh, and lived among us. We saw his glory, such glory as of the only born of the Father, full of grace and truth.” sarx egeneto kai eskenosen (G4561, G4637). “Became flesh and tabernacled.” The verb skenoo comes from skene, the word the Septuagint uses for the tabernacle. The glory that filled the tent in the wilderness (Exodus 40:34) came and pitched His tent in a body.",
+       "k": "ca832116"
+      },
+      {
+       "t": "q",
+       "ref": "Colossians 1:15",
+       "v": "“He is the image of the invisible Elohim, the firstborn of all creation.” eikon (G1504): image. A visible likeness of something. Not a copy of a second being, but the visible form of the invisible One. Hold this word for Part VII, because man was made in the image too.",
+       "k": "8a4a1efb"
+      },
+      {
+       "t": "q",
+       "ref": "Colossians 2:9",
+       "v": "“For in him all the fullness of the Deity dwells bodily.” theotes (G2320) and somatikos (G4985). Theotes is used only here in the whole New Testament: the Deity itself, the very being of Elohim, not merely His qualities (compare theiotes in Romans 1:20). Somatikos means bodily, in a body. Not a third of the Deity. All the fullness of it, living in one body.",
+       "k": "e316bf1c"
+      },
+      {
+       "t": "q",
+       "ref": "Hebrews 1:3",
+       "v": "“His Son is the radiance of his glory, the very image of his substance…” charakter tes hupostaseos (G5481, G5287). Charakter, used only here in the New Testament, is the exact impression a seal or stamp leaves in wax. Hupostasis is substance, underlying reality. The Son is the exact impression of the Father’s own substance: what the invisible seal looks like when it is pressed into the world.",
+       "k": "8d820175"
+      },
+      {
+       "t": "q",
+       "ref": "Isaiah 7:14 with Matthew 1:23",
+       "v": "“Behold, the virgin shall be with child, and shall give birth to a son. They shall call his name Immanuel; which is, being interpreted, ‘Elohim with us.’”",
+       "k": "7af7d443"
+      },
+      {
+       "t": "q",
+       "ref": "1 Timothy 3:16",
+       "v": "“Without controversy, the mystery of godliness is great: Elohim was revealed in the flesh, justified in the spirit, seen by angels, preached among the nations, believed on in the world, and received up in glory.” A NOTE ON THE TEXT. The World English Bible and the King James follow manuscripts that read theos, Elohim, in 1 Timothy 3:16. Many older manuscripts read hos, “he who,” which is why many modern versions say “he was manifested in the flesh.” Either way, the one revealed in flesh is the Messiah of verse 16. Use this verse knowing the difference, and lean on John 1:14 and Colossians 2:9, which no manuscript dispute touches.",
+       "k": "17401b5a"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "PART V",
+     "heading": "Yahshua Is the Holy Spirit",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "If the Father is the invisible One who dwelt in the Son, then the Spirit is that same One dwelling in us. Start with the words themselves. ruach (H7307): spirit, breath, wind. The same word is breath in a body, wind across the land, and the Spirit of Elohim hovering over the waters (Genesis 1:2). In Hebrew thought the spirit is not a separate being from the one who breathes it. It is His own breath, His own life, going out. pneuma (G4151): spirit, breath, wind. The Greek equivalent of ruach, with the same range: wind (John 3:8), breath, and spirit. Yahshua said, “Elohim is spirit” (John 4:24, pneuma ho theos). The Father is Spirit. The Holy Spirit is Spirit. Scripture never describes two Spirits of Elohim.",
+       "k": "1902d287"
+      },
+      {
+       "t": "q",
+       "ref": "John 4:24",
+       "v": "“Elohim is spirit, and those who worship him must worship in spirit and truth.”",
+       "k": "2b3b797b"
+      },
+      {
+       "t": "h",
+       "v": "I Will Come to You",
+       "k": "fdc6613b"
+      },
+      {
+       "t": "q",
+       "ref": "John 14:16-18",
+       "v": "“I will pray to the Father, and he will give you another Counselor, that he may be with you forever: the Spirit of truth, whom the world can’t receive, for it doesn’t see him and doesn’t know him. You know him, for he lives with you, and will be in you. I will not leave you orphans. I will come to you.”",
+       "k": "c0a08d78"
+      },
+      {
+       "t": "q",
+       "ref": "allon parakleton (G243, G3875): another Counselor. Allos generally means another of the same kind, where heteros",
+       "v": "(G2087) would mean another of a different kind. Parakletos is one called alongside to help: an advocate, a counselor. Now watch where else John uses this word.",
+       "k": "ccbc1454"
+      },
+      {
+       "t": "q",
+       "ref": "1 John 2:1",
+       "v": "“…If anyone sins, we have a Counselor with the Father, Yahshua Messiah, the righteous.”",
+       "k": "7a43be36"
+      },
+      {
+       "t": "p",
+       "v": "Parakletos appears only five times in the New Testament, all of them in John: four times of the Spirit (John 14:16, 26; 15:26; 16:7) and once by name of Yahshua Messiah (1 John 2:1). The same writer, the same word, the same Counselor. Read verse 16 with verse 18 and the meaning is plain: “He will give you another Counselor… I will come to you.” The Counselor who was with them in the flesh would come back to be in them by the Spirit. erchomai pros humas: I am coming to you. Present tense in John 14:18. Not “someone is coming in my place.” I am coming. Then in verse 23: “My Father will love him, and we will come to him, and make our home with him.” The Father and the Son come to make their home in the believer, and there is only one Spirit who lives in the believer.",
+       "k": "328e3df5"
+      },
+      {
+       "t": "q",
+       "ref": "John 14:26",
+       "v": "“But the Counselor, the Holy Spirit, whom the Father will send in my name, will teach you all things…”",
+       "k": "c6f0e0ab"
+      },
+      {
+       "t": "p",
+       "v": "Sent in my name. The Spirit comes carrying the same Name the Son came carrying (John 5:43).",
+       "k": "b8f6f45e"
+      },
+      {
+       "t": "h",
+       "v": "Adonai Is the Spirit",
+       "k": "a2988401"
+      },
+      {
+       "t": "q",
+       "ref": "2 Corinthians 3:17",
+       "v": "“Now Adonai is the Spirit and where the Spirit of Adonai is, there is freedom.” ho de kurios to pneuma estin. Literally, “and the Lord, the Spirit is.” Verse 16 is drawn from Exodus 34:34, where Moses went in before YHWH and took the veil off. Paul says that same Adonai is the Spirit. Then verse 18 continues: we are transformed into the same image, “as from Adonai, the Spirit.”",
+       "k": "37defe47"
+      },
+      {
+       "t": "h",
+       "v": "Three Names for One Spirit",
+       "k": "470ac7d7"
+      },
+      {
+       "t": "q",
+       "ref": "Romans 8:9-11",
+       "v": "“But you are not in the flesh but in the Spirit, if it is so that the Spirit of Elohim dwells in you. But if any man doesn’t have the Spirit of Messiah, he is not his. If Messiah is in you, the body is dead because of sin, but the spirit is alive because of righteousness. But if the Spirit of him who raised up Yahshua from the dead dwells in you…”",
+       "k": "d41fb3aa"
+      },
+      {
+       "t": "p",
+       "v": "In three verses Paul calls the one indwelling Spirit the Spirit of Elohim, the Spirit of Messiah, and simply Messiah in you. He is not describing three guests. He is describing one, three ways.",
+       "k": "20223ca4"
+      },
+      {
+       "t": "q",
+       "ref": "Galatians 4:6",
+       "v": "“And because you are children, Elohim sent out the Spirit of his Son into your hearts, crying, ‘Abba, Father!’”",
+       "k": "1c549c7e"
+      },
+      {
+       "t": "q",
+       "ref": "Philippians 1:19",
+       "v": "“For I know that this will turn out for my salvation, through your supplication and the supply of the Spirit of Yahshua Messiah.”",
+       "k": "6f5d6d59"
+      },
+      {
+       "t": "q",
+       "ref": "1 Peter 1:11",
+       "v": "“…searching for who or what kind of time the Spirit of Messiah, which was in them, pointed to, when he predicted the sufferings of Messiah, and the glories that would follow them.”",
+       "k": "6fa5177f"
+      },
+      {
+       "t": "p",
+       "v": "Peter says the Spirit that spoke through the prophets of old was the Spirit of Messiah. The Spirit who moved on Isaiah and Jeremiah was His.",
+       "k": "c281c5b1"
+      },
+      {
+       "t": "c",
+       "v": "A NOTE ON THE TEXT. Acts 16:7 reads “the Spirit of Yahshua” in the oldest manuscripts, but the World English Bible follows manuscripts that read only “the Spirit.” It is left out of this study’s main case so no one can say we leaned on a reading the WEB does not carry. Galatians 4:6 and Philippians 1:19 say the same thing without any dispute.",
+       "k": "2f5e53bc"
+      },
+      {
+       "t": "h",
+       "v": "The Breath of Life",
+       "k": "f32cec60"
+      },
+      {
+       "t": "q",
+       "ref": "Genesis 2:7",
+       "v": "“YHWH Elohim formed man from the dust of the ground, and breathed into his nostrils the breath of life; and man became a living soul.”",
+       "k": "4ee9fa00"
+      },
+      {
+       "t": "q",
+       "ref": "John 20:22",
+       "v": "“When he had said this, he breathed on them, and said to them, ‘Receive the Holy Spirit!’” enephusesen, from emphusao (G1720): breathed into. This verb appears only once in the entire New Testament, here. It is the very word the Greek Septuagint uses in Genesis 2:7 when YHWH Elohim breathed into Adam, and in Ezekiel 37:9 when the breath came into the dry bones. In the garden, YHWH breathed and man became a living soul. In the upper room, Yahshua breathed the same way and said, receive the Holy Spirit. The One who breathed then is the One breathing now.",
+       "k": "53c7bfce"
+      },
+      {
+       "t": "q",
+       "ref": "1 Corinthians 15:45",
+       "v": "“So also it is written, ‘The first man, Adam, became a living soul.’ The last Adam became a life-giving spirit.” pneuma zoopoioun (G4151, G2227). A life making spirit. Paul quotes Genesis 2:7 for the first Adam, then says of the last Adam, Yahshua, that He became the very thing that gives life: the Spirit.",
+       "k": "691f5419"
+      },
+      {
+       "t": "c",
+       "v": "He promised, “I will come to you.” He breathed and said, “Receive.” Paul says, “Adonai is the Spirit.” The Spirit living in you is not a stand in for an absent Messiah. It is the Messiah Himself, in you, the hope of glory (Colossians 1:27).",
+       "k": "b4fc776c"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "PART VI",
+     "heading": "One Throne, One Face, One Name",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "When the last chapter of the book closes, John does not see three thrones. Read the pronouns slowly.",
+       "k": "76161e14"
+      },
+      {
+       "t": "q",
+       "ref": "Revelation 22:3-4",
+       "v": "“…The throne of Elohim and of the Lamb will be in it, and his servants will serve him. They will see his face, and his name will be on their foreheads.”",
+       "k": "2f27168b"
+      },
+      {
+       "t": "p",
+       "v": "Elohim and the Lamb, and then: his servants, serve him, see his face, his name. One throne. One face. One name on the forehead.",
+       "k": "6bcd6bf3"
+      },
+      {
+       "t": "q",
+       "ref": "Revelation 1:8",
+       "v": "“‘I am the Alpha and the Omega,’ says Adonai Elohim, ‘who is and who was and who is to come, the Almighty.’”",
+       "k": "a062802f"
+      },
+      {
+       "t": "q",
+       "ref": "Revelation 1:17-18",
+       "v": "“…I am the first and the last, and the Living one. I was dead, and behold, I am alive forever and ever.”",
+       "k": "2259abe4"
+      },
+      {
+       "t": "p",
+       "v": "Isaiah 44:6 says YHWH is the first and the last, and besides Him there is no Elohim. In Revelation 1:17-18 the first and the last is the One who was dead and is alive. Only one person in all of Scripture died and rose to live forever.",
+       "k": "0347b50a"
+      },
+      {
+       "t": "q",
+       "ref": "Colossians 3:11",
+       "v": "“…but Messiah is all, and in all.”",
+       "k": "7c94c546"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "PART VII",
+     "heading": "Made in His Image: Spirit, Soul, and Body",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "Now that Scripture has spoken, we can look at the picture YHWH built into us. Man was made in the image of Elohim, and man is one person with a spirit, a soul, and a body.",
+       "k": "1dff6c51"
+      },
+      {
+       "t": "q",
+       "ref": "Genesis 1:26-27",
+       "v": "“Elohim said, ‘Let’s make man in our image, after our likeness…’ Elohim created man in his own image. In Elohim’s image he created him; male and female he created them.” tselem (H6754) and demut (H1823). Tselem is image, a representation, the word used for a carved or cast figure. Demut is likeness, resemblance. Notice that verse 27 answers verse 26 in the singular: his own image, he created. The same pair is used when “Adam… became the father of a son in his own likeness, after his image” (Genesis 5:3). Seth was not Adam, but he bore Adam’s pattern.",
+       "k": "e0b2bd95"
+      },
+      {
+       "t": "h",
+       "v": "How Man Was Made",
+       "k": "d751988e"
+      },
+      {
+       "t": "p",
+       "v": "Genesis 2:7 shows the pattern in the order it happened: a body formed, breath given, and a living soul as the result. aphar, neshamah, nephesh: dust, breath, soul aphar (H6083), dust, earth: “formed man from the dust of the ground”: the body",
+       "k": "f04c360b"
+      },
+      {
+       "t": "l",
+       "items": [
+        "neshamah (H5397), breath, the breath of life: “breathed into his nostrils the breath of life”: from Elohim, the spirit",
+        "nephesh (H5315), soul, living being, self: “man became a living soul”: the person"
+       ],
+       "k": "e830b9d2"
+      },
+      {
+       "t": "q",
+       "ref": "Ecclesiastes 12:7",
+       "v": "“…and the dust returns to the earth as it was, and the spirit returns to Elohim who gave it.”",
+       "k": "fda96df5"
+      },
+      {
+       "t": "q",
+       "ref": "1 Thessalonians 5:23",
+       "v": "“May the Elohim of peace himself sanctify you completely. May your whole spirit, soul, and body be preserved blameless at the coming of our Adonai Yahshua Messiah.” holokleron humon to pneuma kai he psuche kai to soma holokleros (G3648): whole, complete in every part. From holos, whole, and kleros, a portion or lot: entire in all its portions. Paul names three parts, pneuma (G4151, spirit), psuche (G5590, soul), and soma (G4983, body), and he prays that the one person would be kept whole. Three are named. One man is kept.",
+       "k": "eaa50e58"
+      },
+      {
+       "t": "q",
+       "ref": "Hebrews 4:12",
+       "v": "“For the word of Elohim is living, and active, and sharper than any two-edged sword, and piercing even to the dividing of soul and spirit, of both joints and marrow, and is quick to discern the thoughts and intentions of the heart.”",
+       "k": "9c52da67"
+      },
+      {
+       "t": "q",
+       "ref": "Luke 1:46-47",
+       "v": "“My soul magnifies Adonai. My spirit has rejoiced in Elohim my Savior.”",
+       "k": "7a0a02a8"
+      },
+      {
+       "t": "q",
+       "ref": "Matthew 10:28",
+       "v": "“Don’t be afraid of those who kill the body, but are not able to kill the soul…” A NOTE ON THE TEXT. Bible teachers have long debated whether man has three parts (spirit, soul, body) or two (an inner and outer man). Scripture sometimes uses soul and spirit almost interchangeably: “Now my soul is troubled” (John 12:27) and “he was troubled in spirit” (John 13:21) describe the same Man in the same week. 1 Thessalonians 5:23 and Hebrews 4:12 do distinguish them, which is why this study uses the three. Either way the point stands: many parts named, one person.",
+       "k": "11d82949"
+      },
+      {
+       "t": "h",
+       "v": "What the Picture Shows, and Where It Stops",
+       "k": "52d43b3b"
+      },
+      {
+       "t": "p",
+       "v": "When someone shakes your hand, they did not meet a third of you. They met you. When you pray in your spirit, think and feel with your soul, and walk with your body, it is one man doing all of it. You can speak of your spirit, your soul, and your body, and you are still not three people.",
+       "k": "390ff0ce"
+      },
+      {
+       "t": "p",
+       "v": "But be honest about the limit. Your body is not your soul, and your soul is not your body. So the picture of man only proves that three can be named and the person still be one. It does not prove that the Father is the Son. That part Scripture alone tells us, and it already has: the Son is called Everlasting Father (Isaiah 9:6), the one who has seen the Son has seen the Father (John 14:9), and Adonai is the Spirit (2 Corinthians 3:17).",
+       "k": "df4fb794"
+      },
+      {
+       "t": "c",
+       "v": "The image helps you see how one can be spoken of in three ways. The Word tells you who that One is. Never let the picture say more than the verses do.",
+       "k": "b3d357fb"
+      },
+      {
+       "t": "h",
+       "v": "The True Image",
+       "k": "ea04c6ab"
+      },
+      {
+       "t": "p",
+       "v": "Adam was made in the image. Yahshua is the image. The first was the pattern; the second is the One the pattern was taken from.",
+       "k": "b1daf38d"
+      },
+      {
+       "t": "q",
+       "ref": "2 Corinthians 4:4",
+       "v": "“…the light of the Good News of the glory of Messiah, who is the image of Elohim…”",
+       "k": "7746e38b"
+      },
+      {
+       "t": "q",
+       "ref": "Colossians 3:10",
+       "v": "“…and have put on the new man, who is being renewed in knowledge after the image of his Creator.”",
+       "k": "b8c8d021"
+      },
+      {
+       "t": "p",
+       "v": "The image that sin defaced in Adam is restored in us by the One who is the image of the invisible Elohim. Spirit, soul, and body, the whole person, is being renewed into His likeness until He comes.",
+       "k": "0568dd54"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "PART VIII",
+     "heading": "Reading the Two Diagrams",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "For centuries a diagram called the Shield of the Trinity has been used to teach three persons in one God. It connects Father, Son, and Holy Spirit to the center with the word “is,” and to one another with the words “is not.” Our companion graphics redraw it from the verses in this study.",
+       "k": "605e15b3"
+      },
+      {
+       "t": "l",
+       "items": [
+        "Yahshua Is YHWH. All six lines read IS. The center is YHWH. The corner to corner lines rest on Isaiah 9:6 and John 14:9 (the Son is the Father), 2 Corinthians 3:17 and John 14:18 (Adonai is the Spirit, I will come to you), and Matthew 1:20 with Luke 1:35 (the Spirit who overshadowed Mary is the Father of the child).",
+        "Made in His Image. The three inner lines read IS: your spirit is you, your soul is you, your body is you, one man. The three outer edges are left plain on purpose, because your body is not your soul. The man diagram illustrates oneness; it does not carry the weight of the first diagram. Scripture does."
+       ],
+       "k": "fe494533"
+      },
+      {
+       "t": "c",
+       "v": "Put the two side by side and the lesson is simple: the man is a picture of oneness; the Scriptures are the proof of who the One is.",
+       "k": "e36eac49"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "PART IX",
+     "heading": "Answering the Hard Passages",
+     "blocks": [
+      {
+       "t": "p",
+       "v": "Every one of these deserves a straight answer from the text. Some will hang a label on this teaching. Labels are not Scripture. Answer with the verses.",
+       "k": "50395b45"
+      },
+      {
+       "t": "h",
+       "v": "1. “Let us make man” (Genesis 1:26)",
+       "k": "c9e82a20"
+      },
+      {
+       "t": "p",
+       "v": "The very next verse answers in the singular: “Elohim created man in his own image… he created him.” Hebrew uses plural forms for majesty and for deliberation, and Elohim itself is plural in form while taking singular verbs (Part I). However one reads “us,” the result in verse 27 is one image, made by one He. And Isaiah 44:24 says YHWH made all things “alone” and “by myself.”",
+       "k": "b1553c7f"
+      },
+      {
+       "t": "h",
+       "v": "2. “Another Counselor” (John 14:16)",
+       "k": "c27e1ca7"
+      },
+      {
+       "t": "p",
+       "v": "Read to verse 18. “I will not leave you orphans. I will come to you.” The “another” is another of the same kind, allos (Part V): the Counselor they had known in the flesh, now coming to dwell within. John calls Yahshua by name the Parakletos in 1 John 2:1. The difference between verse 16 and verse 18 is not two beings. It is with you versus in you (John 14:17).",
+       "k": "85cdfb75"
+      },
+      {
+       "t": "h",
+       "v": "3. The baptism: the Son in the water, the dove, the voice (Matthew 3:16-17)",
+       "k": "72b9c4da"
+      },
+      {
+       "t": "q",
+       "ref": "Matthew 3:16-17",
+       "v": "“…he saw the Spirit of Elohim descending as a dove, and coming on him. Behold, a voice out of the heavens said, ‘This is my beloved Son, with whom I am well pleased.’”",
+       "k": "c02f0e5d"
+      },
+      {
+       "t": "p",
+       "v": "Elohim is not confined to one place. “Heaven and the heaven of heavens can’t contain you” (1 Kings 8:27); “Don’t I fill heaven and earth?” (Jeremiah 23:24). The One who dwelt fully in the Son could also speak from heaven and give a visible sign at the same moment. And the signs were given for the people’s sake: John had been told he would recognize the Messiah by the Spirit descending on Him (John 1:33). Yahshua said of a later voice from heaven, “This voice hasn’t come for my sake, but for your sakes” (John 12:30). A voice and a dove show us that it is YHWH; they do not count Him.",
+       "k": "eb225f9b"
+      },
+      {
+       "t": "h",
+       "v": "4. Yahshua prayed to the Father, and said the Father is greater (John 14:28)",
+       "k": "d497138a"
+      },
+      {
+       "t": "p",
+       "v": "He did. He was truly a man, with a real body and a real human soul (Matthew 26:38), and a man prays. Paul says He “emptied himself, taking the form of a servant, being made in the likeness of men” (Philippians 2:7), and that there is “one mediator between Elohim and men, the man Messiah Yahshua” (1 Timothy 2:5). As a man He submitted, prayed, grew in wisdom (Luke 2:52), and in His humility did not claim to know the day (Mark 13:32). The Father who lived in Him (John 14:10) is greater than the flesh He dwelt in. The same man who prayed is the One Thomas worshiped as my Adonai and my Elohim.",
+       "k": "0f0c69c4"
+      },
+      {
+       "t": "h",
+       "v": "5. “At the right hand” (Mark 16:19; Acts 7:55-56)",
+       "k": "7bdb05d1"
+      },
+      {
+       "t": "p",
+       "v": "In Scripture the right hand of YHWH is His power and authority: “Your right hand, YHWH, is glorious in power” (Exodus 15:6). It is not a second seat beside a second being. And notice what Stephen did after he saw Yahshua standing at the right hand. He called out, “Adonai Yahshua, receive my spirit!” (Acts 7:59). He did not pray past Yahshua to someone else. He committed his spirit to Yahshua, as the psalmist committed his spirit to YHWH (Psalm 31:5).",
+       "k": "a6e4e40c"
+      },
+      {
+       "t": "h",
+       "v": "6. “The Word was with Elohim” (John 1:1)",
+       "k": "40dace0d"
+      },
+      {
+       "t": "p",
+       "v": "John says the Word was with Elohim and the Word was Elohim, in the same breath. A man’s word is with him before it is ever spoken, and it is his own self expressed. Verse 14 tells us what happened to that Word: it became flesh. Verse 18 tells us why: no one has seen Elohim, and the Son has declared Him.",
+       "k": "e76b8dba"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "IN CLOSING",
+     "heading": "The Case in One Place",
+     "blocks": [
+      {
+       "t": "l",
+       "items": [
+        "YHWH is one, and He alone is Savior, Creator, and Redeemer (Deuteronomy 6:4; Isaiah 43:11; 44:24).",
+        "The name given to the Son means YHWH saves, and the Father’s name was given to Him (Matthew 1:21; John 17:11).",
+        "The apostles baptized into one name, and that name was Yahshua (Matthew 28:19; Acts 2:38).",
+        "What was written of YHWH, the apostles applied to Yahshua, again and again (Part III).",
+        "The child born is called Mighty El and Everlasting Father (Isaiah 9:6; 10:21).",
+        "He who has seen the Son has seen the Father, who lives in Him (John 14:9-10).",
+        "All the fullness of the Deity dwells in Him bodily (Colossians 2:9).",
+        "He promised, I will come to you, and Paul says Adonai is the Spirit (John 14:18; 2 Corinthians 3:17).",
+        "One throne, one face, one name on the forehead (Revelation 22:3-4)."
+       ],
+       "k": "8a8c6cb6"
+      },
+      {
+       "t": "c",
+       "v": "You are a living picture of it: spirit, soul, and body, one man, made in the image of the One who is spirit, who became flesh, and who lives in you by His Spirit. One Elohim. One Name. Yahshua.",
+       "k": "5d9592af"
+      },
+      {
+       "t": "p",
+       "v": "This is not a puzzle to solve. It is a Person to know. The invisible Father did not stay distant and send someone else. He came Himself, He bled Himself, and He comes Himself to live in everyone who turns to Him.",
+       "k": "ce729959"
+      },
+      {
+       "t": "p",
+       "v": "Hear, O Israel. YHWH our Elohim, YHWH is one. And His name is Yahshua.",
+       "strong": true,
+       "k": "a48385da"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "APPENDIX A",
+     "heading": "Hebrew and Greek Word Index",
+     "blocks": [
+      {
+       "t": "c",
+       "v": "echad (H259), one. Deuteronomy 6:4; Genesis 2:24 yachid (H3173), only, solitary. Part I",
+       "k": "7737fb40"
+      },
+      {
+       "t": "l",
+       "items": [
+        "Elohim (H430), God, mighty one; plural form, singular verbs. Genesis 1:1; Exodus 7:1",
+        "YHWH (H3068), the Name, from hayah, to be. Exodus 3:14-15",
+        "moshia (H3467), savior, from yasha. Isaiah 43:11",
+        "Yehoshua (H3091), YHWH saves. Matthew 1:21",
+        "El gibbor (H410, H1368), Mighty El. Isaiah 9:6; 10:21",
+        "Avi ad (H1, H5703), Father of eternity. Isaiah 9:6 go’el (H1350), kinsman redeemer. Isaiah 44:6; 63:16 ruach (H7307), spirit, breath, wind. Genesis 1:2; Ecclesiastes 12:7 tselem (H6754), image. Genesis 1:26-27; 5:3",
+        "demut (H1823), likeness. Genesis 1:26; 5:3 aphar (H6083), dust. Genesis 2:7",
+        "neshamah (H5397), breath of life. Genesis 2:7",
+        "nephesh (H5315), soul, living being. Genesis 2:7",
+        "heis (G1520), one (masculine). Mark 12:29",
+        "hen (G1520), one (neuter). John 10:30 onoma (G3686), name. Matthew 28:19 ego eimi (G1473, G1510), I AM. John 8:58 skenoo (G4637), to tabernacle, dwell in a tent. John 1:14 eikon (G1504), image. Colossians 1:15; 2 Corinthians 4:4 theotes (G2320), the Deity itself. Colossians 2:9 somatikos (G4985), bodily. Colossians 2:9 charakter (G5481), exact impression of a seal. Hebrews 1:3",
+        "hupostasis (G5287), substance. Hebrews 1:3",
+        "pneuma (G4151), spirit, breath, wind. John 4:24; 2 Corinthians 3:17 allos (G243), another of the same kind. John 14:16",
+        "parakletos (G3875), counselor, advocate. John 14:16; 1 John 2:1 emphusao (G1720), to breathe into. John 20:22; Genesis 2:7 (Greek) zoopoieo (G2227), to make alive. 1 Corinthians 15:45",
+        "holokleros (G3648), whole in every part. 1 Thessalonians 5:23",
+        "psuche (G5590), soul. 1 Thessalonians 5:23; Hebrews 4:12 soma (G4983), body. 1 Thessalonians 5:23"
+       ],
+       "k": "8c2369f5"
+      }
+     ],
+     "collapsed": true
+    },
+    {
+     "kicker": "APPENDIX B",
+     "heading": "Cross Reference Index",
+     "blocks": [
+      {
+       "t": "l",
+       "items": [
+        "YHWH is one: Deuteronomy 6:4; 4:35; Mark 12:29; Zechariah 14:9; Isaiah 45:5",
+        "YHWH alone saves, creates, redeems: Isaiah 43:10-11; 44:6, 24; 45:5; 54:5; 63:16",
+        "The Name: Exodus 3:14-15; John 8:58; Matthew 1:21; John 5:43; 17:11; Acts 4:12; Isaiah 42:8",
+        "One name in baptism: Matthew 28:19; Acts 2:38; 8:16; 10:48; 19:5",
+        "Every knee bows: Isaiah 45:23; Philippians 2:9-11; Romans 14:11",
+        "YHWH passages applied to Yahshua: Isaiah 40:3; Malachi 3:1; Joel 2:32; Zechariah 12:10; Psalm 102:25-27; Isaiah 8:13-14; 6:1-5 with John 12:41",
+        "Yahshua is the Father: Isaiah 9:6; 10:21; 63:16; John 14:7-10; 10:30; 12:45; Matthew 1:20; Luke 1:35",
+        "Elohim revealed in flesh: John 1:1, 14, 18; Colossians 1:15; 2:9; Hebrews 1:3; Isaiah 7:14; Matthew 1:23; 1 Timothy 3:16; John 20:28",
+        "Yahshua is the Spirit: John 4:24; 14:16-18, 23, 26; 1 John 2:1; 2 Corinthians 3:16-18; Romans 8:9-11; Galatians 4:6; Philippians 1:19; 1 Peter 1:11; 1 Corinthians 15:45; John 20:22; Colossians 1:27",
+        "The breath of life: Genesis 2:7; Ezekiel 37:9; John 20:22",
+        "One throne, one face: Revelation 22:3-4; 1:8, 17-18; 22:13; Colossians 3:11",
+        "Made in His image: Genesis 1:26-27; 5:3; 2 Corinthians 4:4; Colossians 1:15; 3:10",
+        "Spirit, soul, body: Genesis 2:7; Ecclesiastes 12:7; 1 Thessalonians 5:23; Hebrews 4:12; Luke 1:46-47; Matthew 10:28; John 12:27; 13:21",
+        "The hard passages: Genesis 1:26; John 14:16; Matthew 3:16-17; John 1:33; 12:30; 1 Kings 8:27; Jeremiah 23:24; John 14:28; Philippians 2:7; 1 Timothy 2:5; Mark 13:32; Exodus 15:6; Acts 7:55-59; Psalm 31:5; John 1:1"
+       ],
+       "k": "523874e2"
+      }
+     ],
+     "collapsed": true
+    }
+   ],
+   "refIndex": [],
+   "words": 6481,
+   "minutes": 32
+  },
+  {
    "id": "who-you-are",
    "title": "Who You Are",
    "subtitle": "Hebrew. Israel. Joint Heir With the King From Judah.",
@@ -22247,5 +23221,5 @@
   }
  ],
  "version": 1,
- "sha256": "99118214b21eedac"
+ "sha256": "a3bc9a833596166f"
 }

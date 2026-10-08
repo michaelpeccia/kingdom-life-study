@@ -461,7 +461,7 @@ const BOOK_ALIASES = {
 
 const TOPIC_SECTIONS = [
   ['Grace and the Instructions',   ['we-establish-the-torah']],
-  ['Who Yahshua Is',               ['aleph-and-tav', 'yahshua-is-the-father']],
+  ['Who Yahshua Is',               ['yahshua-is-yhwh', 'aleph-and-tav', 'yahshua-is-the-father']],
   ['The Covenant and Who You Are', ['the-marriage-covenant', 'who-you-are']],
   ['Marriage and Family',          ['yhwhs-design-for-marriage', 'husbands-love-your-wives', 'narcissistic-abuse', 'sex-before-marriage', 'polygamy']],
   ['The Sabbath',                  ['the-seventh-day', 'sabbath-fire-and-food']],
