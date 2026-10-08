@@ -9,7 +9,7 @@
    "note": "A printable deep dive study. Scripture quoted from the World English Bible, divine name rendered YHWH, Elohim, and Adonai, with the names Yahshua and Messiah restored. Hebrew and Greek words are given with their Strong’s numbers (H for Hebrew, G for Greek) so you can check every one for yourself.",
    "pdf": "handouts/Yahshua-Is-YHWH-Handout.pdf",
    "pdfUrl": "https://app.kingdom-life-ministry.com/handouts/Yahshua-Is-YHWH-Handout.pdf",
-   "pdfBytes": 681879,
+   "pdfBytes": 682390,
    "sections": [
     {
      "kicker": "WHAT THIS HANDOUT COVERS",
@@ -160,8 +160,8 @@
       {
        "t": "q",
        "ref": "Matthew 1:21",
-       "v": "“She shall give birth to a son. You shall name him Yahshua, for it is he who shall save his people from their sins.” Yehoshua (H3091): YHWH saves. The Hebrew name joins the short form of the Name, Yah, with yasha, to save. It is shortened in the later books to Yeshua and carried into Greek as Iesous (G2424). Remember Isaiah 43:11, “besides me, there is no savior.” The angel did not give the child a name that points away from YHWH. He gave a name that says YHWH Himself is the one who saves, and then said he shall save.",
-       "k": "40139c5b"
+       "v": "“She shall give birth to a son. You shall name him Yahshua, for it is he who shall save his people from their sins.” Yehoshua (H3091): YHWH saves. The Hebrew name joins Yeho, the form the Name takes at the start of Hebrew names (as in Yehonatan and Yehoshaphat), with yasha, to save. At the end of a name the Name is written Yah or Yahu (Eliyahu, Yeshayahu). It is shortened in the later books to Yeshua and carried into Greek as Iesous (G2424). Remember Isaiah 43:11, “besides me, there is no savior.” The angel did not give the child a name that points away from YHWH. He gave a name that says YHWH Himself is the one who saves, and then said he shall save.",
+       "k": "e9d40ebb"
       },
       {
        "t": "q",
@@ -972,8 +972,8 @@
     }
    ],
    "refIndex": [],
-   "words": 6481,
-   "minutes": 32
+   "words": 6506,
+   "minutes": 33
   },
   {
    "id": "who-you-are",
@@ -23221,5 +23221,5 @@
   }
  ],
  "version": 1,
- "sha256": "a3bc9a833596166f"
+ "sha256": "5b820e22df6211f1"
 }
