@@ -463,11 +463,11 @@ const TOPIC_SECTIONS = [
   ['Grace and the Instructions',   ['we-establish-the-torah']],
   ['Who Yahshua Is',               ['yahshua-is-yhwh', 'aleph-and-tav', 'yahshua-is-the-father']],
   ['The Covenant and Who You Are', ['the-marriage-covenant', 'who-you-are']],
-  ['Marriage and Family',          ['yhwhs-design-for-marriage', 'husbands-love-your-wives', 'narcissistic-abuse', 'sex-before-marriage', 'polygamy']],
+  ['Marriage and Family',          ['yhwhs-design-for-marriage', 'husbands-love-your-wives', 'wives-submit-to-your-husbands', 'narcissistic-abuse', 'sex-before-marriage', 'polygamy']],
   ['The Sabbath',                  ['the-seventh-day', 'sabbath-fire-and-food']],
   ['Appointed Times',              ['the-sabbath', 'the-seven-feasts', 'yom-teruah', 'the-day-of-atonement', 'the-feast-of-tabernacles']],
   ['Set Apart Living',             ['why-we-dont-eat-pig', 'tithe', 'walk-by-the-spirit']],
-  ['Prophecy and Revelation',             ['two-witnesses-and-the-144000']],
+  ['Prophecy and Revelation',             ['heaven-comes-to-earth', 'the-resurrection-our-glorified-bodies', 'two-witnesses-and-the-144000']],
   ['Unholy Days',             ['halloween']],
   ['Spiritual Warfare',            ['armor-of-elohim', 'the-jezebel-spirit']],
 ];
