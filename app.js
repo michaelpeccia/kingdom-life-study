@@ -467,7 +467,7 @@ const TOPIC_SECTIONS = [
   ['The Sabbath',                  ['the-seventh-day', 'sabbath-fire-and-food']],
   ['Appointed Times',              ['the-sabbath', 'the-seven-feasts', 'yom-teruah', 'the-day-of-atonement', 'the-feast-of-tabernacles']],
   ['Set Apart Living',             ['why-we-dont-eat-pig', 'tithe', 'walk-by-the-spirit']],
-  ['Prophecy and Revelation',             ['heaven-comes-to-earth', 'the-resurrection-our-glorified-bodies', 'two-witnesses-and-the-144000']],
+  ['Prophecy and Revelation',             ['we-do-not-go-up', 'heaven-comes-to-earth', 'the-resurrection-our-glorified-bodies', 'two-witnesses-and-the-144000']],
   ['Unholy Days',             ['halloween']],
   ['Spiritual Warfare',            ['armor-of-elohim', 'the-jezebel-spirit']],
 ];
