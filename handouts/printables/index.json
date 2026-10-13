@@ -1,0 +1,101 @@
+{
+ "title": "Free Printables",
+ "items": [
+  {
+   "id": "all",
+   "title": "All Tract Cards",
+   "subtitle": "Every card in one file, front then back",
+   "group": "Tract Cards",
+   "pdf": "tract-cards-all.pdf",
+   "bytes": 515939
+  },
+  {
+   "id": "forgiveness",
+   "title": "Forgiven to Forgive",
+   "subtitle": "Forgiveness",
+   "group": "Tract Cards",
+   "pdf": "tract-forgiveness.pdf",
+   "bytes": 221709
+  },
+  {
+   "id": "repentance",
+   "title": "Turn and Live",
+   "subtitle": "Repentance",
+   "group": "Tract Cards",
+   "pdf": "tract-repentance.pdf",
+   "bytes": 227790
+  },
+  {
+   "id": "paid-in-full",
+   "title": "Paid in Full",
+   "subtitle": "What Yahshua did on the cross",
+   "group": "Tract Cards",
+   "pdf": "tract-paid-in-full.pdf",
+   "bytes": 219816
+  },
+  {
+   "id": "sabbath",
+   "title": "The Sabbath",
+   "subtitle": "Shabbat",
+   "group": "Tract Cards",
+   "pdf": "tract-sabbath.pdf",
+   "bytes": 240741
+  },
+  {
+   "id": "grace-and-obedience",
+   "title": "Grace and Obedience",
+   "subtitle": "Torah: His instructions",
+   "group": "Tract Cards",
+   "pdf": "tract-grace-and-obedience.pdf",
+   "bytes": 252894
+  },
+  {
+   "id": "grafted-in",
+   "title": "Grafted In",
+   "subtitle": "One people, one olive tree",
+   "group": "Tract Cards",
+   "pdf": "tract-grafted-in.pdf",
+   "bytes": 245500
+  },
+  {
+   "id": "clean-and-unclean",
+   "title": "Clean and Unclean",
+   "subtitle": "What YHWH calls food",
+   "group": "Tract Cards",
+   "pdf": "tract-clean-and-unclean.pdf",
+   "bytes": 244898
+  },
+  {
+   "id": "tzitzit",
+   "title": "Tzitzit",
+   "subtitle": "Tassels on the four corners",
+   "group": "Tract Cards",
+   "pdf": "tract-tzitzit.pdf",
+   "bytes": 246384
+  },
+  {
+   "id": "oneness",
+   "title": "Oneness",
+   "subtitle": "Yahshua is YHWH",
+   "group": "Tract Cards",
+   "pdf": "tract-oneness.pdf",
+   "bytes": 237734
+  },
+  {
+   "id": "appointed-times",
+   "title": "The Appointed Times",
+   "subtitle": "Trifold pamphlet on YHWH's feasts",
+   "group": "Pamphlets",
+   "pdf": "appointed-times-pamphlet.pdf",
+   "bytes": 451498
+  },
+  {
+   "id": "care-bag-card",
+   "title": "Care Bag Card",
+   "subtitle": "You are loved, with a prayer and Celebrate Recovery finder",
+   "group": "Outreach",
+   "pdf": "care-bag-card.pdf",
+   "bytes": 199060
+  }
+ ]
+}

@@ -362,7 +362,7 @@ function applyPrefs(){
 }
 
 /* ── navigation ───────────────────────────────────────────────────────── */
-const VIEWS = ['library','books','topics','prayers','testimonies','devotionals','devotional','armor','connect','book','front','read','search','marks','lex','topic','guides','guide'];
+const VIEWS = ['library','books','topics','prayers','testimonies','printables','devotionals','devotional','armor','connect','book','front','read','search','marks','lex','topic','guides','guide'];
 function go(view, opts={}){
   if (State.view !== view && !opts.replace) State.history.push(State.view);
   State.view = view;
@@ -388,6 +388,7 @@ function setTitle(view){
   const map = {library:'Library', books:'Bible Study', topics:'Further Study',
                prayers:'Prayers & Deliverance',
                testimonies:'Testimonies',
+               printables:'Free Printables',
                devotional:'Daily Devotional',
                devotionals:'Devotionals',
                armor:'Armor of Elohim',
@@ -1610,6 +1611,70 @@ function topicCard(t){
   return c;
 }
 
+/* ── Free printables ─────────────────────────────────────────────────────
+   Tract cards, pamphlets and outreach cards for anyone to print and give away.
+   Listed in handouts/printables/index.json beside the PDFs, so adding one is a
+   PDF plus one entry there. Fetched like the study guides, not bundled. The
+   PDF opens through outLink, the same way the guide PDFs do. */
+let PrintablesCache;
+async function loadPrintables(){
+  if (PrintablesCache !== undefined) return PrintablesCache;
+  let data = null;
+  try {
+    const r = await fetch('handouts/printables/index.json', {cache:'no-store'});
+    if (r.ok) data = await r.json();
+  } catch (e) { data = null; }
+  PrintablesCache = data;
+  return data;
+}
+
+async function renderPrintables(){
+  const box = $('#printable-sections');
+  if (!box) return;
+  box.innerHTML = '';
+  box.append(el('p','empty','Loading printables...'));
+  const data = await loadPrintables();
+  const list = (data && data.items) || [];
+  box.innerHTML = '';
+  if (!list.length){
+    box.append(el('p','empty','No printables yet, or no connection to load the list.'));
+    return;
+  }
+  const groups = [];
+  list.forEach(p => {
+    let g = groups.find(x => x.name === p.group);
+    if (!g) groups.push(g = {name: p.group, items: []});
+    g.items.push(p);
+  });
+  groups.forEach(g => {
+    if (g.name) box.append(el('h3','rule', g.name));
+    const cards = el('div','cards');
+    g.items.forEach(p => cards.append(printableCard(p)));
+    box.append(cards);
+  });
+}
+
+function printableCard(p){
+  const c = el('div','card');
+  c.append(el('i','spine'));
+  const m = el('div','meta');
+  m.append(el('h4', null, p.title));
+  if (p.subtitle) m.append(el('p','topic-sub-line', p.subtitle));
+  if (p.bytes) m.append(el('p', null, `PDF ${Math.round(p.bytes/1024)} KB`));
+  c.append(m);
+  const tools = el('div','guide-tools');
+  const url = guideUrl('printables', p.pdf);
+  tools.append(outLink(url, 'Print', 'go solid'));
+  const sh = el('button','go','Share');
+  sh.onclick = () => {
+    if (canShare()) nativeShare({title: p.title, text: p.title + ' - free to print and share', url});
+    else copyText(url, 'Link copied');
+  };
+  tools.append(sh);
+  c.append(tools);
+  return c;
+}
+
 /* ── Midrash study guides ─────────────────────────────────────────────────
    Published per book at handouts/<slug>/index.json, beside the interactive
    HTML and the PDF the handout was laid out as. Fetched rather than bundled:
@@ -2417,7 +2482,7 @@ function bindUI(){
   $('#btn-refresh').onclick = () => refreshCatalog();
   $('#btn-connect').onclick = connectSheet;
   $('#btn-support').onclick = supportSheet;
-  $$('.hub-btn').forEach(b => b.onclick = () => { if (b.dataset.hub === 'devotional') renderDevotional(); if (b.dataset.hub === 'armor') renderArmor(); go(b.dataset.hub); });
+  $$('.hub-btn').forEach(b => b.onclick = () => { if (b.dataset.hub === 'printables') renderPrintables(); if (b.dataset.hub === 'devotional') renderDevotional(); if (b.dataset.hub === 'armor') renderArmor(); go(b.dataset.hub); });
   $$('#connect-scope button').forEach(b =>
     b.onclick = () => showConnectPanel(b.dataset.panel));
   $('#btn-settings').onclick = settingsSheet;
