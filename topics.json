@@ -17632,13 +17632,13 @@
   },
   {
    "id": "testimony",
-   "title": "My Testimony",
+   "title": "Michael's Testimony",
    "subtitle": "",
    "lede": "How YHWH took a man out of gangs, jail, and addiction, and made him a husband and a father.",
    "note": "Michael Ben Yah. All Scripture from the World English Bible, divine name rendered YHWH, Elohim, and Adonai.",
    "pdf": "handouts/Testimony-Handout.pdf",
    "pdfUrl": "https://app.kingdom-life-ministry.com/handouts/Testimony-Handout.pdf",
-   "pdfBytes": 229035,
+   "pdfBytes": 228901,
    "sections": [
     {
      "kicker": "",
@@ -28976,5 +28976,5 @@
   }
  ],
  "version": 1,
- "sha256": "37decd5cc9953cbc"
+ "sha256": "fe04b39ec33e2f91"
 }
