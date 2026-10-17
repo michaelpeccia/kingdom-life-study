@@ -483,7 +483,7 @@ const PRAYER_TOPICS = ['prayer-for-the-bloodline', 'curse-line', 'praying-over-y
 /* Testimonies live on their own screen too. A testimony is not a teaching.
    It is somebody telling you what YHWH did, and it should be findable as
    itself rather than sitting in a list of handouts. */
-const TESTIMONY_TOPICS = ['testimony'];
+const TESTIMONY_TOPICS = ['testimony', 'rebekah-testimony'];
 
 /* Two studies that name each other as companions on their own title pages. */
 const TOPIC_COMPANION = {
