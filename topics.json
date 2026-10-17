@@ -18345,13 +18345,13 @@
   },
   {
    "id": "rebekah-testimony",
-   "title": "My Testimony",
+   "title": "Rebekah's Testimony",
    "subtitle": "",
    "lede": "How Yah carried a mother through the loss of her son and her marriage, delivered her, and became the love of her life.",
    "note": "Rebekah. All Scripture from the World English Bible, divine name rendered YHWH and Elohim.",
    "pdf": "handouts/Rebekah-Testimony-Handout.pdf",
    "pdfUrl": "https://app.kingdom-life-ministry.com/handouts/Rebekah-Testimony-Handout.pdf",
-   "pdfBytes": 29210,
+   "pdfBytes": 29224,
    "sections": [
     {
      "kicker": "",
@@ -28976,5 +28976,5 @@
   }
  ],
  "version": 1,
- "sha256": "fe04b39ec33e2f91"
+ "sha256": "7ad2d35b1f37ba5d"
 }
