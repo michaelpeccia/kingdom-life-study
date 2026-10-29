@@ -2482,7 +2482,7 @@ function bindUI(){
   $('#btn-refresh').onclick = () => refreshCatalog();
   $('#btn-connect').onclick = connectSheet;
   $('#btn-support').onclick = supportSheet;
-  $$('.hub-btn').forEach(b => b.onclick = () => { if (b.dataset.hub === 'printables') renderPrintables(); if (b.dataset.hub === 'devotional') renderDevotional(); if (b.dataset.hub === 'armor') renderArmor(); go(b.dataset.hub); });
+  $$('.hub-btn').forEach(b => b.onclick = () => { if (b.dataset.url) return openLink(b.dataset.url); if (b.dataset.hub === 'printables') renderPrintables(); if (b.dataset.hub === 'devotional') renderDevotional(); if (b.dataset.hub === 'armor') renderArmor(); go(b.dataset.hub); });
   $$('#connect-scope button').forEach(b =>
     b.onclick = () => showConnectPanel(b.dataset.panel));
   $('#btn-settings').onclick = settingsSheet;
