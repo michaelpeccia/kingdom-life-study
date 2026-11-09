@@ -1,0 +1,14 @@
+{
+  "schema": 2,
+  "book": "Jude",
+  "slug": "jude",
+  "updated": "2026-11-09",
+  "guides": [
+    {
+      "id": "jude",
+      "title": "Contend for the Faith",
+      "chapters": "Jude (the whole book)",
+      "pdf": "jude.pdf"
+    }
+  ]
+}

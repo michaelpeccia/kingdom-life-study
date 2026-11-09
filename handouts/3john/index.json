@@ -1,0 +1,14 @@
+{
+  "schema": 2,
+  "book": "3 John",
+  "slug": "3john",
+  "updated": "2026-11-09",
+  "guides": [
+    {
+      "id": "3john",
+      "title": "Walking in Truth",
+      "chapters": "3 John (the whole book)",
+      "pdf": "3john.pdf"
+    }
+  ]
+}

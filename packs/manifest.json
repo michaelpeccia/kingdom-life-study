@@ -2,6 +2,34 @@
  "packFormat": 1,
  "packs": [
   {
+   "id": "2john",
+   "title": "2 John",
+   "translation": "WEB",
+   "version": 1,
+   "chapters": 1,
+   "verses": 13,
+   "footnotes": 13,
+   "bytes": 21993,
+   "sha256": "11f89d399024e8e3",
+   "file": "2john.json",
+   "bundled": false,
+   "hasStrongs": false
+  },
+  {
+   "id": "3john",
+   "title": "3 John",
+   "translation": "WEB",
+   "version": 1,
+   "chapters": 1,
+   "verses": 14,
+   "footnotes": 13,
+   "bytes": 21465,
+   "sha256": "8f13a06ab47c2aa0",
+   "file": "3john.json",
+   "bundled": false,
+   "hasStrongs": false
+  },
+  {
    "id": "jeremiah",
    "title": "Jeremiah",
    "translation": "WEB",
@@ -26,6 +54,20 @@
    "bytes": 538037,
    "sha256": "da15ddd7fb64a50c",
    "file": "john.json",
+   "bundled": false,
+   "hasStrongs": false
+  },
+  {
+   "id": "jude",
+   "title": "Jude",
+   "translation": "WEB",
+   "version": 1,
+   "chapters": 1,
+   "verses": 25,
+   "footnotes": 15,
+   "bytes": 30713,
+   "sha256": "6fd44c22bac64f8b",
+   "file": "jude.json",
    "bundled": false,
    "hasStrongs": false
   },
@@ -84,6 +126,34 @@
    "file": "matthew.json",
    "bundled": false,
    "hasStrongs": true
+  },
+  {
+   "id": "obadiah",
+   "title": "Obadiah",
+   "translation": "WEB",
+   "version": 1,
+   "chapters": 1,
+   "verses": 21,
+   "footnotes": 12,
+   "bytes": 27188,
+   "sha256": "c3c8f58b52b0132a",
+   "file": "obadiah.json",
+   "bundled": false,
+   "hasStrongs": false
+  },
+  {
+   "id": "philemon",
+   "title": "Philemon",
+   "translation": "WEB",
+   "version": 1,
+   "chapters": 1,
+   "verses": 25,
+   "footnotes": 12,
+   "bytes": 24351,
+   "sha256": "4575fd41584166d6",
+   "file": "philemon.json",
+   "bundled": false,
+   "hasStrongs": false
   }
  ],
  "catalog": "https://raw.githubusercontent.com/michaelpeccia/kingdom-life-packs/main/catalog.json"

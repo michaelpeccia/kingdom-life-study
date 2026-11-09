@@ -1,0 +1,14 @@
+{
+  "schema": 2,
+  "book": "Obadiah",
+  "slug": "obadiah",
+  "updated": "2026-11-09",
+  "guides": [
+    {
+      "id": "obadiah",
+      "title": "The Pride of Edom",
+      "chapters": "Obadiah (the whole book)",
+      "pdf": "obadiah.pdf"
+    }
+  ]
+}

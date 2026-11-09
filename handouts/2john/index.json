@@ -1,0 +1,14 @@
+{
+  "schema": 2,
+  "book": "2 John",
+  "slug": "2john",
+  "updated": "2026-11-09",
+  "guides": [
+    {
+      "id": "2john",
+      "title": "Truth and Love",
+      "chapters": "2 John (the whole book)",
+      "pdf": "2john.pdf"
+    }
+  ]
+}

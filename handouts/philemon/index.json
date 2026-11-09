@@ -1,0 +1,14 @@
+{
+  "schema": 2,
+  "book": "Philemon",
+  "slug": "philemon",
+  "updated": "2026-11-09",
+  "guides": [
+    {
+      "id": "philemon",
+      "title": "Put It to My Account",
+      "chapters": "Philemon (the whole book)",
+      "pdf": "philemon.pdf"
+    }
+  ]
+}
