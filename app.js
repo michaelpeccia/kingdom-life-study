@@ -1508,20 +1508,156 @@ function renderScriptureCard(){
   m.append(el('h4', null, SCRIPTURE.title));
   if (scriptureInstalled()){
     m.append(el('p', null, '66 books · 31,098 verses · read offline'));
-    m.append(el('p','badge','Passage popups are reading from this'));
+    m.append(el('p','badge','Passage popups and verse search read from this'));
     c.append(m);
+    const s = el('button','go solid','Search');
+    s.onclick = scriptureSearchSheet;
+    c.append(s);
     const b = el('button','go','Remove');
     b.onclick = confirmRemoveScripture;
     c.append(b);
   } else {
     m.append(el('p', null,
-      `Every passage the handouts cite, offline · ${(SCRIPTURE.bytes/1048576).toFixed(1)} MB download`));
+      `Every passage the handouts cite, plus verse search, offline · ${(SCRIPTURE.bytes/1048576).toFixed(1)} MB download`));
     c.append(m);
     const b = el('button','go solid','Install');
     b.onclick = () => installScripture(b);
     c.append(b);
   }
   box.append(c);
+}
+
+/* ── search the scripture text ────────────────────────────────────────────
+   Type a phrase ("the word was with God") or a few words and get the verses
+   that say it, straight out of the installed World English Bible. Exact
+   phrases come first, then verses that have every key word, so a remembered
+   line finds its verse even when the wording is only half right. Tapping a
+   result opens it in the normal passage popup. Works with no signal. */
+const SEARCH_STOP = new Set(('a an the and or but of to in on at for with by from is are ' +
+  'was were be been it this that these those what where which who how does do did say ' +
+  'says said about me my i you your we our us there any can could would should shall ' +
+  'will he she they his her their him them not no so as if then than').split(' '));
+let scriptureIndex = null;
+let lastScriptureSearch = '';   // kept so coming back from a verse shows the same results
+
+const searchWords = t => (String(t).toLowerCase().replace(/[‘’]/g, "'")
+  .match(/[a-z0-9']+/g) || []).map(w => w.replace(/^'+|'+$/g, '')).filter(Boolean);
+
+async function buildScriptureIndex(){
+  if (scriptureIndex) return scriptureIndex;
+  const s = await loadScripture();
+  if (!s) return null;
+  const out = [];
+  for (const book of Object.keys(s.books)){
+    const chs = s.books[book];
+    for (const c of Object.keys(chs).sort((a,b) => a-b)){
+      const vs = chs[c];
+      for (const v of Object.keys(vs).sort((a,b) => a-b)){
+        const words = searchWords(vs[v]);
+        out.push({ ref: `${book} ${c}:${v}`, text: vs[v],
+                   flat: ' ' + words.join(' ') + ' ', set: new Set(words) });
+      }
+    }
+  }
+  scriptureIndex = out;
+  return out;
+}
+
+function searchScripture(index, query, limit = 60){
+  const seq  = searchWords(query);
+  const keys = [...new Set(seq.filter(w => !SEARCH_STOP.has(w) && w.length > 1))];
+  if (!seq.length) return { hits: [], keys, partial: false };
+  const phrase = ' ' + seq.join(' ') + ' ';
+  const scored = [];
+  for (const it of index){
+    let score = 0;
+    if (seq.length > 1 && it.flat.includes(phrase)) score += 1000;
+    let have = 0;
+    for (const k of keys) if (it.set.has(k)) have++;
+    if (keys.length && have === keys.length) score += 100;
+    score += have * 3;
+    if (seq.length === 1 && it.set.has(seq[0])) score += 100;
+    if (score) scored.push([score, it]);
+  }
+  scored.sort((a, b) => b[0] - a[0]);          // stable: ties stay in Bible order
+  let hits = scored.filter(s => s[0] >= 100);
+  const partial = !hits.length;
+  if (partial) hits = scored.filter(s => s[0] >= Math.max(3, (scored[0] || [0])[0]));
+  return { hits: hits.slice(0, limit).map(s => s[1]), total: hits.length, keys, partial };
+}
+
+/* The verse with the searched words picked out. Built from text nodes, never
+   innerHTML, so nothing in the text can be read as markup. */
+function markedVerse(text, keys){
+  const p = el('p', 'vtext');
+  if (!keys.length){ p.textContent = text; return p; }
+  const esc = k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp(`\\b(${keys.map(esc).join('|')})\\b`, 'gi');
+  let last = 0, m;
+  const norm = text.replace(/’/g, "'");
+  while ((m = re.exec(norm))){
+    if (m.index > last) p.append(document.createTextNode(text.slice(last, m.index)));
+    const b = el('b', null, text.slice(m.index, m.index + m[0].length));
+    b.style.background = 'var(--band)';
+    p.append(b);
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) p.append(document.createTextNode(text.slice(last)));
+  return p;
+}
+
+function scriptureSearchSheet(){
+  sheet('Search Scripture', async body => {
+    const inp = el('input');
+    inp.type = 'search';
+    inp.placeholder = 'A phrase or a few words, e.g. the word was with God';
+    inp.setAttribute('enterkeyhint', 'search');
+    Object.assign(inp.style, { width:'100%', boxSizing:'border-box', padding:'12px',
+      fontSize:'16px', border:'1px solid var(--rule)', borderRadius:'10px',
+      background:'transparent', color:'inherit' });
+    const status = el('p', 'hint', 'Searching all 66 books of the World English Bible.');
+    const list = el('div');
+    body.append(inp, status, list);
+
+    const index = await buildScriptureIndex();
+    if (!index){ status.textContent = 'Install the World English Bible first.'; return; }
+
+    let timer = null;
+    const run = () => {
+      const q = inp.value.trim();
+      lastScriptureSearch = q;
+      list.innerHTML = '';
+      // a typed reference just opens that passage
+      const ref = q.match(/^((?:[1-3]\s*)?[A-Za-z][A-Za-z ]*?)\s+(\d{1,3})(?::[\d,\s-]+)?$/);
+      if (ref && canonBook(ref[1], scriptureCache.books)){
+        const b = el('button', 'ghost', 'Open ' + q);
+        b.onclick = () => showPassage(q.replace(/^(\d)\s*/, '$1 '));
+        list.append(b);
+      }
+      if (q.length < 3){ status.textContent = 'Type at least 3 letters.'; return; }
+      const r = searchScripture(index, q);
+      if (!r.hits.length){ status.textContent = 'No verses found. Try fewer or different words.'; return; }
+      status.textContent = (r.partial ? 'No exact match. Closest verses: ' : '') +
+        (r.total > r.hits.length ? `Showing ${r.hits.length} of ${r.total} verses` :
+         `${r.hits.length} verse${r.hits.length === 1 ? '' : 's'}`);
+      for (const it of r.hits){
+        const row = el('div');
+        Object.assign(row.style, { padding:'10px 2px', borderBottom:'1px solid var(--rule)',
+          cursor:'pointer' });
+        const h = el('p', null, it.ref);
+        Object.assign(h.style, { margin:'0 0 4px', fontWeight:'700', color:'var(--navy)' });
+        const v = markedVerse(it.text, r.keys);
+        v.style.margin = '0';
+        row.append(h, v);
+        row.onclick = () => showPassage(it.ref);
+        list.append(row);
+      }
+    };
+    inp.oninput = () => { clearTimeout(timer); timer = setTimeout(run, 250); };
+    inp.onkeydown = e => { if (e.key === 'Enter'){ clearTimeout(timer); run(); inp.blur(); } };
+    if (lastScriptureSearch){ inp.value = lastScriptureSearch; run(); }
+    else setTimeout(() => inp.focus(), 50);
+  });
 }
 
 /* ── the Further Study screen ─────────────────────────────────────────── */
