@@ -16,6 +16,20 @@
    "hasStrongs": true
   },
   {
+   "id": "john",
+   "title": "John",
+   "translation": "WEB",
+   "version": 1,
+   "chapters": 21,
+   "verses": 879,
+   "footnotes": 291,
+   "bytes": 538037,
+   "sha256": "da15ddd7fb64a50c",
+   "file": "john.json",
+   "bundled": false,
+   "hasStrongs": false
+  },
+  {
    "id": "luke",
    "title": "Luke",
    "translation": "WEB",

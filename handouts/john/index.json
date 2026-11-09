@@ -1,0 +1,56 @@
+{
+  "schema": 2,
+  "book": "John",
+  "slug": "john",
+  "updated": "2026-11-09",
+  "guides": [
+    {
+      "id": "jn-01-03",
+      "title": "The Word Made Flesh",
+      "chapters": "John 1 to 3",
+      "pdf": "jn-01-03.pdf"
+    },
+    {
+      "id": "jn-04-06",
+      "title": "Living Water and the Bread of Life",
+      "chapters": "John 4 to 6",
+      "pdf": "jn-04-06.pdf"
+    },
+    {
+      "id": "jn-07-09",
+      "title": "Before Abraham, I AM",
+      "chapters": "John 7 to 9",
+      "pdf": "jn-07-09.pdf"
+    },
+    {
+      "id": "jn-10-12",
+      "title": "The Good Shepherd and the Resurrection",
+      "chapters": "John 10 to 12",
+      "pdf": "jn-10-12.pdf"
+    },
+    {
+      "id": "jn-13-15",
+      "title": "The Towel, the Way, and the Vine",
+      "chapters": "John 13 to 15",
+      "pdf": "jn-13-15.pdf"
+    },
+    {
+      "id": "jn-16-18",
+      "title": "The Prayer and the Garden",
+      "chapters": "John 16 to 18",
+      "pdf": "jn-16-18.pdf"
+    },
+    {
+      "id": "jn-19-21",
+      "title": "It Is Finished, and Do You Love Me?",
+      "chapters": "John 19 to 21",
+      "pdf": "jn-19-21.pdf"
+    },
+    {
+      "id": "john-complete",
+      "title": "John: The Complete Study Guide",
+      "chapters": "All 21 chapters",
+      "pdf": "john-complete.pdf"
+    }
+  ]
+}
