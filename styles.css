@@ -89,6 +89,26 @@ a{color:var(--link)}
 }
 .hint{color:var(--muted);font-size:13px;margin:10px 0}
 
+/* Further Study: folding sections */
+.topic-sec summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+  margin:0;padding:16px 2px 10px;-webkit-tap-highlight-color:transparent;
+}
+.topic-sec summary::-webkit-details-marker{display:none}
+.topic-sec summary > span:first-child{flex:1}
+.topic-sec summary::after{
+  content:'';width:7px;height:7px;flex:none;margin-right:4px;
+  border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);
+  transform:rotate(-45deg);transition:transform .15s;
+}
+.topic-sec[open] summary::after{transform:rotate(45deg)}
+.topic-sec-count{
+  color:var(--muted);letter-spacing:0;font-size:11px;
+  border:1px solid var(--rule);border-radius:999px;padding:1px 8px;
+}
+.topic-sec > .cards{margin:12px 0 10px}
+#topic-sections{margin-top:8px}
+
 /* ── cards / grids ────────────────────────────────────────────────────── */
 .cards{display:grid;gap:10px}
 .card{

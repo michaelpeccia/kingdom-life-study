@@ -1549,12 +1549,33 @@ function renderTopics(){
   const rest = State.topics.filter(t => !placed.has(t.id));
   if (rest.length) groups.push(['More studies', rest]);
 
+  /* Each section folds. They start closed so the screen reads as a short
+     table of contents, and whichever ones a reader opens stay open the next
+     time (kept on this device), so coming back from a study lands them where
+     they were. */
+  const openKey = 'topics:openSections';
+  let open;
+  try { open = new Set(JSON.parse(localStorage.getItem(openKey) || '[]')); }
+  catch(e){ open = new Set(); }
+  const saveOpen = () => { try { localStorage.setItem(openKey, JSON.stringify([...open])); } catch(e){} };
+
   groups.forEach(([name, list]) => {
     if (!list.length) return;
-    box.append(el('h3','rule', name));
+    const sec = document.createElement('details');
+    sec.className = 'topic-sec';
+    if (open.has(name)) sec.open = true;
+    const sum = document.createElement('summary');
+    sum.className = 'rule';
+    sum.append(el('span', null, name), el('span','topic-sec-count', String(list.length)));
+    sec.append(sum);
     const cards = el('div','cards');
     list.forEach(t => cards.append(topicCard(t)));
-    box.append(cards);
+    sec.append(cards);
+    sec.addEventListener('toggle', () => {
+      sec.open ? open.add(name) : open.delete(name);
+      saveOpen();
+    });
+    box.append(sec);
   });
 }
 
@@ -2612,6 +2633,32 @@ function devSave(day, rec, series){
 }
 const devDone = () => DEVOTIONAL.days.filter(d => devRec(d.day).done).length;
 
+/* Start over. Empties every square on one board so a reader can go through
+   the month again. Notes are kept, the same as "Clear this day", so nothing
+   anyone wrote is lost. Two taps rather than a browser confirm(): the first
+   tap asks, the second within a few seconds does it. */
+function devRestartRow(days, series, label, rerender){
+  const row = devEl('div','topic-tools dev-restart');
+  const btn = devEl('button','go', label);
+  let armed = null;
+  btn.onclick = () => {
+    if (!armed){
+      btn.textContent = 'Tap again to empty all ' + days.length + ' squares';
+      armed = setTimeout(() => { armed = null; btn.textContent = label; }, 4000);
+      return;
+    }
+    clearTimeout(armed); armed = null;
+    days.forEach(d => {
+      const rec = devRec(d.day, series);
+      if (rec.done) devSave(d.day, {done:false, note:rec.note || ''}, series);
+    });
+    devToast('Board cleared. Your notes are kept.');
+    rerender();
+  };
+  row.append(btn);
+  return row;
+}
+
 /* Shown only to someone who has been away and has already started. It never
    names what was missed, because nothing was. */
 function devReturnLine(){
@@ -2666,7 +2713,7 @@ async function renderDevotional(){
     if (!ret.hidden){
       ret.className = 'dev-return';
       ret.append(devEl('p', null, msg));
-      ret.append(devEl('p','hint','The days fill in any order. Nothing resets.'));
+      ret.append(devEl('p','hint','The days fill in any order. Nothing resets on its own.'));
     }
   }
 
@@ -2686,6 +2733,10 @@ async function renderDevotional(){
     f.append(devEl('p', null, 'All 31 days are filled. Start again at day one, or go back to any day and add to what you wrote.'));
     board.append(f);
   }
+  if (done > 0)
+    board.append(devRestartRow(DEVOTIONAL.days, 'devotional',
+      done === DEVOTIONAL.days.length ? 'Start the 31 days again' : 'Start over',
+      renderDevotional));
 }
 
 /* The share hands over the card image and the text together. The URL rides in
@@ -2825,6 +2876,10 @@ async function renderArmor(){
     f.append(devEl('p', null, 'All seven days are filled. Keep praying the full armor every morning, and come back to any day whenever you need it.'));
     board.append(f);
   }
+  if (done > 0)
+    board.append(devRestartRow(ARMOR.days, 'armor',
+      done === ARMOR.days.length ? 'Start the 7 days again' : 'Start over',
+      renderArmor));
 }
 
 
