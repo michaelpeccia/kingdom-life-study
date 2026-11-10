@@ -1993,6 +1993,97 @@ function openGuide(slug, g){
    panel copies the address and hands off to whatever mail app is installed.
    Nothing here loads until the panel is opened, so the front page makes no
    third-party requests. */
+/* ── Ask a Question ───────────────────────────────────────────────────────
+   One question goes to the ministry's own Ask service on kingdom-ai, through
+   a Cloudflare tunnel. The answer always comes back with the passages it was
+   written from, and every one is shown under it so each claim can be checked
+   against the teaching itself. Nothing is stored on the device. */
+const ASK_URL = 'https://ask.kingdom-life-ministry.com/ask';
+const ASK_MAX = 300;
+
+// Map a source file name back to a topic study in this build, if there is one
+function askTopicId(file){
+  if (!file) return null;
+  const base = String(file).split('/').pop().replace(/\.pdf$/i, '');
+  const tries = [base.replace(/-Handout$/i, ''), base.replace(/-Teaching-Handout$/i, ''), base]
+    .map(s => s.toLowerCase());
+  return tries.find(id => State.topics.some(t => t.id === id)) || null;
+}
+
+function askSheet(){
+  sheet('Ask a Question', body => {
+    body.append(el('p', 'hint',
+      'Ask about Scripture or the Kingdom Life teachings. Answers are written from the ' +
+      'ministry\'s handouts and the World English Bible, with the sources shown underneath.'));
+    const f = el('div', 'field');
+    const ta = el('textarea');
+    ta.maxLength = ASK_MAX;
+    ta.placeholder = 'For example: Why do we keep the seventh day Sabbath?';
+    ta.style.minHeight = '90px';
+    const count = el('p', 'ask-count', `0 / ${ASK_MAX}`);
+    ta.oninput = () => { count.textContent = `${ta.value.length} / ${ASK_MAX}`; };
+    f.append(ta, count);
+    const btn = el('button', 'primary', 'Ask');
+    const out = el('div', 'ask-out');
+    btn.onclick = () => runAsk(ta, btn, out);
+    body.append(f, btn, out);
+  });
+}
+
+async function runAsk(ta, btn, out){
+  const q = ta.value.trim();
+  if (!q){ toast('Type a question first'); return; }
+  const say = msg => out.replaceChildren(el('p', 'ask-msg', msg));
+  if (navigator.onLine === false){
+    say('Ask needs an internet connection. Everything else in the app still works offline.');
+    return;
+  }
+  btn.disabled = true; btn.textContent = 'Searching the teachings…';
+  say('Searching the teachings and writing an answer. This can take up to a minute.');
+  try {
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 150000);
+    const r = await fetch(ASK_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({question: q}),
+      signal: ctl.signal,
+    });
+    clearTimeout(timer);
+    let d = {};
+    try { d = await r.json(); } catch(e){ /* not JSON */ }
+    if (!r.ok){ say(d.detail || 'Ask is not available right now. Please try again later.'); return; }
+    renderAsk(out, d);
+  } catch(e){
+    say(e.name === 'AbortError'
+      ? 'That took too long. Please try again in a minute.'
+      : 'Could not reach Ask. Check your connection and try again.');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Ask';
+  }
+}
+
+function renderAsk(out, d){
+  out.replaceChildren();
+  out.append(el('div', 'ask-answer', String(d.answer || '')));
+  if (d.disclaimer) out.append(el('p', 'ask-disclaimer', d.disclaimer));
+  const src = Array.isArray(d.sources) ? d.sources : [];
+  if (!src.length) return;
+  out.append(el('h4', 'ask-src-head', 'Sources'));
+  src.forEach(s => {
+    const box = el('div', 'ask-src');
+    box.append(el('p', 'ask-src-title', `[${s.n}] ${s.title}`));
+    if (s.excerpt) box.append(el('p', 'ask-src-text', s.excerpt));
+    const id = askTopicId(s.file);
+    if (id){
+      const b = el('button', 'ask-open', 'Open this study ›');
+      b.onclick = () => { closeSheet(); openTopic(id); };
+      box.append(b);
+    }
+    out.append(box);
+  });
+}
+
 function connectSheet(){
   sheet('Connect with us', body => {
     body.append(el('p','hint',
@@ -2638,6 +2729,7 @@ function bindUI(){
   $('#btn-back').onclick = back;
   $('#btn-refresh').onclick = () => refreshCatalog();
   $('#btn-connect').onclick = connectSheet;
+  $('#btn-ask').onclick = askSheet;
   $('#btn-support').onclick = supportSheet;
   $$('.hub-btn').forEach(b => b.onclick = () => { if (b.dataset.url) return openLink(b.dataset.url); if (b.dataset.hub === 'printables') renderPrintables(); if (b.dataset.hub === 'devotional') renderDevotional(); if (b.dataset.hub === 'armor') renderArmor(); go(b.dataset.hub); });
   $$('#connect-scope button').forEach(b =>
