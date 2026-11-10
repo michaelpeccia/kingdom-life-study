@@ -430,7 +430,6 @@ const MINISTRY = {
   ],
   email:     'michaelbenyah@kingdom-life-ministry.com',
   support: [
-    ['GoFundMe',          'https://gofund.me/bb1986c2f'],
     ['Kingdom Life Gear', 'https://kingdomlifegear.etsy.com'],
     ['Venmo',             'https://venmo.com/u/Michael-Peccia'],
     ['Cash App',          'https://cash.app/$mikepeccia'],
