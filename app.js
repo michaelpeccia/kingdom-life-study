@@ -464,7 +464,7 @@ const TOPIC_SECTIONS = [
   ['Who Yahshua Is',               ['yahshua-is-yhwh', 'aleph-and-tav', 'yahshua-is-the-father']],
   ['The Covenant and Who You Are', ['the-marriage-covenant', 'who-you-are']],
   ['Marriage and Family',          ['yhwhs-design-for-marriage', 'husbands-love-your-wives', 'wives-submit-to-your-husbands', 'instructions-for-the-man-of-the-house', 'instructions-for-the-woman-of-the-house', 'narcissistic-abuse', 'sex-before-marriage', 'polygamy']],
-  ['The Sabbath',                  ['the-seventh-day', 'sabbath-fire-and-food']],
+  ['The Sabbath',                  ['the-seventh-day', 'sabbath-fire-and-food', 'when-does-the-day-begin']],
   ['Appointed Times',              ['the-sabbath', 'the-seven-feasts', 'passover', 'unleavened-bread', 'firstfruits', 'shavuot', 'yom-teruah', 'the-day-of-atonement', 'the-feast-of-tabernacles']],
   ['Set Apart Living',             ['why-we-dont-eat-pig', 'tithe', 'walk-by-the-spirit']],
   ['Prophecy and Revelation',             ['we-do-not-go-up', 'heaven-comes-to-earth', 'the-resurrection-our-glorified-bodies', 'two-witnesses-and-the-144000']],
