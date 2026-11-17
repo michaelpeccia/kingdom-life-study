@@ -367,7 +367,7 @@ function go(view, opts={}){
   if (State.view !== view && !opts.replace) State.history.push(State.view);
   State.view = view;
   // both readers own the bar; everywhere else it is dismissed
-  if (view !== 'read' && view !== 'topic') hideVerseBar();
+  if (view !== 'read' && view !== 'topic' && view !== 'bibleread') hideVerseBar();
   if (view !== 'topic') clearHash();
   const reading = view === 'read' || view === 'bibleread';
   $('#prev-ch').hidden = !reading;
@@ -825,6 +825,19 @@ function renderVerse(pack, ch, v, text){
   return d;
 }
 
+/* Which reader the verse bar is working for. The study books and the Bible
+   reader share one bar and one store of marks; a Bible mark is filed under
+   "bible-<book>" (bible-genesis, bible-1-john) so it never collides with a
+   study book of the same name. */
+const inBible  = () => State.mode === 'bible';
+const curId    = () => inBible() ? bibleId(Bible.book) : State.book.id;
+const curTitle = () => inBible() ? Bible.book : State.book.title;
+const curCh    = () => inBible() ? Bible.chapter : State.chapter;
+function reopenAt(v){
+  if (inBible()) openBibleChapter(Bible.book, Bible.chapter, {verse:v, keepScroll:true});
+  else openChapter(State.chapter, v);
+}
+
 /* ── verse selection + marks ──────────────────────────────────────────────
    State.selected is a sorted array of verse numbers. Tapping toggles a verse in
    or out, so a passage can be highlighted or copied in one go, and the verses
@@ -854,14 +867,14 @@ function selectionRef(){
     parts.push(start === prev ? `${start}` : `${start}-${prev}`);
     start = prev = vs[i];
   }
-  return `${State.book.title} ${State.chapter}:${parts.join(',')}`;
+  return `${curTitle()} ${curCh()}:${parts.join(',')}`;
 }
 
 function showVerseBar(){
   const bar = $('#verse-bar');
   const vs = State.selected;
   const topic = State.mode === 'topic';
-  const keyOf = i => topic ? topicKey(i) : vkey(State.book.id, State.chapter, i);
+  const keyOf = i => topic ? topicKey(i) : vkey(curId(), curCh(), i);
 
   $('#vb-ref').textContent = (topic ? topicSelectionLabel() : selectionRef())
     + (vs.length > 1 ? `  (${vs.length} ${topic ? 'paragraphs' : 'verses'})` : '');
@@ -890,9 +903,10 @@ function showVerseBar(){
 function setHighlight(id){
   const topic = State.mode === 'topic';
   State.selected.forEach(v => {
-    const k = topic ? topicKey(v) : vkey(State.book.id, State.chapter, v);
+    const k = topic ? topicKey(v) : vkey(curId(), curCh(), v);
     if (id) State.marks.highlights[k]=id; else delete State.marks.highlights[k];
-    const node = topic ? $(`.unit[data-i="${v}"]`) : $(`.verse[data-v="${v}"]`);
+    const node = topic ? $(`.unit[data-i="${v}"]`)
+      : $(`#${inBible() ? 'bibleread-body' : 'read-body'} .verse[data-v="${v}"]`);
     if (node){ if(id) node.dataset.hl=id; else delete node.dataset.hl; }
   });
   saveMarks();
@@ -900,6 +914,11 @@ function setHighlight(id){
 }
 
 function verseText(v){
+  if (inBible()){
+    const ch = scriptureCache && scriptureCache.books[Bible.book]
+      && scriptureCache.books[Bible.book][String(Bible.chapter)];
+    return ch ? (ch[String(v)] || '') : '';
+  }
   const ch = currentChapter(); return ch ? ch.verses[String(v)] : '';
 }
 
@@ -923,11 +942,11 @@ function verseAction(act){
   if (act==='bookmark'){
     // A bookmark is a place to return to, so it hangs on the first verse - but
     // it carries the whole range in its label.
-    const i = State.marks.bookmarks.findIndex(b=>b.book===State.book.id&&b.chapter===State.chapter&&b.verse===first);
+    const i = State.marks.bookmarks.findIndex(b=>b.book===curId()&&b.chapter===curCh()&&b.verse===first);
     if (i>=0){ State.marks.bookmarks.splice(i,1); toast('Bookmark removed'); }
-    else { State.marks.bookmarks.unshift({book:State.book.id,bookTitle:State.book.title,
-             chapter:State.chapter, verse:first, ref, note:'', at:Date.now()}); toast('Bookmarked'); }
-    saveMarks(); openChapter(State.chapter, first);
+    else { State.marks.bookmarks.unshift({book:curId(),bookTitle:curTitle(),
+             chapter:curCh(), verse:first, ref, note:'', at:Date.now()}); toast('Bookmarked'); }
+    saveMarks(); reopenAt(first);
   }
   else if (act==='note') noteSheet(first, ref);
   else if (act==='copy'){
@@ -941,7 +960,7 @@ function verseAction(act){
 }
 
 function noteSheet(v, ref){
-  const existing = State.marks.bookmarks.find(b=>b.book===State.book.id&&b.chapter===State.chapter&&b.verse===v);
+  const existing = State.marks.bookmarks.find(b=>b.book===curId()&&b.chapter===curCh()&&b.verse===v);
   sheet(ref, body => {
     const f = el('div','field');
     f.append(el('label',null,'Your note'));
@@ -950,11 +969,11 @@ function noteSheet(v, ref){
     const b = el('button','primary','Save note');
     b.onclick = () => {
       let bm = existing;
-      if (!bm){ bm = {book:State.book.id, bookTitle:State.book.title, chapter:State.chapter,
+      if (!bm){ bm = {book:curId(), bookTitle:curTitle(), chapter:curCh(),
                       verse:v, ref, note:'', at:Date.now()}; State.marks.bookmarks.unshift(bm); }
       bm.note = ta.value.trim(); bm.at = Date.now();
       bm.ref = ref;                 // keep the label in step with the range noted
-      saveMarks(); closeSheet(); openChapter(State.chapter, v); toast('Saved');
+      saveMarks(); closeSheet(); reopenAt(v); toast('Saved');
     };
     body.append(b);
   });
@@ -1057,11 +1076,14 @@ async function wordsSheet(v, ref){
   const lex = await loadLex();
   const text = verseText(v);
   const words = text.split(/(\s+)/);
-  const tags = tagsFor(State.chapter, v);
+  const tags = inBible() ? await bibleTagsFor(Bible.book, Bible.chapter, v)
+                         : tagsFor(State.chapter, v);
   sheet(ref, body => {
     body.append(el('p','hint', tags
-      ? 'Tap a word to open its Hebrew or Greek entry.'
-      : 'This book has no word-level tagging installed, so tapping searches the lexicon by meaning.'));
+      ? 'Tap an underlined word to open its Hebrew or Greek entry. Other words search the lexicon by meaning.'
+      : inBible()
+        ? 'The word list for this book could not be loaded, so tapping searches the lexicon by meaning.'
+        : 'This book has no word-level tagging installed, so tapping searches the lexicon by meaning.'));
     const p = el('p','vtext');
     let wi = -1;
     words.forEach(tok => {
@@ -1096,7 +1118,19 @@ async function showStrong(num){
     if (e.gloss) body.append(el('p','vtext', e.gloss));
     if (e.def)   body.append(el('p',null, e.def));
     if (e.derivation) body.append(el('p','why', e.derivation));
-    const b = el('button','primary','Find this word in the text');
+    if (scriptureInstalled()){
+      const where = el('div','row');
+      if (inBible() && Bible.book){
+        const inBook = el('button','ghost', `Where it’s used in ${Bible.book}`);
+        inBook.onclick = () => wordUsesSheet(num, [Bible.book]);
+        where.append(inBook);
+      }
+      const all = el('button','ghost','Every verse in the Bible');
+      all.onclick = () => wordUsesSheet(num, null);
+      where.append(all);
+      body.append(where);
+    }
+    const b = el('button','primary','Search the lexicon for this number');
     b.onclick = () => { closeSheet(); go('lex'); $('#lex-q').value = num; runLexSearch(); };
     body.append(b);
   });
@@ -1222,12 +1256,17 @@ function runSearch(){
    study, keyed by the paragraph's own key. The id says which, and everything
    else here is the same list it always was. */
 function markTitle(id){
+  if (isBibleId(id)) return bibleBookOf(id) || id;
   const t = topicOf(id);
   if (t) return t.title;
   const p = State.packs[id];
   return p ? p.title : id;
 }
 function markText(id, c, v){
+  if (isBibleId(id)){
+    const b = bibleBookOf(id);
+    return (b && scriptureCache.books[b][String(c)] && scriptureCache.books[b][String(c)][String(v)]) || '';
+  }
   const t = topicOf(id);
   if (t){
     for (const s of t.sections) for (const b of s.blocks)
@@ -1238,11 +1277,18 @@ function markText(id, c, v){
 }
 async function openMark(id, c, v){
   if (isTopicId(id)) return openTopicAt(id, v);
+  if (isBibleId(id)){
+    await loadScripture();
+    const b = bibleBookOf(id);
+    return b ? openBibleChapter(b, +c, {verse:+v}) : toast('Install the World English Bible first');
+  }
   if (State.book?.id !== id) await openBook(id, true);
   openChapter(+c, +v);
 }
 
 function renderMarks(){
+  // Bible marks read their text from the stored Bible, so load it once first
+  if (!scriptureCache && scriptureInstalled()){ loadScripture().then(() => scriptureCache && renderMarks()); }
   const tab = ($('#marks-tabs button.on')||{}).dataset?.tab || 'bookmarks';
   const box = $('#marks-body'); box.innerHTML='';
   if (tab==='bookmarks'){
@@ -1252,7 +1298,7 @@ function renderMarks(){
       const r = el('div','res');
       r.append(el('p','ref', b.ref));
       const t = markText(b.book, b.chapter, b.verse);
-      r.append(el('p',null, t.slice(0,180) + (t.length>180?'…':'')));
+      if (t) r.append(el('p',null, t.slice(0,180) + (t.length>180?'…':'')));
       if (b.note) r.append(el('p','sub','Note: '+b.note));
       r.onclick = () => openMark(b.book, b.chapter, b.verse);
       r.oncontextmenu = e => { e.preventDefault(); State.marks.bookmarks.splice(i,1); saveMarks(); renderMarks(); toast('Removed'); };
@@ -1655,7 +1701,11 @@ function scriptureSearchSheet(){
         const v = markedVerse(it.text, r.keys);
         v.style.margin = '0';
         row.append(h, v);
-        row.onclick = () => showPassage(it.ref);
+        row.onclick = () => {
+          const m = State.view === 'bibleread' && it.ref.match(/^(.+) (\d+):(\d+)$/);
+          if (m){ closeSheet(); openBibleChapter(m[1], +m[2], {verse:+m[3]}); }
+          else showPassage(it.ref);
+        };
         list.append(row);
       }
     };
@@ -2590,6 +2640,12 @@ async function showPassage(ref){
       : 'That reference could not be read.'));
 
     const row = el('div','row');
+    const inWeb = m && scriptureCache && canonBook(m[1], scriptureCache.books);
+    if (inWeb && scriptureCache.books[inWeb][String(chNum)]){
+      const r = el('button','ghost','Read in the Bible');
+      r.onclick = () => { closeSheet(); openBibleChapter(inWeb, chNum, {verse: nums[0] || null}); };
+      row.append(r);
+    }
     if (ch){
       const b = el('button','ghost','Go to the passage');
       b.onclick = () => {
@@ -2752,6 +2808,82 @@ const Bible = {
 };
 
 const bookSlug = name => String(name).toLowerCase().replace(/\s+/g, '-');
+const BIBLE_PREFIX = 'bible-';
+const isBibleId = id => String(id).startsWith(BIBLE_PREFIX);
+const bibleId   = book => BIBLE_PREFIX + bookSlug(book);
+function bibleBookOf(id){
+  if (!scriptureCache) return null;
+  const slug = String(id).slice(BIBLE_PREFIX.length);
+  return Object.keys(scriptureCache.books).find(b => bookSlug(b) === slug) || null;
+}
+
+/* ── word tags for the whole Bible ────────────────────────────────────────
+   One small file per book (packs/tags/<book>.json, built by
+   pipeline/build_bible_tags.py) says which English word stands for which
+   Hebrew or Greek word. Only the book being read is fetched; the service
+   worker keeps it for offline. */
+const BibleTags = {};
+async function bibleTags(book){
+  if (BibleTags[book]) return BibleTags[book];
+  try {
+    const r = await fetch(`packs/tags/${bookSlug(book)}.json`);
+    if (!r.ok) return null;
+    const d = await r.json();
+    BibleTags[book] = d.tags || {};
+  } catch(e){ return null; }
+  return BibleTags[book];
+}
+async function bibleTagsFor(book, ch, v){
+  const t = await bibleTags(book);
+  return t ? (t[`${ch}:${v}`] || []) : null;
+}
+
+/* Every verse where a Strong's number stands, in one book or the whole Bible.
+   The whole Bible means fetching all 66 tag files (3.6 MB) the first time;
+   after that they come from the device. */
+async function wordUsesSheet(num, books){
+  const s = await loadScripture(); if (!s) return;
+  const list = books || Object.keys(s.books);
+  const lex = await loadLex();
+  const e = lex.entries[num] || {};
+  sheet(`${num} ${e.translit || ''}`.trim(), async body => {
+    const status = el('p','hint', 'Looking…');
+    const box = el('div');
+    body.append(status, box);
+    const hits = [];
+    for (let i = 0; i < list.length; i++){
+      if (!books) status.textContent = `Looking through ${list[i]}… (${i+1} of ${list.length})`;
+      const tags = await bibleTags(list[i]);
+      if (!tags) continue;
+      for (const key in tags){
+        const idx = tags[key].filter(t => t[1] === num).map(t => t[0]);
+        if (!idx.length) continue;
+        const [c, v] = key.split(':');
+        hits.push({book: list[i], c: +c, v: +v, idx});
+      }
+    }
+    hits.sort((a, b) => list.indexOf(a.book) - list.indexOf(b.book) || a.c - b.c || a.v - b.v);
+    const where = books ? books[0] : 'the Bible';
+    status.textContent = hits.length
+      ? `${hits.length} verse${hits.length === 1 ? '' : 's'} in ${where}` + (hits.length > 300 ? ', first 300 shown' : '')
+      : `Not found in ${where}.`;
+    hits.slice(0, 300).forEach(h => {
+      const text = (s.books[h.book][String(h.c)] || {})[String(h.v)] || '';
+      const row = el('div','res');
+      row.append(el('p','ref', `${h.book} ${h.c}:${h.v}`));
+      const p = el('p');
+      text.split(/(\s+)/).reduce((wi, tok) => {
+        if (/^\s+$/.test(tok)){ p.append(document.createTextNode(tok)); return wi; }
+        if (h.idx.includes(wi + 1)){ const b = el('b', null, tok); b.style.background = 'var(--band)'; p.append(b); }
+        else p.append(document.createTextNode(tok));
+        return wi + 1;
+      }, -1);
+      row.append(p);
+      row.onclick = () => { closeSheet(); openBibleChapter(h.book, h.c, {verse: h.v}); };
+      box.append(row);
+    });
+  });
+}
 
 const AudioDB = (() => {
   let dbp;
@@ -2883,19 +3015,41 @@ async function openBibleChapter(book, chNum, opts={}){
   const books = Object.keys(s.books);
   const total = Object.keys(s.books[book]).length;
   Bible.book = book; Bible.chapter = chNum;
+  State.mode = 'bible'; hideVerseBar();
   LS.set('bibleLast', {book, chapter: chNum});
   markSeen('bible-' + bookSlug(book), chNum);
+  bibleTags(book);                       // fetch the word list while they read
 
   const box = $('#bibleread-body'); box.innerHTML = '';
   box.append(el('p','kicker', SCRIPTURE.title));
   box.append(el('h2','chapter', `${book} ${chNum}`));
   box.append(playerBar());
 
+  const tools = el('div','bible-tools');
+  const find = el('button','ghost','🔍 Search the Bible');
+  find.onclick = scriptureSearchSheet;
+  const mine = el('button','ghost','❏ My marks');
+  mine.onclick = () => { renderMarks(); go('marks'); };
+  tools.append(find, mine);
+  box.append(tools);
+  box.append(el('p','hint bible-tip','Tap a verse to highlight, note, bookmark, copy, or see its Hebrew and Greek words.'));
+
+  const id = bibleId(book);
   Object.keys(ch).map(Number).sort((a,b) => a-b).forEach(v => {
     const d = el('div','verse');
     d.dataset.v = v;
+    const hl = State.marks.highlights[vkey(id, chNum, v)];
+    if (hl) d.dataset.hl = hl;
     d.append(el('span','vn', String(v)));
     d.append(document.createTextNode(ch[String(v)]));
+    const bm = State.marks.bookmarks.find(b => b.book===id && b.chapter===chNum && b.verse===v);
+    if (bm){
+      const m = el('span','bm', bm.note ? '✎' : '❏');
+      m.title = bm.note ? 'Your note' : 'Bookmarked';
+      if (bm.note) m.onclick = e => { e.stopPropagation(); noteSheet(v, bm.ref || `${book} ${chNum}:${v}`); };
+      d.append(m);
+    }
+    d.onclick = () => selectVerse(v, d);
     box.append(d);
   });
 
@@ -2919,7 +3073,13 @@ async function openBibleChapter(book, chNum, opts={}){
   $('#prev-num').textContent = prev ? prev[1] : '';
   $('#next-num').textContent = next ? next[1] : '';
 
-  go('bibleread', {replace: State.view === 'bibleread'});
+  const y = window.scrollY;
+  go('bibleread', {replace: State.view === 'bibleread', keepScroll: opts.keepScroll});
+  if (opts.keepScroll) window.scrollTo(0, y);
+  else if (opts.verse){
+    const n = box.querySelector(`.verse[data-v="${opts.verse}"]`);
+    if (n) setTimeout(() => { n.scrollIntoView({block:'center'}); n.classList.add('found'); }, 60);
+  }
 
   // if a chapter was playing, keep listening on the one just opened
   if (opts.play || Player.playing()) playChapter(book, chNum);
