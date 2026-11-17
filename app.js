@@ -362,22 +362,23 @@ function applyPrefs(){
 }
 
 /* ── navigation ───────────────────────────────────────────────────────── */
-const VIEWS = ['library','books','topics','prayers','testimonies','printables','devotionals','devotional','armor','connect','book','front','read','search','marks','lex','topic','guides','guide'];
+const VIEWS = ['library','books','topics','prayers','testimonies','printables','devotionals','devotional','armor','connect','book','front','read','search','marks','lex','topic','guides','guide','bible','bibleread'];
 function go(view, opts={}){
   if (State.view !== view && !opts.replace) State.history.push(State.view);
   State.view = view;
   // both readers own the bar; everywhere else it is dismissed
   if (view !== 'read' && view !== 'topic') hideVerseBar();
   if (view !== 'topic') clearHash();
-  const reading = view === 'read';
+  const reading = view === 'read' || view === 'bibleread';
   $('#prev-ch').hidden = !reading;
   $('#next-ch').hidden = !reading;
   VIEWS.forEach(v => $('#view-'+v).classList.toggle('on', v===view));
   $$('#tabbar button').forEach(b => b.classList.toggle('on', b.dataset.go===view));
   $('#btn-back').hidden = ['library','search','marks','lex'].includes(view);
-  $('#btn-chapters').hidden = view!=='read';
+  $('#btn-chapters').hidden = !reading;
   window.scrollTo(0, opts.keepScroll ? window.scrollY : 0);
   setTitle(view);
+  if (view === 'bible') renderBible();   // fresh "Continue reading" and audio marks
 }
 function back(){
   const prev = State.history.pop() || 'library';
@@ -392,7 +393,9 @@ function setTitle(view){
                devotional:'Daily Devotional',
                devotionals:'Devotionals',
                armor:'Armor of Elohim',
-               connect:'Connect with us', search:'Search', marks:'Marks', lex:'Concordance'};
+               connect:'Connect with us', search:'Search', marks:'Marks', lex:'Concordance',
+               bible:'Read the Bible'};
+  if (view==='bibleread'){ t.textContent=`${Bible.book} ${Bible.chapter}`; s.textContent=SCRIPTURE.title; return; }
   if (map[view]) { t.textContent = map[view]; s.textContent=''; return; }
   if (view==='book'){ t.textContent=b?b.title:''; s.textContent=b?`${b.chapterCount} chapters`:''; return; }
   if (view==='front'){ t.textContent=b?b.title:''; s.textContent='Front matter'; return; }
@@ -1351,6 +1354,7 @@ function settingsSheet(){
 
 /* ── chapter picker ───────────────────────────────────────────────────── */
 function chapterSheet(){
+  if (State.view === 'bibleread') return bibleChapterSheet(Bible.book);
   sheet('Chapters', body => {
     const g = el('div','grid');
     State.book.chapters.forEach(ch => {
@@ -1509,7 +1513,10 @@ function renderScriptureCard(){
     m.append(el('p', null, '66 books · 31,098 verses · read offline'));
     m.append(el('p','badge','Passage popups and verse search read from this'));
     c.append(m);
-    const s = el('button','go solid','Search');
+    const rd = el('button','go solid','Read');
+    rd.onclick = () => go('bible');
+    c.append(rd);
+    const s = el('button','go','Search');
     s.onclick = scriptureSearchSheet;
     c.append(s);
     const b = el('button','go','Remove');
@@ -2723,6 +2730,414 @@ function clearHash(){
   if (location.hash) { try { history.replaceState(null, '', location.pathname + location.search); } catch(e){} }
 }
 
+/* ── read the Bible straight through, with audio ──────────────────────────
+   The scripture text installed above was only ever read a verse at a time,
+   through passage popups and search. This lets it be read like a Bible: pick
+   a book, pick a chapter, read, and step to the next chapter. All of it comes
+   out of IndexedDB, so it works on a plane.
+
+   Audio is one MP3 per chapter on a server of ours (AUDIO_BASE), laid out as
+   <base>/<book-slug>/<chapter>.mp3 with an index.json listing what is there.
+   A chapter streams when there is signal. A whole book can be saved to the
+   device for offline listening; those files live in their own IndexedDB
+   database so they never crowd the book packs. Moving the audio to another
+   host is a change to AUDIO_BASE and nothing else. */
+const AUDIO_BASE = 'https://audio.kingdom-life-ministry.com/web';
+
+const Bible = {
+  book: null, chapter: null,
+  index: LS.get('audioIndex', null),   // last good copy of <base>/index.json
+  saved: LS.get('audioSaved', {}),     // book -> true when every chapter is on the device
+  busy: {},                            // book -> true while a download runs
+};
+
+const bookSlug = name => String(name).toLowerCase().replace(/\s+/g, '-');
+
+const AudioDB = (() => {
+  let dbp;
+  const open = () => dbp || (dbp = new Promise((res, rej) => {
+    const r = indexedDB.open('kls-audio', 1);
+    r.onupgradeneeded = () => r.result.createObjectStore('ch');
+    r.onsuccess = () => res(r.result);
+    r.onerror   = () => rej(r.error);
+  }));
+  const tx = async (mode, fn) => {
+    const db = await open();
+    return new Promise((res, rej) => {
+      const t = db.transaction('ch', mode), s = t.objectStore('ch');
+      const q = fn(s);
+      t.oncomplete = () => res(q && q.result);
+      t.onerror = () => rej(t.error);
+    });
+  };
+  return {
+    get: k      => tx('readonly',  s => s.get(k)),
+    put: (k, v) => tx('readwrite', s => s.put(v, k)),
+    del: k      => tx('readwrite', s => s.delete(k)),
+  };
+})();
+
+async function loadAudioIndex(){
+  try {
+    const r = await fetch(AUDIO_BASE + '/index.json', {cache:'no-store'});
+    if (!r.ok) return Bible.index;
+    const d = await r.json();
+    if (d && d.books){ Bible.index = d; LS.set('audioIndex', d); }
+  } catch(e){ /* offline: keep the last good copy */ }
+  return Bible.index;
+}
+
+/* true / false when the index says, null when there is no index yet */
+function hasAudio(book){
+  if (!Bible.index || !Bible.index.books) return null;
+  return !!Bible.index.books[book];
+}
+
+async function bibleBooks(){
+  const s = await loadScripture();
+  if (!s) return null;
+  return Object.keys(s.books).map(name =>
+    ({ name, chapters: Object.keys(s.books[name]).length }));
+}
+
+/* ── book list ── */
+async function renderBible(){
+  const box = $('#bible-body'); box.innerHTML = '';
+  const books = await bibleBooks();
+  if (!books){
+    box.append(el('p','lede',
+      'The Bible reads from the World English Bible text stored on your device. ' +
+      'Install it once and every book reads with no signal.'));
+    const c = el('div','card');
+    c.append(el('i','spine'));
+    const m = el('div','meta');
+    m.append(el('h4', null, SCRIPTURE.title));
+    m.append(el('p', null, `66 books · ${(SCRIPTURE.bytes/1048576).toFixed(1)} MB download`));
+    c.append(m);
+    const b = el('button','go solid','Install');
+    b.onclick = async () => { await installScripture(b); renderBible(); };
+    c.append(b);
+    box.append(c);
+    return;
+  }
+  loadAudioIndex().then(() => { if (State.view === 'bible') paintAudioBadges(); });
+
+  const last = LS.get('bibleLast', null);
+  if (last && books.some(b => b.name === last.book)){
+    const r = el('button','wide-btn bible-resume', `Continue reading ${last.book} ${last.chapter}`);
+    r.onclick = () => openBibleChapter(last.book, last.chapter);
+    box.append(r);
+  }
+  const part = (title, list) => {
+    box.append(el('h3','rule', title));
+    const g = el('div','bible-books');
+    list.forEach(b => {
+      const btn = el('button', null);
+      btn.dataset.book = b.name;
+      btn.append(el('span', 'bb-name', b.name));
+      btn.append(el('span', 'bb-ch', b.chapters === 1 ? '1 chapter' : `${b.chapters} chapters`));
+      btn.onclick = () => bibleChapterSheet(b.name);
+      g.append(btn);
+    });
+    box.append(g);
+  };
+  part('Old Testament', books.slice(0, 39));
+  part('New Testament', books.slice(39));
+  box.append(el('p','hint',
+    'Books marked ♪ have audio. Audio streams when you have signal, or save a book ' +
+    'to your device from its chapter list to listen offline.'));
+  paintAudioBadges();
+}
+
+function paintAudioBadges(){
+  $$('#bible-body .bible-books button').forEach(b => {
+    const name = b.dataset.book;
+    b.classList.toggle('has-audio', hasAudio(name) === true);
+    b.classList.toggle('saved', !!Bible.saved[name]);
+  });
+}
+
+async function bibleChapterSheet(book){
+  const books = await bibleBooks(); if (!books) return;
+  const info = books.find(b => b.name === book); if (!info) return;
+  if (info.chapters === 1) return openBibleChapter(book, 1);
+  sheet(book, body => {
+    const g = el('div','grid');
+    for (let c = 1; c <= info.chapters; c++){
+      const b = el('button', null, String(c));
+      if (Bible.book === book && Bible.chapter === c) b.classList.add('here');
+      else if (readMarker('bible-' + bookSlug(book), c)) b.classList.add('read');
+      b.onclick = () => { closeSheet(); openBibleChapter(book, c); };
+      g.append(b);
+    }
+    body.append(g);
+    if (hasAudio(book) !== false) body.append(audioSaveRow(book, info.chapters));
+  });
+}
+
+/* ── one chapter ── */
+async function openBibleChapter(book, chNum, opts={}){
+  const s = await loadScripture(); if (!s) return go('bible');
+  const ch = s.books[book] && s.books[book][String(chNum)];
+  if (!ch) return;
+  const books = Object.keys(s.books);
+  const total = Object.keys(s.books[book]).length;
+  Bible.book = book; Bible.chapter = chNum;
+  LS.set('bibleLast', {book, chapter: chNum});
+  markSeen('bible-' + bookSlug(book), chNum);
+
+  const box = $('#bibleread-body'); box.innerHTML = '';
+  box.append(el('p','kicker', SCRIPTURE.title));
+  box.append(el('h2','chapter', `${book} ${chNum}`));
+  box.append(playerBar());
+
+  Object.keys(ch).map(Number).sort((a,b) => a-b).forEach(v => {
+    const d = el('div','verse');
+    d.dataset.v = v;
+    d.append(el('span','vn', String(v)));
+    d.append(document.createTextNode(ch[String(v)]));
+    box.append(d);
+  });
+
+  const prev = chNum > 1 ? [book, chNum-1]
+    : (books.indexOf(book) > 0 ? (b => [b, Object.keys(s.books[b]).length])(books[books.indexOf(book)-1]) : null);
+  const next = chNum < total ? [book, chNum+1]
+    : (books.indexOf(book) < books.length-1 ? [books[books.indexOf(book)+1], 1] : null);
+  Bible.prev = prev; Bible.next = next;
+
+  const nav = el('div','bible-nav');
+  const pb = el('button','ghost', prev ? `‹ ${prev[0]} ${prev[1]}` : '');
+  pb.disabled = !prev; pb.onclick = () => prev && openBibleChapter(prev[0], prev[1]);
+  const nb = el('button','ghost', next ? `${next[0]} ${next[1]} ›` : '');
+  nb.disabled = !next; nb.onclick = () => next && openBibleChapter(next[0], next[1]);
+  nav.append(pb, nb);
+  box.append(nav);
+  if (hasAudio(book) !== false) box.append(audioSaveRow(book, total));
+
+  $('#prev-ch').disabled = !prev;
+  $('#next-ch').disabled = !next;
+  $('#prev-num').textContent = prev ? prev[1] : '';
+  $('#next-num').textContent = next ? next[1] : '';
+
+  go('bibleread', {replace: State.view === 'bibleread'});
+
+  // if a chapter was playing, keep listening on the one just opened
+  if (opts.play || Player.playing()) playChapter(book, chNum);
+  else paintPlayer();
+}
+
+/* ── the player ───────────────────────────────────────────────────────────
+   One audio element for the whole app, so listening carries on while the
+   reader looks at something else. It plays the chapter it was started on;
+   at the end it opens the next chapter and keeps going. */
+const Player = {
+  audio: null, book: null, chapter: null, url: null,
+  playing(){ return !!(this.audio && !this.audio.paused && !this.audio.ended); },
+};
+const SPEEDS = [1, 1.25, 1.5, 0.75];
+
+function playerEl(){
+  if (Player.audio) return Player.audio;
+  const a = new Audio();
+  a.preload = 'none';
+  a.playbackRate = LS.get('audioSpeed', 1);
+  a.addEventListener('timeupdate', paintPlayer);
+  a.addEventListener('play', paintPlayer);
+  a.addEventListener('pause', paintPlayer);
+  a.addEventListener('loadedmetadata', () => { a.playbackRate = LS.get('audioSpeed', 1); paintPlayer(); });
+  a.addEventListener('ended', () => {
+    const n = Bible.book === Player.book && Bible.chapter === Player.chapter ? Bible.next : null;
+    if (n && State.view === 'bibleread') openBibleChapter(n[0], n[1], {play:true});
+    else if (n) playChapter(n[0], n[1]);
+    else paintPlayer();
+  });
+  a.addEventListener('error', () => {
+    if (!Player.book) return;
+    toast(navigator.onLine === false
+      ? 'No signal. Save this book to your device to listen offline.'
+      : 'That chapter’s audio could not be loaded right now');
+    paintPlayer();
+  });
+  Player.audio = a;
+  mediaSession();
+  return a;
+}
+
+async function chapterSrc(book, ch){
+  try {
+    const blob = await AudioDB.get(`${bookSlug(book)}/${ch}`);
+    if (blob) return {url: URL.createObjectURL(blob), local: true};
+  } catch(e){}
+  return {url: `${AUDIO_BASE}/${bookSlug(book)}/${ch}.mp3`, local: false};
+}
+
+async function playChapter(book, ch){
+  const a = playerEl();
+  if (Player.book !== book || Player.chapter !== ch){
+    if (Player.url && Player.url.startsWith('blob:')) URL.revokeObjectURL(Player.url);
+    const src = await chapterSrc(book, ch);
+    Player.book = book; Player.chapter = ch; Player.url = src.url;
+    a.src = src.url;
+  }
+  try { await a.play(); } catch(e){ /* the error handler explains */ }
+  if ('mediaSession' in navigator){
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: `${book} ${ch}`, artist: 'World English Bible', album: 'Kingdom Life Study',
+        artwork: [{src:'icons/icon-512.png', sizes:'512x512', type:'image/png'}],
+      });
+    } catch(e){}
+  }
+  paintPlayer();
+}
+
+function mediaSession(){
+  if (!('mediaSession' in navigator)) return;
+  const ms = navigator.mediaSession;
+  const step = dir => {
+    const target = Bible.book === Player.book && Bible.chapter === Player.chapter
+      ? (dir > 0 ? Bible.next : Bible.prev) : null;
+    if (!target) return;
+    if (State.view === 'bibleread') openBibleChapter(target[0], target[1], {play:true});
+    else playChapter(target[0], target[1]);
+  };
+  try {
+    ms.setActionHandler('play',  () => Player.audio && Player.audio.play());
+    ms.setActionHandler('pause', () => Player.audio && Player.audio.pause());
+    ms.setActionHandler('previoustrack', () => step(-1));
+    ms.setActionHandler('nexttrack',     () => step(1));
+    ms.setActionHandler('seekbackward', () => { if (Player.audio) Player.audio.currentTime -= 15; });
+    ms.setActionHandler('seekforward',  () => { if (Player.audio) Player.audio.currentTime += 15; });
+  } catch(e){}
+}
+
+const clock = t => {
+  if (!isFinite(t) || t < 0) return '0:00';
+  const m = Math.floor(t/60), s = Math.floor(t%60);
+  return `${m}:${String(s).padStart(2,'0')}`;
+};
+
+function playerBar(){
+  const bar = el('div','player');
+  bar.id = 'player';
+  const play = el('button','pl-play','▶');
+  play.setAttribute('aria-label','Play');
+  play.onclick = () => {
+    const mine = Player.book === Bible.book && Player.chapter === Bible.chapter;
+    if (mine && Player.playing()) Player.audio.pause();
+    else playChapter(Bible.book, Bible.chapter);
+  };
+  const back15 = el('button','pl-skip','↺15');
+  back15.setAttribute('aria-label','Back 15 seconds');
+  back15.onclick = () => { if (Player.audio) Player.audio.currentTime -= 15; };
+  const mid = el('div','pl-mid');
+  const label = el('div','pl-label','Listen to this chapter');
+  const seek = el('input','pl-seek');
+  seek.type = 'range'; seek.min = 0; seek.max = 1000; seek.value = 0;
+  seek.setAttribute('aria-label','Position');
+  seek.oninput = () => {
+    const a = Player.audio;
+    if (a && isFinite(a.duration)) a.currentTime = a.duration * seek.value / 1000;
+  };
+  mid.append(label, seek);
+  const speed = el('button','pl-speed', LS.get('audioSpeed', 1) + '×');
+  speed.setAttribute('aria-label','Playback speed');
+  speed.onclick = () => {
+    const cur = LS.get('audioSpeed', 1);
+    const nxt = SPEEDS[(SPEEDS.indexOf(cur) + 1) % SPEEDS.length];
+    LS.set('audioSpeed', nxt);
+    if (Player.audio) Player.audio.playbackRate = nxt;
+    speed.textContent = nxt + '×';
+  };
+  bar.append(play, back15, mid, speed);
+  return bar;
+}
+
+function paintPlayer(){
+  const bar = $('#player'); if (!bar) return;
+  const a = Player.audio;
+  const mine = a && Player.book === Bible.book && Player.chapter === Bible.chapter;
+  const playing = mine && Player.playing();
+  const playBtn = $('.pl-play', bar);
+  playBtn.textContent = playing ? '❚❚' : '▶';
+  playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
+  const label = $('.pl-label', bar), seek = $('.pl-seek', bar);
+  if (hasAudio(Bible.book) === false){
+    bar.classList.add('off');
+    label.textContent = 'No audio for this book yet';
+    return;
+  }
+  bar.classList.remove('off');
+  if (mine && isFinite(a.duration)){
+    label.textContent = `${clock(a.currentTime)} / ${clock(a.duration)}`;
+    if (document.activeElement !== seek) seek.value = Math.round(1000 * a.currentTime / a.duration) || 0;
+  } else if (mine && playing){
+    label.textContent = 'Loading…';
+  } else {
+    label.textContent = Bible.saved[Bible.book] ? 'Listen (saved on this device)' : 'Listen to this chapter';
+    seek.value = 0;
+  }
+}
+
+/* ── saving a book's audio for offline ── */
+function audioSaveRow(book, chapters){
+  const row = el('div','audio-save');
+  const info = Bible.index && Bible.index.books && Bible.index.books[book];
+  const size = info && info.bytes ? ` · ${(info.bytes/1048576).toFixed(0)} MB` : '';
+  const txt = el('p','hint');
+  const btn = el('button','wide-btn');
+  const paint = () => {
+    if (Bible.busy[book]) return;
+    if (Bible.saved[book]){
+      txt.textContent = 'This book’s audio is saved on this device and plays with no signal.';
+      btn.textContent = 'Remove saved audio';
+      btn.onclick = () => removeBookAudio(book, chapters, () => { paint(); paintAudioBadges(); });
+    } else {
+      txt.textContent = 'Audio streams when you have signal. Save it to listen offline.';
+      btn.textContent = `Save ${book} audio for offline${size}`;
+      btn.onclick = () => saveBookAudio(book, chapters, btn, () => { paint(); paintAudioBadges(); paintPlayer(); });
+    }
+  };
+  paint();
+  if (Bible.busy[book]){ btn.disabled = true; btn.textContent = 'Saving…'; }
+  row.append(txt, btn);
+  return row;
+}
+
+async function saveBookAudio(book, chapters, btn, done){
+  if (Bible.busy[book]) return;
+  Bible.busy[book] = true;
+  btn.disabled = true;
+  try { if (navigator.storage && navigator.storage.persist) await navigator.storage.persist(); } catch(e){}
+  const slug = bookSlug(book);
+  try {
+    for (let c = 1; c <= chapters; c++){
+      btn.textContent = `Saving ${c} of ${chapters}…`;
+      const key = `${slug}/${c}`;
+      if (await AudioDB.get(key)) continue;   // a stopped download picks up where it left off
+      const r = await fetch(`${AUDIO_BASE}/${slug}/${c}.mp3`);
+      if (!r.ok) throw new Error(`chapter ${c} (HTTP ${r.status})`);
+      await AudioDB.put(key, await r.blob());
+    }
+    Bible.saved[book] = true; LS.set('audioSaved', Bible.saved);
+    toast(`${book} audio saved for offline`);
+  } catch(e){
+    toast('Saving stopped at ' + (e.message || 'a chapter') + '. Tap again to finish.');
+  } finally {
+    Bible.busy[book] = false;
+    btn.disabled = false;
+    done();
+  }
+}
+
+async function removeBookAudio(book, chapters, done){
+  const slug = bookSlug(book);
+  for (let c = 1; c <= chapters; c++){ try { await AudioDB.del(`${slug}/${c}`); } catch(e){} }
+  delete Bible.saved[book]; LS.set('audioSaved', Bible.saved);
+  toast('Saved audio removed');
+  done();
+}
+
 /* ── wiring ───────────────────────────────────────────────────────────── */
 function bindUI(){
   $('#btn-back').onclick = back;
@@ -2744,9 +3159,11 @@ function bindUI(){
   $('#vb-close').onclick = hideVerseBar;
   $$('#vb-actions button, .vb-actions button').forEach(b => b.onclick = () => verseAction(b.dataset.act));
 
-  $('#prev-ch').onclick = () => { const i=State.book.chapters.findIndex(c=>c.num===State.chapter);
+  $('#prev-ch').onclick = () => { if (State.view==='bibleread'){ if (Bible.prev) openBibleChapter(...Bible.prev); return; }
+    const i=State.book.chapters.findIndex(c=>c.num===State.chapter);
     if (i>0) openChapter(State.book.chapters[i-1].num); };
-  $('#next-ch').onclick = () => { const i=State.book.chapters.findIndex(c=>c.num===State.chapter);
+  $('#next-ch').onclick = () => { if (State.view==='bibleread'){ if (Bible.next) openBibleChapter(...Bible.next); return; }
+    const i=State.book.chapters.findIndex(c=>c.num===State.chapter);
     if (i<State.book.chapters.length-1) openChapter(State.book.chapters[i+1].num); };
 
   // dim the chapter arrows while the page is moving, so they never sit over
@@ -2814,8 +3231,8 @@ function bindUI(){
 
   document.addEventListener('keydown', e => {
     if (e.key==='Escape'){ closeSheet(); hideVerseBar(); }
-    if (State.view==='read' && e.key==='ArrowRight') $('#next-ch').click();
-    if (State.view==='read' && e.key==='ArrowLeft')  $('#prev-ch').click();
+    if ((State.view==='read' || State.view==='bibleread') && e.key==='ArrowRight') $('#next-ch').click();
+    if ((State.view==='read' || State.view==='bibleread') && e.key==='ArrowLeft')  $('#prev-ch').click();
   });
 }
 
