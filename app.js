@@ -913,11 +913,12 @@ function setHighlight(id){
   showVerseBar();
 }
 
-function verseText(v){
+function verseText(v, raw = false){
   if (inBible()){
     const ch = scriptureCache && scriptureCache.books[Bible.book]
       && scriptureCache.books[Bible.book][String(Bible.chapter)];
-    return ch ? (ch[String(v)] || '') : '';
+    const t = ch ? (ch[String(v)] || '') : '';
+    return raw ? t : shownText(Bible.book, Bible.chapter, v, t);
   }
   const ch = currentChapter(); return ch ? ch.verses[String(v)] : '';
 }
@@ -1074,7 +1075,7 @@ function tagsFor(chapter, verse){
 
 async function wordsSheet(v, ref){
   const lex = await loadLex();
-  const text = verseText(v);
+  const text = verseText(v, true);   // word tags count words in the installed text
   const words = text.split(/(\s+)/);
   const tags = inBible() ? await bibleTagsFor(Bible.book, Bible.chapter, v)
                          : tagsFor(State.chapter, v);
@@ -1265,7 +1266,7 @@ function markTitle(id){
 function markText(id, c, v){
   if (isBibleId(id)){
     const b = bibleBookOf(id);
-    return (b && scriptureCache.books[b][String(c)] && scriptureCache.books[b][String(c)][String(v)]) || '';
+    return shownText(b, c, v, (b && scriptureCache.books[b][String(c)] && scriptureCache.books[b][String(c)][String(v)]) || '');
   }
   const t = topicOf(id);
   if (t){
@@ -2822,6 +2823,40 @@ const Bible = {
   busy: {},                                      // voice:book -> true while a download runs
 };
 
+/* ── the names on screen ──────────────────────────────────────────────────
+   The installed text has the restored names. "Traditional" shows the names
+   the David Williams reading uses, so people can read along with him:
+   YHWH -> "the LORD" the way the LORD editions of the WEB read it ("Lord
+   YHWH" -> "Lord GOD", and no "the" when YHWH is spoken to: "LORD, hear
+   me"), Yahshua -> Jesus, Messiah -> Christ. In John 1:41 and 4:25 the WEB
+   itself has "Messiah" first (the word being explained), so that one stays.
+   "Yah" is left as it is. The added "the" shifts word positions, so the
+   Hebrew/Greek word study always reads the installed (restored) text. */
+const TEXT_EDITIONS = [
+  { id:'restored',    name:'Restored names',    about:'YHWH and Yahshua, as the app has always shown.' },
+  { id:'traditional', name:'Traditional names', about:'LORD and Jesus Christ, to read along with David Williams.' },
+];
+let textEdition = LS.get('textEdition', 'restored');
+function setTextEdition(id){ textEdition = id; LS.set('textEdition', id); }
+function shownText(book, c, v, t){
+  if (textEdition !== 'traditional' || !t) return t;
+  const keepFirst = book === 'John' && ((+c === 1 && +v === 41) || (+c === 4 && +v === 25));
+  let i = 0;
+  return t.replace(/\bLord YHWH\b/g, 'Lord GOD')
+          .replace(/\bYHWH\b/g, (m, at, str) => {
+            const pre = str.slice(0, at), post = str.slice(at + 4);
+            const prev = (pre.match(/([A-Za-z]+)\W*$/) || [])[1] || '';
+            if (/^(the|o)$/i.test(prev)) return 'LORD';
+            const start = /(^|[.!?;:]\s+|[“‘"(]\s*)$/.test(pre);
+            const spokenTo = (start && /^,/.test(post) && !/^, the\b/.test(post))
+                          || (/,\s*$/.test(pre) && /^[!?,]/.test(post));
+            if (spokenTo) return 'LORD';
+            return start ? 'The LORD' : 'the LORD';
+          })
+          .replace(/\bYahshua\b/g, 'Jesus')
+          .replace(/\bMessiah\b/g, m => (keepFirst && i++ === 0) ? m : 'Christ');
+}
+
 function setVoice(id){
   audioVoice = voiceById(id);
   LS.set('audioVoice', audioVoice.id);
@@ -3069,7 +3104,7 @@ async function openBibleChapter(book, chNum, opts={}){
     const hl = State.marks.highlights[vkey(id, chNum, v)];
     if (hl) d.dataset.hl = hl;
     d.append(el('span','vn', String(v)));
-    d.append(document.createTextNode(ch[String(v)]));
+    d.append(document.createTextNode(shownText(book, chNum, v, ch[String(v)])));
     const bm = State.marks.bookmarks.find(b => b.book===id && b.chapter===chNum && b.verse===v);
     if (bm){
       const m = el('span','bm', bm.note ? '✎' : '❏');
@@ -3268,15 +3303,19 @@ function paintPlayer(){
 }
 
 /* ── choosing the voice ── */
+function voiceLabel(){
+  const names = textEdition === 'traditional' ? 'LORD, Jesus' : 'YHWH, Yahshua';
+  return `Voice: ${audioVoice.name} · Names: ${names} ▾`;
+}
 function voiceRow(){
   const b = el('button','voice-pick');
   b.id = 'voice-pick';
-  b.textContent = `Voice: ${audioVoice.name} ▾`;
+  b.textContent = voiceLabel();
   b.onclick = voiceSheet;
   return b;
 }
 function voiceSheet(){
-  sheet('Choose a voice', body => {
+  sheet('Voice and names', body => {
     VOICES.forEach(v => {
       const o = el('button','voice-opt' + (v === audioVoice ? ' on' : ''));
       o.append(el('b', null, v.name), el('span', null, v.about));
@@ -3285,7 +3324,9 @@ function voiceSheet(){
         closeSheet();
         if (v === audioVoice) return;
         setVoice(v.id);
-        const pick = $('#voice-pick'); if (pick) pick.textContent = `Voice: ${v.name} ▾`;
+        const match = v.id === 'williams' ? 'traditional' : 'restored';
+        if (match !== textEdition){ setTextEdition(match); rerenderBibleText(); }
+        const pick = $('#voice-pick'); if (pick) pick.textContent = voiceLabel();
         const save = $('#bibleread-body .audio-save');
         if (save && Bible.book){
           const total = scriptureCache && Object.keys(scriptureCache.books[Bible.book]).length;
@@ -3298,7 +3339,33 @@ function voiceSheet(){
       body.append(o);
     });
     body.append(el('p','hint','Books you save for offline are saved in the voice you had chosen. Saving in the other voice takes its own space.'));
+    body.append(el('h3','rule','Names on screen'));
+    body.append(el('p','hint','Picking a voice switches these to match it. You can also choose them yourself.'));
+    TEXT_EDITIONS.forEach(e => {
+      const o = el('button','voice-opt' + (e.id === textEdition ? ' on' : ''));
+      o.append(el('b', null, e.name), el('span', null, e.about));
+      o.onclick = () => {
+        closeSheet();
+        if (e.id === textEdition) return;
+        setTextEdition(e.id); rerenderBibleText();
+        toast(e.name);
+      };
+      body.append(o);
+    });
   });
+}
+function rerenderBibleText(){
+  if (!scriptureCache || !Bible.book) return;
+  const ch = scriptureCache.books[Bible.book] && scriptureCache.books[Bible.book][String(Bible.chapter)];
+  if (!ch) return;
+  $$('#bibleread-body .verse').forEach(d => {
+    const v = d.dataset.v;
+    for (const n of d.childNodes){
+      if (n.nodeType === 3){ n.textContent = shownText(Bible.book, Bible.chapter, v, ch[v]); break; }
+    }
+  });
+  const pick = $('#voice-pick');
+  if (pick) pick.textContent = voiceLabel();
 }
 
 /* ── saving a book's audio for offline ── */
