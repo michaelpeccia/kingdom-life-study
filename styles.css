@@ -624,3 +624,17 @@ body.scrolling .chapnav{opacity:.28}
 .bible-tip{margin:0 0 12px}
 .verse.found{animation:foundflash 1.6s ease}
 .verse .bm{cursor:pointer}
+/* voice choice under the player */
+.voice-pick{
+  display:block;margin:-6px 0 14px auto;background:none;border:0;padding:4px 2px;
+  font:600 12.5px system-ui,sans-serif;color:var(--gold);cursor:pointer;
+}
+.voice-opt{
+  display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%;text-align:left;
+  background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:12px 14px;
+  margin:0 0 10px;color:var(--ink);font:inherit;cursor:pointer;
+}
+.voice-opt b{font:600 15px system-ui,sans-serif;color:var(--navy)}
+.voice-opt span{font:13px/1.4 system-ui,sans-serif;color:var(--muted)}
+.voice-opt.on{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.voice-opt.on b::after{content:"  ✓";color:var(--gold)}

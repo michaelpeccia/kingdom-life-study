@@ -2792,20 +2792,43 @@ function clearHash(){
    a book, pick a chapter, read, and step to the next chapter. All of it comes
    out of IndexedDB, so it works on a plane.
 
-   Audio is one MP3 per chapter on a server of ours (AUDIO_BASE), laid out as
+   Audio is one MP3 per chapter on a server of ours (each voice's base), laid out as
    <base>/<book-slug>/<chapter>.mp3 with an index.json listing what is there.
    A chapter streams when there is signal. A whole book can be saved to the
    device for offline listening; those files live in their own IndexedDB
    database so they never crowd the book packs. Moving the audio to another
-   host is a change to AUDIO_BASE and nothing else. */
-const AUDIO_BASE = 'https://audio.kingdom-life-ministry.com/web';
+   host is a change to a voice's base and nothing else.
+
+   There is more than one recording ("voice"), and the listener picks one.
+   David Williams was the first, so his index, saved-book list and saved
+   chapters keep their original unprefixed names; other voices add their id. */
+const AUDIO_HOST = 'https://audio.kingdom-life-ministry.com';
+const VOICES = [
+  { id:'kingdom',  name:'Kingdom Life voice', base: AUDIO_HOST + '/kingdom',
+    about:'Reads the text on your screen, with YHWH and Yahshua. A computer voice.' },
+  { id:'williams', name:'David Williams', base: AUDIO_HOST + '/web',
+    about:'A human narrator (public domain). He reads the traditional WEB, so you will hear “LORD” and “Jesus.”' },
+];
+const voiceById = id => VOICES.find(v => v.id === id) || VOICES[0];
+let audioVoice = voiceById(LS.get('audioVoice', VOICES[0].id));
+const voiceKey = (name, v = audioVoice) => v.id === 'williams' ? name : `${name}.${v.id}`;
+const chapterKey = (slug, ch, v = audioVoice) =>
+  v.id === 'williams' ? `${slug}/${ch}` : `${v.id}:${slug}/${ch}`;
 
 const Bible = {
   book: null, chapter: null,
-  index: LS.get('audioIndex', null),   // last good copy of <base>/index.json
-  saved: LS.get('audioSaved', {}),     // book -> true when every chapter is on the device
-  busy: {},                            // book -> true while a download runs
+  index: LS.get(voiceKey('audioIndex'), null),   // last good copy of <base>/index.json
+  saved: LS.get(voiceKey('audioSaved'), {}),     // book -> true when every chapter is on the device
+  busy: {},                                      // voice:book -> true while a download runs
 };
+
+function setVoice(id){
+  audioVoice = voiceById(id);
+  LS.set('audioVoice', audioVoice.id);
+  Bible.index = LS.get(voiceKey('audioIndex'), null);
+  Bible.saved = LS.get(voiceKey('audioSaved'), {});
+  loadAudioIndex().then(() => { paintAudioBadges(); paintPlayer(); });
+}
 
 const bookSlug = name => String(name).toLowerCase().replace(/\s+/g, '-');
 const BIBLE_PREFIX = 'bible-';
@@ -2911,10 +2934,14 @@ const AudioDB = (() => {
 
 async function loadAudioIndex(){
   try {
-    const r = await fetch(AUDIO_BASE + '/index.json', {cache:'no-store'});
+    const v = audioVoice;
+    const r = await fetch(v.base + '/index.json', {cache:'no-store'});
     if (!r.ok) return Bible.index;
     const d = await r.json();
-    if (d && d.books){ Bible.index = d; LS.set('audioIndex', d); }
+    if (d && d.books){
+      LS.set(voiceKey('audioIndex', v), d);
+      if (v === audioVoice) Bible.index = d;
+    }
   } catch(e){ /* offline: keep the last good copy */ }
   return Bible.index;
 }
@@ -3024,6 +3051,7 @@ async function openBibleChapter(book, chNum, opts={}){
   box.append(el('p','kicker', SCRIPTURE.title));
   box.append(el('h2','chapter', `${book} ${chNum}`));
   box.append(playerBar());
+  box.append(voiceRow());
 
   const tools = el('div','bible-tools');
   const find = el('button','ghost','🔍 Search the Bible');
@@ -3123,27 +3151,27 @@ function playerEl(){
   return a;
 }
 
-async function chapterSrc(book, ch){
+async function chapterSrc(book, ch, v = audioVoice){
   try {
-    const blob = await AudioDB.get(`${bookSlug(book)}/${ch}`);
+    const blob = await AudioDB.get(chapterKey(bookSlug(book), ch, v));
     if (blob) return {url: URL.createObjectURL(blob), local: true};
   } catch(e){}
-  return {url: `${AUDIO_BASE}/${bookSlug(book)}/${ch}.mp3`, local: false};
+  return {url: `${v.base}/${bookSlug(book)}/${ch}.mp3`, local: false};
 }
 
 async function playChapter(book, ch){
   const a = playerEl();
-  if (Player.book !== book || Player.chapter !== ch){
+  if (Player.book !== book || Player.chapter !== ch || Player.voice !== audioVoice){
     if (Player.url && Player.url.startsWith('blob:')) URL.revokeObjectURL(Player.url);
     const src = await chapterSrc(book, ch);
-    Player.book = book; Player.chapter = ch; Player.url = src.url;
+    Player.book = book; Player.chapter = ch; Player.voice = audioVoice; Player.url = src.url;
     a.src = src.url;
   }
   try { await a.play(); } catch(e){ /* the error handler explains */ }
   if ('mediaSession' in navigator){
     try {
       navigator.mediaSession.metadata = new MediaMetadata({
-        title: `${book} ${ch}`, artist: 'World English Bible', album: 'Kingdom Life Study',
+        title: `${book} ${ch}`, artist: `World English Bible · ${audioVoice.name}`, album: 'Kingdom Life Study',
         artwork: [{src:'icons/icon-512.png', sizes:'512x512', type:'image/png'}],
       });
     } catch(e){}
@@ -3239,6 +3267,40 @@ function paintPlayer(){
   }
 }
 
+/* ── choosing the voice ── */
+function voiceRow(){
+  const b = el('button','voice-pick');
+  b.id = 'voice-pick';
+  b.textContent = `Voice: ${audioVoice.name} ▾`;
+  b.onclick = voiceSheet;
+  return b;
+}
+function voiceSheet(){
+  sheet('Choose a voice', body => {
+    VOICES.forEach(v => {
+      const o = el('button','voice-opt' + (v === audioVoice ? ' on' : ''));
+      o.append(el('b', null, v.name), el('span', null, v.about));
+      o.onclick = () => {
+        const wasPlaying = Player.playing() && Player.book === Bible.book && Player.chapter === Bible.chapter;
+        closeSheet();
+        if (v === audioVoice) return;
+        setVoice(v.id);
+        const pick = $('#voice-pick'); if (pick) pick.textContent = `Voice: ${v.name} ▾`;
+        const save = $('#bibleread-body .audio-save');
+        if (save && Bible.book){
+          const total = scriptureCache && Object.keys(scriptureCache.books[Bible.book]).length;
+          if (total) save.replaceWith(audioSaveRow(Bible.book, total));
+        }
+        if (wasPlaying) playChapter(Bible.book, Bible.chapter);
+        else { if (Player.audio && Player.book) Player.audio.pause(); paintPlayer(); }
+        toast(`Voice: ${v.name}`);
+      };
+      body.append(o);
+    });
+    body.append(el('p','hint','Books you save for offline are saved in the voice you had chosen. Saving in the other voice takes its own space.'));
+  });
+}
+
 /* ── saving a book's audio for offline ── */
 function audioSaveRow(book, chapters){
   const row = el('div','audio-save');
@@ -3246,8 +3308,9 @@ function audioSaveRow(book, chapters){
   const size = info && info.bytes ? ` · ${(info.bytes/1048576).toFixed(0)} MB` : '';
   const txt = el('p','hint');
   const btn = el('button','wide-btn');
+  const busyKey = () => `${audioVoice.id}:${book}`;
   const paint = () => {
-    if (Bible.busy[book]) return;
+    if (Bible.busy[busyKey()]) return;
     if (Bible.saved[book]){
       txt.textContent = 'This book’s audio is saved on this device and plays with no signal.';
       btn.textContent = 'Remove saved audio';
@@ -3259,32 +3322,35 @@ function audioSaveRow(book, chapters){
     }
   };
   paint();
-  if (Bible.busy[book]){ btn.disabled = true; btn.textContent = 'Saving…'; }
+  if (Bible.busy[busyKey()]){ btn.disabled = true; btn.textContent = 'Saving…'; }
   row.append(txt, btn);
   return row;
 }
 
 async function saveBookAudio(book, chapters, btn, done){
-  if (Bible.busy[book]) return;
-  Bible.busy[book] = true;
+  const v = audioVoice, busyKey = `${v.id}:${book}`;
+  if (Bible.busy[busyKey]) return;
+  Bible.busy[busyKey] = true;
   btn.disabled = true;
   try { if (navigator.storage && navigator.storage.persist) await navigator.storage.persist(); } catch(e){}
   const slug = bookSlug(book);
   try {
     for (let c = 1; c <= chapters; c++){
       btn.textContent = `Saving ${c} of ${chapters}…`;
-      const key = `${slug}/${c}`;
+      const key = chapterKey(slug, c, v);
       if (await AudioDB.get(key)) continue;   // a stopped download picks up where it left off
-      const r = await fetch(`${AUDIO_BASE}/${slug}/${c}.mp3`);
+      const r = await fetch(`${v.base}/${slug}/${c}.mp3`);
       if (!r.ok) throw new Error(`chapter ${c} (HTTP ${r.status})`);
       await AudioDB.put(key, await r.blob());
     }
-    Bible.saved[book] = true; LS.set('audioSaved', Bible.saved);
-    toast(`${book} audio saved for offline`);
+    const saved = LS.get(voiceKey('audioSaved', v), {});
+    saved[book] = true; LS.set(voiceKey('audioSaved', v), saved);
+    if (v === audioVoice) Bible.saved = saved;
+    toast(`${book} audio saved for offline (${v.name})`);
   } catch(e){
     toast('Saving stopped at ' + (e.message || 'a chapter') + '. Tap again to finish.');
   } finally {
-    Bible.busy[book] = false;
+    Bible.busy[busyKey] = false;
     btn.disabled = false;
     done();
   }
@@ -3292,8 +3358,8 @@ async function saveBookAudio(book, chapters, btn, done){
 
 async function removeBookAudio(book, chapters, done){
   const slug = bookSlug(book);
-  for (let c = 1; c <= chapters; c++){ try { await AudioDB.del(`${slug}/${c}`); } catch(e){} }
-  delete Bible.saved[book]; LS.set('audioSaved', Bible.saved);
+  for (let c = 1; c <= chapters; c++){ try { await AudioDB.del(chapterKey(slug, c)); } catch(e){} }
+  delete Bible.saved[book]; LS.set(voiceKey('audioSaved'), Bible.saved);
   toast('Saved audio removed');
   done();
 }
